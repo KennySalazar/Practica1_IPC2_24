@@ -2,13 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  */
 
-package com.mycompany.practica1_ipc2_24;
+package Main;
 
 /**
  *
  * @author Kenny Salazar
  */
-public class Practica1_IPC2_24 {
+public class Main {
 
     public static void main(String[] args) {
         System.out.println("Hello World!");
