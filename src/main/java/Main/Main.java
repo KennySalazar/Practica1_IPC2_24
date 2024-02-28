@@ -5,6 +5,7 @@
 package Main;
 
 import cargaDeDatos.Lector;
+import vista.CargarDatos;
 
 /**
  *
@@ -13,8 +14,11 @@ import cargaDeDatos.Lector;
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
-        Lector lector = new Lector();
-        lector.leer();
+        CargarDatos vista = new CargarDatos();
+        vista.setVisible(true);
+        vista.setEnabled(true);
+        vista.setResizable(true);
+        vista.setLocationRelativeTo(null);
+        vista.setTitle("PRESTAMOS DE LIBROS CUNOC");
     }
 }
