@@ -29,7 +29,7 @@ public class Lector {
     public void leer() {
         try {
             //archivo = new FileReader("C:\\Users\\DAVID\\Desktop\\practica 1\\Practica1_IPC2PS24\\entrada\\pruebaa.txt");
-            archivo = new FileReader("C:\\Users\\DAVID\\Desktop\\practica 1\\Practica1_IPC2PS24\\resources\\estudiantes.txt");
+            archivo = new FileReader("C:\\Users\\DAVID\\Desktop\\practica 1 ipc2\\Practica1_IPC2_24\\resources\\data.txt");
             lector = new BufferedReader(archivo);
             if (archivo.ready()) {
                 String texto;
@@ -46,23 +46,9 @@ public class Lector {
                 int caso = 0;
                 int casoE = 0;
                 int casoP = 0;
-                String entidad = null;
+                String entidad = "";
                 while ((texto = lector.readLine()) != null) {
-
-                    /*if (texto.equals("TITULO:Romeo y Julieta")) {
-                        String[] cadena = texto.split(":");
-                        titulo = cadena[1].trim();
-                    } else if (texto.equals("AUTOR:William Shakespeare")) {
-                        String[] cadena = texto.split(":");
-                        autor = cadena[1].trim();
-                    } else if (texto.equals("CODIGO:023-ABC")) {
-                        String[] cadena = texto.split(":");
-                        codigo = cadena[1].trim();
-                    } else if (texto.equals("CANTIDAD:14")) {
-                        String[] cadena = texto.split(":");
-                        cantidad = cadena[1].trim();
-                    }
-                     */
+                    
                     if (texto.equals("ï»¿LIBRO") || texto.equals("LIBRO")) {
                         entidad = "LIBRO";
                     } else if (texto.equals("ï»¿ESTUDIANTE") || texto.equals("ESTUDIANTE")) {
