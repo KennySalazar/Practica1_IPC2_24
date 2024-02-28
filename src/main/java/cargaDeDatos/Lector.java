@@ -5,8 +5,10 @@
 package cargaDeDatos;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
+import javax.swing.JFileChooser;
 
 /**
  *
@@ -16,20 +18,15 @@ public class Lector {
     
     private FileReader archivo;
     private BufferedReader lector;
-    private ArrayList<Libro> biblio;
-    private ArrayList<Estudiante> estudiantes;
-    private ArrayList<Prestamo> prestamos;
+   
     
     public Lector(){
-        this.biblio = new ArrayList<>();
-        this.estudiantes = new ArrayList<>();
-        this.prestamos = new ArrayList<>();
     }
     
-    public void leer() {
+    public void leer(File archivo1, ArrayList<Libro> biblio, ArrayList<Estudiante> estudiantes, ArrayList<Prestamo> prestamos ) {
         try {
             //archivo = new FileReader("C:\\Users\\DAVID\\Desktop\\practica 1\\Practica1_IPC2PS24\\entrada\\pruebaa.txt");
-            archivo = new FileReader("C:\\Users\\Kenny Salazar\\Documents\\NetBeansProjects\\Practica1_IPC2_24\\resources\\data.txt");
+            archivo = new FileReader(archivo1.getPath());
             lector = new BufferedReader(archivo);
             if (archivo.ready()) {
                 String texto;
@@ -83,7 +80,7 @@ public class Lector {
                                 String[] cadenaN = texto.split("CANTIDAD:");
                                 cantidad = cadenaN[1].trim();
                                 caso = 0;
-                                Libro newLibro = new Libro(titulo, autor, codigo, cantidad);
+                                Libro newLibro = new Libro(titulo, autor, codigo, cantidad,"","");
                                 System.out.println(newLibro);
                                 biblio.add(newLibro);
                                 break;
@@ -112,7 +109,7 @@ public class Lector {
                                 String[] cadena = texto.split("CARRERA:");
                                 carrera = cadena[1].trim();
                                 casoE = 0;
-                                Estudiante estudiante = new Estudiante(carnet, nombre, carrera);
+                                Estudiante estudiante = new Estudiante(carnet, nombre, carrera, "");
                                 System.out.println(estudiante);
                                 estudiantes.add(estudiante);
                                 break;
