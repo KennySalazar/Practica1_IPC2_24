@@ -20,6 +20,30 @@ public class Prestamo {
         this.fecha = fecha;
     }
 
+    public String getCodigoLibro() {
+        return codigoLibro;
+    }
+
+    public void setCodigoLibro(String codigoLibro) {
+        this.codigoLibro = codigoLibro;
+    }
+
+    public String getCarnetE() {
+        return carnetE;
+    }
+
+    public void setCarnetE(String carnetE) {
+        this.carnetE = carnetE;
+    }
+
+    public String getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
+    }
+
     @Override
     public String toString() {
         return "Prestamo{" + "codigoLibro=" + codigoLibro + ", carnetE=" + carnetE + ", fecha=" + fecha + '}';
