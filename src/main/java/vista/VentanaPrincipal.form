@@ -407,17 +407,17 @@
                               <Renderer/>
                             </Column>
                             <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                              <Title/>
+                              <Title value="Cantidad de Copias"/>
                               <Editor/>
                               <Renderer/>
                             </Column>
                             <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                              <Title/>
+                              <Title value="Fercha de Publicaci&#xf3;n"/>
                               <Editor/>
                               <Renderer/>
                             </Column>
                             <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                              <Title/>
+                              <Title value="Editorial"/>
                               <Editor/>
                               <Renderer/>
                             </Column>
@@ -451,14 +451,170 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <EmptySpace min="0" pref="716" max="32767" attributes="0"/>
+                  <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="jDesktopPane6" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="591" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="592" max="32767" attributes="0"/>
+                  <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="jDesktopPane6" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
               </Group>
             </DimensionLayout>
           </Layout>
+          <SubComponents>
+            <Container class="javax.swing.JDesktopPane" name="jDesktopPane6">
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="nuevoPrestamosBt" min="-2" pref="168" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="295" max="-2" attributes="0"/>
+                                          <Component id="eliminarPrestamosBt" min="-2" pref="173" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Component id="labelBusquedaLibro1" alignment="0" min="-2" pref="216" max="-2" attributes="0"/>
+                                      <Component id="jTextField3" alignment="0" max="32767" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
+                                  <Component id="jScrollPane3" min="-2" pref="559" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace pref="78" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="nuevoPrestamosBt" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="eliminarPrestamosBt" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                          <Component id="labelBusquedaLibro1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jTextField3" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace pref="18" max="32767" attributes="0"/>
+                          <Component id="jScrollPane3" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Component class="javax.swing.JButton" name="nuevoPrestamosBt">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Nuevo"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nuevoPrestamosBtActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JButton" name="eliminarPrestamosBt">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Eliminar"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="jTextField3">
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField3ActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JLabel" name="labelBusquedaLibro1">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Busqueda"/>
+                  </Properties>
+                </Component>
+                <Container class="javax.swing.JScrollPane" name="jScrollPane3">
+                  <AuxValues>
+                    <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+                  </AuxValues>
+
+                  <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                  <SubComponents>
+                    <Component class="javax.swing.JTable" name="jTable3">
+                      <Properties>
+                        <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                          <Table columnCount="3" rowCount="6">
+                            <Column editable="true" title="C&#xf3;digoLibro" type="java.lang.Object">
+                              <Data value="1"/>
+                              <Data value="2"/>
+                              <Data value="23"/>
+                              <Data value="null"/>
+                              <Data value="null"/>
+                              <Data value="null"/>
+                            </Column>
+                            <Column editable="true" title="Carnet" type="java.lang.Object">
+                              <Data value="1212"/>
+                              <Data value="232"/>
+                              <Data value="2323"/>
+                              <Data value="null"/>
+                              <Data value="null"/>
+                              <Data value="null"/>
+                            </Column>
+                            <Column editable="true" title="Fecha" type="java.lang.Object">
+                              <Data value="1212"/>
+                              <Data value="2323"/>
+                              <Data value="343"/>
+                              <Data value="null"/>
+                              <Data value="null"/>
+                              <Data value="null"/>
+                            </Column>
+                          </Table>
+                        </Property>
+                        <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                          <TableColumnModel selectionModel="0">
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                          </TableColumnModel>
+                        </Property>
+                        <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                          <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+                        </Property>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTable3MouseClicked"/>
+                        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTable3KeyPressed"/>
+                      </Events>
+                    </Component>
+                  </SubComponents>
+                </Container>
+              </SubComponents>
+            </Container>
+          </SubComponents>
         </Container>
         <Container class="javax.swing.JDesktopPane" name="jDesktopPane3">
           <Constraints>

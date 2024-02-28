@@ -50,6 +50,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
         jDesktopPane4 = new javax.swing.JDesktopPane();
+        jDesktopPane6 = new javax.swing.JDesktopPane();
+        nuevoPrestamosBt = new javax.swing.JButton();
+        eliminarPrestamosBt = new javax.swing.JButton();
+        jTextField3 = new javax.swing.JTextField();
+        labelBusquedaLibro1 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable3 = new javax.swing.JTable();
         jDesktopPane3 = new javax.swing.JDesktopPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -196,6 +203,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
         jScrollPane2.setViewportView(jTable2);
+        if (jTable2.getColumnModel().getColumnCount() > 0) {
+            jTable2.getColumnModel().getColumn(3).setHeaderValue("Cantidad de Copias");
+            jTable2.getColumnModel().getColumn(4).setHeaderValue("Fercha de Publicación");
+            jTable2.getColumnModel().getColumn(5).setHeaderValue("Editorial");
+        }
 
         jDesktopPane5.setLayer(nuevoLibroButton, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane5.setLayer(editarLibro, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -268,15 +280,111 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Libros", jDesktopPane2);
 
+        nuevoPrestamosBt.setText("Nuevo");
+        nuevoPrestamosBt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nuevoPrestamosBtActionPerformed(evt);
+            }
+        });
+
+        eliminarPrestamosBt.setText("Eliminar");
+
+        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField3ActionPerformed(evt);
+            }
+        });
+
+        labelBusquedaLibro1.setText("Busqueda");
+
+        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {"1", "1212", "1212"},
+                {"2", "232", "2323"},
+                {"23", "2323", "343"},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "CódigoLibro", "Carnet", "Fecha"
+            }
+        ));
+        jTable3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable3MouseClicked(evt);
+            }
+        });
+        jTable3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTable3KeyPressed(evt);
+            }
+        });
+        jScrollPane3.setViewportView(jTable3);
+
+        jDesktopPane6.setLayer(nuevoPrestamosBt, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane6.setLayer(eliminarPrestamosBt, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane6.setLayer(jTextField3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane6.setLayer(labelBusquedaLibro1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane6.setLayer(jScrollPane3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout jDesktopPane6Layout = new javax.swing.GroupLayout(jDesktopPane6);
+        jDesktopPane6.setLayout(jDesktopPane6Layout);
+        jDesktopPane6Layout.setHorizontalGroup(
+            jDesktopPane6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDesktopPane6Layout.createSequentialGroup()
+                .addGroup(jDesktopPane6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jDesktopPane6Layout.createSequentialGroup()
+                        .addGap(41, 41, 41)
+                        .addGroup(jDesktopPane6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jDesktopPane6Layout.createSequentialGroup()
+                                .addComponent(nuevoPrestamosBt, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(295, 295, 295)
+                                .addComponent(eliminarPrestamosBt, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(labelBusquedaLibro1, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField3)))
+                    .addGroup(jDesktopPane6Layout.createSequentialGroup()
+                        .addGap(77, 77, 77)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 559, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(78, Short.MAX_VALUE))
+        );
+        jDesktopPane6Layout.setVerticalGroup(
+            jDesktopPane6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDesktopPane6Layout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addGroup(jDesktopPane6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nuevoPrestamosBt)
+                    .addComponent(eliminarPrestamosBt))
+                .addGap(28, 28, 28)
+                .addComponent(labelBusquedaLibro1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        jDesktopPane4.setLayer(jDesktopPane6, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
         javax.swing.GroupLayout jDesktopPane4Layout = new javax.swing.GroupLayout(jDesktopPane4);
         jDesktopPane4.setLayout(jDesktopPane4Layout);
         jDesktopPane4Layout.setHorizontalGroup(
             jDesktopPane4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 716, Short.MAX_VALUE)
+            .addGroup(jDesktopPane4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane4Layout.createSequentialGroup()
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jDesktopPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         jDesktopPane4Layout.setVerticalGroup(
             jDesktopPane4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 591, Short.MAX_VALUE)
+            .addGap(0, 592, Short.MAX_VALUE)
+            .addGroup(jDesktopPane4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane4Layout.createSequentialGroup()
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jDesktopPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         jTabbedPane1.addTab("Prestamos", jDesktopPane4);
@@ -362,6 +470,22 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTable2KeyPressed
 
+    private void nuevoPrestamosBtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoPrestamosBtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nuevoPrestamosBtActionPerformed
+
+    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField3ActionPerformed
+
+    private void jTable3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable3MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTable3MouseClicked
+
+    private void jTable3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable3KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTable3KeyPressed
+
     public void ventanaNuevoEst(){
         NuevoEstudiante ne =new  NuevoEstudiante();
         ne.setVisible(true);
@@ -384,22 +508,29 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton editarLibro;
     private javax.swing.JButton eliminarEstudianteBt;
     private javax.swing.JButton eliminarLibro;
+    private javax.swing.JButton eliminarPrestamosBt;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JDesktopPane jDesktopPane2;
     private javax.swing.JDesktopPane jDesktopPane3;
     private javax.swing.JDesktopPane jDesktopPane4;
     private javax.swing.JDesktopPane jDesktopPane5;
+    private javax.swing.JDesktopPane jDesktopPane6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
+    private javax.swing.JTable jTable3;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
     private javax.swing.JLabel labelBusqueda;
     private javax.swing.JLabel labelBusquedaLibro;
+    private javax.swing.JLabel labelBusquedaLibro1;
     private javax.swing.JButton nuevoEstudiante;
     private javax.swing.JButton nuevoLibroButton;
+    private javax.swing.JButton nuevoPrestamosBt;
     // End of variables declaration//GEN-END:variables
 }
