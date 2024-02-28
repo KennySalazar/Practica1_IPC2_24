@@ -29,7 +29,7 @@ public class Lector {
     public void leer() {
         try {
             //archivo = new FileReader("C:\\Users\\DAVID\\Desktop\\practica 1\\Practica1_IPC2PS24\\entrada\\pruebaa.txt");
-            archivo = new FileReader("C:\\Users\\DAVID\\Desktop\\practica 1 ipc2\\Practica1_IPC2_24\\resources\\data.txt");
+            archivo = new FileReader("C:\\Users\\Kenny Salazar\\Documents\\NetBeansProjects\\Practica1_IPC2_24\\resources\\data.txt");
             lector = new BufferedReader(archivo);
             if (archivo.ready()) {
                 String texto;
