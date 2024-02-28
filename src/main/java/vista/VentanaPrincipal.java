@@ -9,6 +9,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import persistenciaDatos.ControlDatosEstudiante;
 import persistenciaDatos.ControlDatosLibros;
+import persistenciaDatos.ControlDePrestamos;
 
 /**
  *
@@ -26,12 +27,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         initComponents();
         ControlDatosEstudiante controlDatosEstudiante = new ControlDatosEstudiante();
         ControlDatosLibros controlDatosLibros = new ControlDatosLibros();
+        ControlDePrestamos controlPrestamos = new ControlDePrestamos();
         this.editarEstudianteBt.setEnabled(false);
         this.eliminarEstudianteBt.setEnabled(false);
         this.editarLibro.setEnabled(false);
         this.eliminarLibro.setEnabled(false);
         controlDatosEstudiante.llenarTablaEstudiantes(this.tablaStudents);
         controlDatosLibros.llenarTablaLibros(this.tablaLibros);
+        controlPrestamos.llenarTablaPrestamos(tablaPrestamos);
     }
 
     /**
@@ -69,7 +72,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jTextField3 = new javax.swing.JTextField();
         labelBusquedaLibro1 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
+        tablaPrestamos = new javax.swing.JTable();
         jDesktopPane3 = new javax.swing.JDesktopPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -308,7 +311,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         labelBusquedaLibro1.setText("Busqueda");
 
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+        tablaPrestamos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {"1", "1212", "1212"},
                 {"2", "232", "2323"},
@@ -321,17 +324,17 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 "CódigoLibro", "Carnet", "Fecha"
             }
         ));
-        jTable3.addMouseListener(new java.awt.event.MouseAdapter() {
+        tablaPrestamos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable3MouseClicked(evt);
+                tablaPrestamosMouseClicked(evt);
             }
         });
-        jTable3.addKeyListener(new java.awt.event.KeyAdapter() {
+        tablaPrestamos.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTable3KeyPressed(evt);
+                tablaPrestamosKeyPressed(evt);
             }
         });
-        jScrollPane3.setViewportView(jTable3);
+        jScrollPane3.setViewportView(tablaPrestamos);
 
         jDesktopPane6.setLayer(nuevoPrestamosBt, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane6.setLayer(eliminarPrestamosBt, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -489,13 +492,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField3ActionPerformed
 
-    private void jTable3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable3MouseClicked
+    private void tablaPrestamosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaPrestamosMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTable3MouseClicked
+    }//GEN-LAST:event_tablaPrestamosMouseClicked
 
-    private void jTable3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable3KeyPressed
+    private void tablaPrestamosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tablaPrestamosKeyPressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTable3KeyPressed
+    }//GEN-LAST:event_tablaPrestamosKeyPressed
 
     public void ventanaNuevoEst(){
         NuevoEstudiante ne =new  NuevoEstudiante();
@@ -531,7 +534,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable3;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
@@ -542,6 +544,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton nuevoLibroButton;
     private javax.swing.JButton nuevoPrestamosBt;
     private javax.swing.JTable tablaLibros;
+    private javax.swing.JTable tablaPrestamos;
     private javax.swing.JTable tablaStudents;
     // End of variables declaration//GEN-END:variables
 }
