@@ -4,6 +4,12 @@
  */
 package vista;
 
+import cargaDeDatos.Estudiante;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import persistenciaDatos.ControlDatosEstudiante;
+import persistenciaDatos.ControlDatosLibros;
+
 /**
  *
  * @author Kenny
@@ -13,12 +19,19 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     /**
      * Creates new form VentanaPrincipal
      */
+    
+
     public VentanaPrincipal() {
+        
         initComponents();
+        ControlDatosEstudiante controlDatosEstudiante = new ControlDatosEstudiante();
+        ControlDatosLibros controlDatosLibros = new ControlDatosLibros();
         this.editarEstudianteBt.setEnabled(false);
         this.eliminarEstudianteBt.setEnabled(false);
         this.editarLibro.setEnabled(false);
         this.eliminarLibro.setEnabled(false);
+        controlDatosEstudiante.llenarTablaEstudiantes(this.tablaStudents);
+        controlDatosLibros.llenarTablaLibros(this.tablaLibros);
     }
 
     /**
@@ -39,7 +52,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         labelBusqueda = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablaStudents = new javax.swing.JTable();
         jDesktopPane2 = new javax.swing.JDesktopPane();
         jDesktopPane5 = new javax.swing.JDesktopPane();
         nuevoLibroButton = new javax.swing.JButton();
@@ -48,7 +61,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jTextField2 = new javax.swing.JTextField();
         labelBusquedaLibro = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tablaLibros = new javax.swing.JTable();
         jDesktopPane4 = new javax.swing.JDesktopPane();
         jDesktopPane6 = new javax.swing.JDesktopPane();
         nuevoPrestamosBt = new javax.swing.JButton();
@@ -91,7 +104,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         labelBusqueda.setText("Busqueda");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablaStudents.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {"1", "1212", "1212", "1212"},
                 {"2", "232", "2323", "2323"},
@@ -104,17 +117,17 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 "Carnet", "Nombre", "Carrera", "Fecha de Nacimiento"
             }
         ));
-        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+        tablaStudents.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable1MouseClicked(evt);
+                tablaStudentsMouseClicked(evt);
             }
         });
-        jTable1.addKeyListener(new java.awt.event.KeyAdapter() {
+        tablaStudents.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTable1KeyPressed(evt);
+                tablaStudentsKeyPressed(evt);
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tablaStudents);
 
         jDesktopPane1.setLayer(nuevoEstudiante, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(editarEstudianteBt, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -179,7 +192,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         labelBusquedaLibro.setText("Busqueda");
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tablaLibros.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {"1", "1212", "1212", "1212", null, null},
                 {"2", "232", "2323", "2323", null, null},
@@ -192,21 +205,21 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 "Título", "Autor", "Código", "Cantidad de Copias", "Fercha de Publicación", "Editorial"
             }
         ));
-        jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
+        tablaLibros.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable2MouseClicked(evt);
+                tablaLibrosMouseClicked(evt);
             }
         });
-        jTable2.addKeyListener(new java.awt.event.KeyAdapter() {
+        tablaLibros.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTable2KeyPressed(evt);
+                tablaLibrosKeyPressed(evt);
             }
         });
-        jScrollPane2.setViewportView(jTable2);
-        if (jTable2.getColumnModel().getColumnCount() > 0) {
-            jTable2.getColumnModel().getColumn(3).setHeaderValue("Cantidad de Copias");
-            jTable2.getColumnModel().getColumn(4).setHeaderValue("Fercha de Publicación");
-            jTable2.getColumnModel().getColumn(5).setHeaderValue("Editorial");
+        jScrollPane2.setViewportView(tablaLibros);
+        if (tablaLibros.getColumnModel().getColumnCount() > 0) {
+            tablaLibros.getColumnModel().getColumn(3).setHeaderValue("Cantidad de Copias");
+            tablaLibros.getColumnModel().getColumn(4).setHeaderValue("Fercha de Publicación");
+            tablaLibros.getColumnModel().getColumn(5).setHeaderValue("Editorial");
         }
 
         jDesktopPane5.setLayer(nuevoLibroButton, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -221,22 +234,20 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jDesktopPane5Layout.setHorizontalGroup(
             jDesktopPane5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDesktopPane5Layout.createSequentialGroup()
-                .addGroup(jDesktopPane5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(41, 41, 41)
+                .addGroup(jDesktopPane5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jDesktopPane5Layout.createSequentialGroup()
-                        .addGap(41, 41, 41)
-                        .addGroup(jDesktopPane5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jDesktopPane5Layout.createSequentialGroup()
-                                .addComponent(nuevoLibroButton, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(45, 45, 45)
-                                .addComponent(editarLibro, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(86, 86, 86)
-                                .addComponent(eliminarLibro, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(labelBusquedaLibro, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField2)))
-                    .addGroup(jDesktopPane5Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 743, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(nuevoLibroButton, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(45, 45, 45)
+                        .addComponent(editarLibro, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(86, 86, 86)
+                        .addComponent(eliminarLibro, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(labelBusquedaLibro, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField2))
+                .addContainerGap(81, Short.MAX_VALUE))
+            .addGroup(jDesktopPane5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2))
         );
         jDesktopPane5Layout.setVerticalGroup(
             jDesktopPane5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -261,12 +272,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jDesktopPane2.setLayout(jDesktopPane2Layout);
         jDesktopPane2Layout.setHorizontalGroup(
             jDesktopPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 716, Short.MAX_VALUE)
+            .addGap(0, 779, Short.MAX_VALUE)
             .addGroup(jDesktopPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane2Layout.createSequentialGroup()
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap(10, Short.MAX_VALUE)
                     .addComponent(jDesktopPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addContainerGap(11, Short.MAX_VALUE)))
         );
         jDesktopPane2Layout.setVerticalGroup(
             jDesktopPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -370,7 +381,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jDesktopPane4.setLayout(jDesktopPane4Layout);
         jDesktopPane4Layout.setHorizontalGroup(
             jDesktopPane4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 716, Short.MAX_VALUE)
+            .addGap(0, 779, Short.MAX_VALUE)
             .addGroup(jDesktopPane4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane4Layout.createSequentialGroup()
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -393,7 +404,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jDesktopPane3.setLayout(jDesktopPane3Layout);
         jDesktopPane3Layout.setHorizontalGroup(
             jDesktopPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 716, Short.MAX_VALUE)
+            .addGap(0, 779, Short.MAX_VALUE)
         );
         jDesktopPane3Layout.setVerticalGroup(
             jDesktopPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -407,8 +418,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 716, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -435,18 +446,18 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         ventanaNuevoEst();
     }//GEN-LAST:event_nuevoEstudianteActionPerformed
 
-    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+    private void tablaStudentsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaStudentsMouseClicked
         // TODO add your handling code here:
         this.editarEstudianteBt.setEnabled(true);
         this.eliminarEstudianteBt.setEnabled(true);
-        int fila = jTable1.getSelectedRow();
-        String carnet= (String) jTable1.getValueAt(fila, 0);
+        int fila = tablaStudents.getSelectedRow();
+        String carnet= (String) tablaStudents.getValueAt(fila, 0);
         labelBusqueda.setText(""+carnet);
-    }//GEN-LAST:event_jTable1MouseClicked
+    }//GEN-LAST:event_tablaStudentsMouseClicked
 
-    private void jTable1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable1KeyPressed
+    private void tablaStudentsKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tablaStudentsKeyPressed
         
-    }//GEN-LAST:event_jTable1KeyPressed
+    }//GEN-LAST:event_tablaStudentsKeyPressed
 
     private void nuevoLibroButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoLibroButtonActionPerformed
         // TODO add your handling code here:
@@ -457,18 +468,18 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField2ActionPerformed
 
-    private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
+    private void tablaLibrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaLibrosMouseClicked
         // TODO add your handling code here:
         this.editarLibro.setEnabled(true);
         this.eliminarLibro.setEnabled(true);
-        int fila = jTable2.getSelectedRow();
-        String codigo= (String) jTable2.getValueAt(fila, 0);
+        int fila = tablaLibros.getSelectedRow();
+        String codigo= (String) tablaLibros.getValueAt(fila, 0);
         labelBusquedaLibro.setText(""+codigo);
-    }//GEN-LAST:event_jTable2MouseClicked
+    }//GEN-LAST:event_tablaLibrosMouseClicked
 
-    private void jTable2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable2KeyPressed
+    private void tablaLibrosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tablaLibrosKeyPressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTable2KeyPressed
+    }//GEN-LAST:event_tablaLibrosKeyPressed
 
     private void nuevoPrestamosBtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoPrestamosBtActionPerformed
         // TODO add your handling code here:
@@ -520,8 +531,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
@@ -532,5 +541,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton nuevoEstudiante;
     private javax.swing.JButton nuevoLibroButton;
     private javax.swing.JButton nuevoPrestamosBt;
+    private javax.swing.JTable tablaLibros;
+    private javax.swing.JTable tablaStudents;
     // End of variables declaration//GEN-END:variables
 }

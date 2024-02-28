@@ -4,6 +4,11 @@
  */
 package vista;
 
+import cargaDeDatos.Lector;
+import java.io.File;
+import javax.swing.JFileChooser;
+import persistenciaDatos.PersistenciaDeDatos;
+
 /**
  *
  * @author Kenny
@@ -89,44 +94,25 @@ public class CargarDatos extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         //metodo para cargar datos
+        abrirFileChooser();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CargarDatos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CargarDatos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CargarDatos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CargarDatos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                CargarDatos cd = new CargarDatos();
-                cd.setVisible(true);
-                cd.setLocationRelativeTo(null);
-                cd.setResizable(false);
-            }
-        });
+
+    public void abrirFileChooser() {
+        JFileChooser jf = new JFileChooser();
+        jf.showOpenDialog(this);
+        File archivo = jf.getSelectedFile();
+        Lector lector = new Lector();
+        if (archivo != null || !archivo.getName().equals("")) {
+
+            //leer(archivo.getAbsolutePath());
+            lector.leer(archivo, PersistenciaDeDatos.biblio, PersistenciaDeDatos.estudiantes, PersistenciaDeDatos.prestamos);
+        }
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
