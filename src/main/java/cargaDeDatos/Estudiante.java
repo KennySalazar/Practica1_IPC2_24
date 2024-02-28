@@ -14,11 +14,45 @@ public class Estudiante {
     private String carnet;
     private String nombre;
     private String carrera;
+    private String fechaNacimiento;
 
-    public Estudiante(String carnet, String nombre, String carrera) {
+    public String getCarnet() {
+        return carnet;
+    }
+
+    public void setCarnet(String carnet) {
+        this.carnet = carnet;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getCarrera() {
+        return carrera;
+    }
+
+    public void setCarrera(String carrera) {
+        this.carrera = carrera;
+    }
+
+    public String getFechaNacimiento() {
+        return fechaNacimiento;
+    }
+
+    public void setFechaNacimiento(String fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
+    }
+
+    public Estudiante(String carnet, String nombre, String carrera, String fechaNacimiento) {
         this.carnet = carnet;
         this.nombre = nombre;
         this.carrera = carrera;
+        this.fechaNacimiento = fechaNacimiento;
     }
 
     @Override
