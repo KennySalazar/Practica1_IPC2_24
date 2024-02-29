@@ -80,7 +80,7 @@ public class Lector {
                                 String[] cadenaN = texto.split("CANTIDAD:");
                                 cantidad = cadenaN[1].trim();
                                 caso = 0;
-                                Libro newLibro = new Libro(titulo, autor, codigo, cantidad,"","");
+                                Libro newLibro = new Libro(titulo, autor, codigo, cantidad," "," ");
                                 System.out.println(newLibro);
                                 biblio.add(newLibro);
                                 break;
@@ -109,7 +109,7 @@ public class Lector {
                                 String[] cadena = texto.split("CARRERA:");
                                 carrera = cadena[1].trim();
                                 casoE = 0;
-                                Estudiante estudiante = new Estudiante(carnet, nombre, carrera, "");
+                                Estudiante estudiante = new Estudiante(carnet, nombre, carrera, " ");
                                 System.out.println(estudiante);
                                 estudiantes.add(estudiante);
                                 break;
