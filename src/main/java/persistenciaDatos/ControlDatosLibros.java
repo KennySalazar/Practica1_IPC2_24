@@ -24,7 +24,7 @@ public class ControlDatosLibros {
             columnas[0]=libro.getTitulo();
             columnas[1]=libro.getAutor();
             columnas[2]=libro.getCodigo();
-            columnas[3]=libro.getCantidad();
+            columnas[3]=""+libro.getCantidad();
             columnas[4]=libro.getFechaDePublicacion();
             columnas[5]=libro.getEditorial();
             modelo.addRow(columnas);

@@ -21,8 +21,10 @@ public class Lector {
     private FileReader archivo;
     private BufferedReader lector;
     private int linea;
+    private ArrayList<String> erroresDeCarga;
 
     public Lector() {
+        this.erroresDeCarga = new ArrayList<>();
         this.linea = 0;
     }
 
@@ -92,7 +94,9 @@ public class Lector {
                                     System.out.println(newLibro);
                                     biblio.add(newLibro);
                                 } else {
-                                    System.out.println("El codigo del libro " + codigo + " es invalido, en linea: " + linea);
+                                    String error = "El codigo del libro " + codigo + " es invalido, en linea: " + linea;
+                                    this.erroresDeCarga.add(error);
+                                    System.out.println(error);
                                 }
 
                                 break;
@@ -130,7 +134,9 @@ public class Lector {
                                     System.out.println(estudiante);
                                     estudiantes.add(estudiante);
                                 } else {
-                                    System.out.println("El codigo de carrera " + carrera + " es invalido, en linea: " + linea);
+                                    String error = "El codigo de carrera " + carrera + " es invalido, en linea: " + linea;
+                                    this.erroresDeCarga.add(error);
+                                    System.out.println(error);
                                 }
                                 break;
                             default:
@@ -167,7 +173,9 @@ public class Lector {
                                     System.out.println(prestamo);
                                     prestamos.add(prestamo);
                                 } else {
-                                    System.out.println("El codigo del libro " + codigoLibrom + " es invalido, en linea: " + linea);
+                                    String error = "El codigo del libro " + codigoLibrom + " es invalido, en linea: " + linea;
+                                    this.erroresDeCarga.add(error);
+                                    System.out.println(error);
                                 }
                                 break;
                             default:
