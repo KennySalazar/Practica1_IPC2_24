@@ -4,6 +4,14 @@
  */
 package vista;
 
+import DataBase.SaveAndReaderBinary;
+import cargaDeDatos.Libro;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import persistenciaDatos.ControlDatosLibros;
+import persistenciaDatos.PersistenciaDeDatos;
+
 /**
  *
  * @author Kenny Salazar
@@ -13,22 +21,59 @@ public class NuevoLibro extends javax.swing.JFrame {
     /**
      * Creates new form NuevosLibros
      */
+    // --------------EDITAR LIBRO---------------------
+    boolean isEdit;
+    Libro libro;
+    JTable tabla;
+    SaveAndReaderBinary LyE = new SaveAndReaderBinary();
+
+    NuevoLibro(boolean isEdit, Libro libro, JTable tabla) {
+        this.isEdit = isEdit;
+        this.libro = libro;
+        this.tabla = tabla;
+        initComponents();
+        IniciarCombosFecha();
+        cantidadCopias();
+
+        if (isEdit) {
+            this.codigoTextField.setText(libro.getCodigo());
+            this.codigoTextField.setEditable(false);
+            this.autorTextField.setText(libro.getAutor());
+            this.tituloTextField.setText(libro.getTitulo());
+            this.comboCopias.setSelectedIndex(Integer.parseInt(libro.getCantidad()));
+            this.editorialTextField.setText(libro.getEditorial());
+            //falta fecha y editorial
+            System.out.println(libro.getFechaDePublicacion());
+            try {
+                String fechaPublicación[] = libro.getFechaDePublicacion().split("-");
+                this.comboAnio.setSelectedItem(fechaPublicación[0]);
+                this.comboMes.setSelectedItem(fechaPublicación[1]);
+                this.comboDia.setSelectedItem(fechaPublicación[2]);
+            } catch (Exception e) {
+                System.out.println("No trae fecha");
+            }
+
+        }
+    }
+
     public NuevoLibro() {
         initComponents();
         cantidadCopias();
         IniciarCombosFecha();
     }
-    public void cantidadCopias(){
+
+    public void cantidadCopias() {
         for (int i = 0; i < 100; i++) {
             this.comboCopias.addItem("" + i);
-            
+
         }
     }
-        public void IniciarCombosFecha() {
+
+    public void IniciarCombosFecha() {
         for (int i = 1900; i < 2024; i++) {
             this.comboAnio.addItem("" + i);
         }
-        for (int i = 1; i <=12; i++) {
+        for (int i = 1; i <= 12; i++) {
             this.comboMes.addItem("" + i);
         }
         for (int i = 1; i <= 31; i++) {
@@ -60,10 +105,10 @@ public class NuevoLibro extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         comboCopias = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
+        BtGuadarNuevoLibro = new javax.swing.JButton();
         autorTextField = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        tituloTextField1 = new javax.swing.JTextField();
+        editorialTextField = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -96,7 +141,12 @@ public class NuevoLibro extends javax.swing.JFrame {
 
         jLabel8.setText("Dia");
 
-        jButton1.setText("Guardar");
+        BtGuadarNuevoLibro.setText("Guardar");
+        BtGuadarNuevoLibro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtGuadarNuevoLibroActionPerformed(evt);
+            }
+        });
 
         jLabel9.setText("Titulo");
 
@@ -111,7 +161,7 @@ public class NuevoLibro extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(43, 43, 43)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tituloTextField1)
+                            .addComponent(editorialTextField)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel10)
@@ -149,7 +199,7 @@ public class NuevoLibro extends javax.swing.JFrame {
                 .addContainerGap(140, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(BtGuadarNuevoLibro, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -188,9 +238,9 @@ public class NuevoLibro extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(tituloTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(editorialTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(BtGuadarNuevoLibro)
                 .addGap(32, 32, 32))
         );
 
@@ -222,19 +272,64 @@ public class NuevoLibro extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_comboMesActionPerformed
 
+    private void BtGuadarNuevoLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtGuadarNuevoLibroActionPerformed
+        // TODO add your handling code here:
+        ControlDatosLibros controlLibro = new ControlDatosLibros();
+        JFrame jFrame = new JFrame();
+        if (!isEdit) {
+            if (!codigoTextField.getText().equalsIgnoreCase("")) {
+                
+                    if (!autorTextField.getText().equalsIgnoreCase("") && !tituloTextField.getText().equalsIgnoreCase("")) {
+                        String codigo = codigoTextField.getText();
+                        String titulo = tituloTextField.getText();
+                        String editorial = editorialTextField.getText();
+                        String fechaPublicacion = (String) comboAnio.getSelectedItem() + "-" + comboMes.getSelectedItem() + "-" + comboDia.getSelectedItem();
+                        controlLibro.guardarNuevoLibro(tituloTextField.getText(), autorTextField.getText(), codigoTextField.getText(), String.valueOf(comboCopias.getSelectedIndex()), fechaPublicacion, editorialTextField.getText(), tabla);
+                        JOptionPane.showMessageDialog(jFrame, "Se ha guardado el nuevo Libro");
+
+                        this.dispose();
+                    } else {
+                        JOptionPane.showMessageDialog(jFrame, "Debes rellenar todos los campos");
+                    }
+                
+            } else{
+                JOptionPane.showMessageDialog(jFrame, "El codigo no debe ser nulo");
+            }
+            
+        } else {
+                for (int i = 0; i < PersistenciaDeDatos.biblio.size(); i++) {
+                    if (PersistenciaDeDatos.biblio.get(i).getCodigo().equals(codigoTextField.getText())) {
+                        PersistenciaDeDatos.biblio.get(i).setAutor(autorTextField.getText());
+                        PersistenciaDeDatos.biblio.get(i).setTitulo(tituloTextField.getText());
+                        PersistenciaDeDatos.biblio.get(i).setCantidad(String.valueOf(comboCopias.getSelectedIndex()));
+                        String fechaPublicacion = (String) comboAnio.getSelectedItem() + "-" + comboMes.getSelectedItem() + "-" + comboDia.getSelectedItem();
+                        PersistenciaDeDatos.biblio.get(i).setFechaDePublicacion(fechaPublicacion);
+                        PersistenciaDeDatos.biblio.get(i).setEditorial(editorialTextField.getText());
+                        JOptionPane.showMessageDialog(jFrame, "Se ha modificado el libro: " + libro.getCodigo());
+                        controlLibro.llenarTablaLibros(tabla);
+                        LyE.guardarArchivoBinario();
+                        i = PersistenciaDeDatos.biblio.size();
+                    }
+
+                }
+                this.dispose();
+            }
+
+    }//GEN-LAST:event_BtGuadarNuevoLibroActionPerformed
+
     /**
      * @param args the command line arguments
      */
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtGuadarNuevoLibro;
     private javax.swing.JTextField autorTextField;
     private javax.swing.JTextField codigoTextField;
     private javax.swing.JComboBox<String> comboAnio;
     private javax.swing.JComboBox<String> comboCopias;
     private javax.swing.JComboBox<String> comboDia;
     private javax.swing.JComboBox<String> comboMes;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JTextField editorialTextField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -247,6 +342,5 @@ public class NuevoLibro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField tituloTextField;
-    private javax.swing.JTextField tituloTextField1;
     // End of variables declaration//GEN-END:variables
 }

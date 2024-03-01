@@ -4,6 +4,14 @@
  */
 package vista;
 
+import DataBase.SaveAndReaderBinary;
+import cargaDeDatos.Estudiante;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import persistenciaDatos.ControlDatosEstudiante;
+import persistenciaDatos.PersistenciaDeDatos;
+
 /**
  *
  * @author Kenny
@@ -13,11 +21,46 @@ public class NuevoEstudiante extends javax.swing.JFrame {
     /**
      * Creates new form NuevoEstudiante
      */
+    boolean isEdit;
+    Estudiante est;
+    JTable tabla;
+    SaveAndReaderBinary LyE = new SaveAndReaderBinary();
+
+    NuevoEstudiante(boolean isEdit, Estudiante est, JTable tabla) {
+        this.isEdit = isEdit;
+        this.est = est;
+        this.tabla = tabla;
+        initComponents();
+        this.combocarrera.addItem("Ingenieria");
+        this.combocarrera.addItem("Medicina");
+        this.combocarrera.addItem("Derecho");
+        this.combocarrera.addItem("Arquitectura");
+        this.combocarrera.addItem("Administracion");
+        IniciarCombosFecha();
+
+        if (isEdit) {
+            this.carnetField.setText(est.getCarnet());
+            this.carnetField.setEditable(false);
+            this.nombreField.setText(est.getNombre());
+            this.combocarrera.setSelectedIndex(Integer.parseInt(est.getCarrera()) - 1);
+            System.out.println(est.getFechaNacimiento());
+            try {
+                String fechaNacimiento[] = est.getFechaNacimiento().split("-");
+                this.comboAnio.setSelectedItem(fechaNacimiento[0]);
+                this.comboMes.setSelectedItem(fechaNacimiento[1]);
+                this.comboDia.setSelectedItem(fechaNacimiento[2]);
+            } catch (Exception e) {
+                System.out.println("No trae fecha");
+            }
+
+        }
+    }
+
     public void IniciarCombosFecha() {
         for (int i = 1900; i < 2024; i++) {
             this.comboAnio.addItem("" + i);
         }
-        for (int i = 1; i <=12; i++) {
+        for (int i = 1; i <= 12; i++) {
             this.comboMes.addItem("" + i);
         }
         for (int i = 1; i <= 31; i++) {
@@ -47,10 +90,10 @@ public class NuevoEstudiante extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        carnetField = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        nombreField = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         comboAnio = new javax.swing.JComboBox<>();
@@ -60,7 +103,7 @@ public class NuevoEstudiante extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         combocarrera = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
+        botonGuardar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -92,7 +135,12 @@ public class NuevoEstudiante extends javax.swing.JFrame {
 
         jLabel8.setText("Dia");
 
-        jButton1.setText("Guardar");
+        botonGuardar.setText("Guardar");
+        botonGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonGuardarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -120,13 +168,13 @@ public class NuevoEstudiante extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel8)
                             .addComponent(comboDia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jTextField1)
-                    .addComponent(jTextField2)
+                    .addComponent(carnetField)
+                    .addComponent(nombreField)
                     .addComponent(combocarrera, 0, 287, Short.MAX_VALUE))
                 .addContainerGap(107, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(botonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31))
         );
         jPanel1Layout.setVerticalGroup(
@@ -137,15 +185,15 @@ public class NuevoEstudiante extends javax.swing.JFrame {
                 .addGap(7, 7, 7)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(carnetField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(nombreField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(combocarrera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(combocarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -159,7 +207,7 @@ public class NuevoEstudiante extends javax.swing.JFrame {
                     .addComponent(comboMes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(comboDia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(botonGuardar)
                 .addContainerGap(17, Short.MAX_VALUE))
         );
 
@@ -191,16 +239,56 @@ public class NuevoEstudiante extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_comboAnioActionPerformed
 
+    private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarActionPerformed
+        // TODO add your handling code here:
+        ControlDatosEstudiante control = new ControlDatosEstudiante();
+        JFrame jFrame = new JFrame();
+        if (!isEdit) {
+            try {
+                if (!nombreField.getText().equalsIgnoreCase("")) {
+                    int carnet = Integer.parseInt(carnetField.getText());
+                    String fechaNacimiento = (String) comboAnio.getSelectedItem() + "-" + comboMes.getSelectedItem() + "-" + comboDia.getSelectedItem();
+                    control.guardarNuevoEstudiante(carnet, nombreField.getText(), String.valueOf(combocarrera.getSelectedIndex() + 1), fechaNacimiento, tabla);
+                    JOptionPane.showMessageDialog(jFrame, "Se ha guardado el nuevo estudiante");
+
+                    this.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(jFrame, "Debes rellenar todos los campos");
+                }
+
+            } catch (NumberFormatException e) {
+
+                JOptionPane.showMessageDialog(jFrame, "El carnet debe ser un numero entero");
+            }
+        } else {
+            for (int i = 0; i < PersistenciaDeDatos.estudiantes.size(); i++) {
+                if (PersistenciaDeDatos.estudiantes.get(i).getCarnet().equals(est.getCarnet())) {
+                    PersistenciaDeDatos.estudiantes.get(i).setNombre(nombreField.getText());
+                    PersistenciaDeDatos.estudiantes.get(i).setCarrera(String.valueOf(combocarrera.getSelectedIndex() + 1));
+                    String fechaNacimiento = (String) comboAnio.getSelectedItem() + "-" + comboMes.getSelectedItem() + "-" + comboDia.getSelectedItem();
+                    PersistenciaDeDatos.estudiantes.get(i).setFechaNacimiento(fechaNacimiento);
+                    JOptionPane.showMessageDialog(jFrame, "Se ha modificado el estudiante: " + est.getCarnet());
+                    control.llenarTablaEstudiantes(tabla);
+                    LyE.guardarArchivoBinario();
+                    i = PersistenciaDeDatos.estudiantes.size();
+                }
+
+            }
+            this.dispose();
+        }
+    }//GEN-LAST:event_botonGuardarActionPerformed
+
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botonGuardar;
+    private javax.swing.JTextField carnetField;
     private javax.swing.JComboBox<String> comboAnio;
     private javax.swing.JComboBox<String> comboDia;
     private javax.swing.JComboBox<String> comboMes;
     private javax.swing.JComboBox<String> combocarrera;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -210,7 +298,6 @@ public class NuevoEstudiante extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField nombreField;
     // End of variables declaration//GEN-END:variables
 }

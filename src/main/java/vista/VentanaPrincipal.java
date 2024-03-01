@@ -4,18 +4,26 @@
  */
 package vista;
 
+import DataBase.SaveAndReaderBinary;
 import cargaDeDatos.Estudiante;
+import cargaDeDatos.Libro;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import persistenciaDatos.ControlDatosEstudiante;
 import persistenciaDatos.ControlDatosLibros;
 import persistenciaDatos.ControlDePrestamos;
+import persistenciaDatos.PersistenciaDeDatos;
 
 /**
  *
  * @author Kenny
  */
 public class VentanaPrincipal extends javax.swing.JFrame {
+
+    Estudiante estudianteEdit;
+    Libro libroEdit;
 
     /**
      * Creates new form VentanaPrincipal
@@ -34,6 +42,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         controlDatosEstudiante.llenarTablaEstudiantes(this.tablaStudents);
         controlDatosLibros.llenarTablaLibros(this.tablaLibros);
         controlPrestamos.llenarTablaPrestamos(tablaPrestamos);
+
     }
 
     /**
@@ -95,8 +104,18 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
 
         editarEstudianteBt.setText("Editar");
+        editarEstudianteBt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editarEstudianteBtActionPerformed(evt);
+            }
+        });
 
         eliminarEstudianteBt.setText("Eliminar");
+        eliminarEstudianteBt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminarEstudianteBtActionPerformed(evt);
+            }
+        });
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -183,8 +202,18 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
 
         editarLibro.setText("Editar");
+        editarLibro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editarLibroActionPerformed(evt);
+            }
+        });
 
         eliminarLibro.setText("Eliminar");
+        eliminarLibro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminarLibroActionPerformed(evt);
+            }
+        });
 
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -458,8 +487,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         this.editarEstudianteBt.setEnabled(true);
         this.eliminarEstudianteBt.setEnabled(true);
         int fila = tablaStudents.getSelectedRow();
-        String carnet = (String) tablaStudents.getValueAt(fila, 0);
+        String carnet = (String) tablaStudents.getValueAt(fila, 1);
         labelBusqueda.setText("" + carnet);
+        for (int i = 0; i < PersistenciaDeDatos.estudiantes.size(); i++) {
+            if (PersistenciaDeDatos.estudiantes.get(i).getCarnet().equals(carnet)) {
+                this.estudianteEdit = PersistenciaDeDatos.estudiantes.get(i);
+                i = PersistenciaDeDatos.estudiantes.size();
+
+            }
+        }
+
     }//GEN-LAST:event_tablaStudentsMouseClicked
 
     private void tablaStudentsKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tablaStudentsKeyPressed
@@ -480,8 +517,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         this.editarLibro.setEnabled(true);
         this.eliminarLibro.setEnabled(true);
         int fila = tablaLibros.getSelectedRow();
-        String codigo = (String) tablaLibros.getValueAt(fila, 0);
+        String codigo = (String) tablaLibros.getValueAt(fila, 3);
         labelBusquedaLibro.setText("" + codigo);
+        //---------------------LIBRO EDITAR--------------------//
+        for (int i = 0; i < PersistenciaDeDatos.biblio.size(); i++) {
+            if (PersistenciaDeDatos.biblio.get(i).getCodigo().equals(codigo)) {
+                this.libroEdit = PersistenciaDeDatos.biblio.get(i);
+                i = PersistenciaDeDatos.biblio.size();
+
+            }
+        }
     }//GEN-LAST:event_tablaLibrosMouseClicked
 
     private void tablaLibrosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tablaLibrosKeyPressed
@@ -515,15 +560,77 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_eliminarPrestamosBtMouseClicked
 
+    private void editarEstudianteBtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarEstudianteBtActionPerformed
+        // TODO add your handling code here:
+        NuevoEstudiante editarEst = new NuevoEstudiante(true, estudianteEdit, this.tablaStudents);
+        editarEst.setVisible(true);
+        editarEst.setResizable(true);
+        editarEst.setLocationRelativeTo(null);
+    }//GEN-LAST:event_editarEstudianteBtActionPerformed
+
+    private void eliminarEstudianteBtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarEstudianteBtActionPerformed
+        // TODO add your handling code here:
+        JFrame jFrame = new JFrame();
+        int result = JOptionPane.showConfirmDialog(jFrame, "Desea eliminar el estudiante: " + estudianteEdit.getCarnet());
+        if (result == 0) {
+            for (int i = 0; i < PersistenciaDeDatos.estudiantes.size(); i++) {
+                if (PersistenciaDeDatos.estudiantes.get(i).getCarnet().equals(estudianteEdit.getCarnet())) {
+                    PersistenciaDeDatos.estudiantes.remove(i);
+                    i = PersistenciaDeDatos.estudiantes.size();
+                    ControlDatosEstudiante control = new ControlDatosEstudiante();
+                    control.llenarTablaEstudiantes(this.tablaStudents);
+                    SaveAndReaderBinary s = new SaveAndReaderBinary();
+                    s.guardarArchivoBinario();
+                }
+
+            }
+        } else if (result == 1) {
+
+        } else {
+
+        }
+    }//GEN-LAST:event_eliminarEstudianteBtActionPerformed
+
+    private void editarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarLibroActionPerformed
+        // TODO add your handling code here:
+        NuevoLibro editarLibro = new NuevoLibro(true, libroEdit, this.tablaLibros);
+        editarLibro.setVisible(true);
+        editarLibro.setResizable(true);
+        editarLibro.setLocationRelativeTo(null);
+    }//GEN-LAST:event_editarLibroActionPerformed
+
+    private void eliminarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarLibroActionPerformed
+        // TODO add your handling code here:
+        JFrame jFrame = new JFrame();
+        int result = JOptionPane.showConfirmDialog(jFrame, "Desea eliminar el libro: " + libroEdit.getCodigo());
+        if (result == 0) {
+            for (int i = 0; i < PersistenciaDeDatos.biblio.size(); i++) {
+                if (PersistenciaDeDatos.biblio.get(i).getCodigo().equals(libroEdit.getCodigo())) {
+                    PersistenciaDeDatos.biblio.remove(i);
+                    i = PersistenciaDeDatos.biblio.size();
+                    ControlDatosLibros controlDatosLibro = new ControlDatosLibros();
+                    controlDatosLibro.llenarTablaLibros(this.tablaLibros);
+                    SaveAndReaderBinary s = new SaveAndReaderBinary();
+                    s.guardarArchivoBinario();
+                }
+
+            }
+        } else if (result == 1) {
+
+        } else {
+
+        }
+    }//GEN-LAST:event_eliminarLibroActionPerformed
+
     public void ventanaNuevoEst() {
-        NuevoEstudiante ne = new NuevoEstudiante();
+        NuevoEstudiante ne = new NuevoEstudiante(false, null, tablaStudents);
         ne.setVisible(true);
         ne.setResizable(false);
         ne.setLocationRelativeTo(null);
     }
 
     public void ventanaNuevoLibro() {
-        NuevoLibro nuevoLibro = new NuevoLibro();
+        NuevoLibro nuevoLibro = new NuevoLibro(false, null, tablaLibros);
         nuevoLibro.setVisible(true);
         nuevoLibro.setResizable(false);
         nuevoLibro.setLocationRelativeTo(null);

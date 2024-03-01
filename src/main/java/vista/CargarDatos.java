@@ -5,6 +5,7 @@
 package vista;
 
 import DataBase.BinaryFileController;
+import DataBase.SaveAndReaderBinary;
 import cargaDeDatos.Lector;
 import java.io.File;
 import javax.swing.JFileChooser;
@@ -17,7 +18,7 @@ import persistenciaDatos.PersistenciaDeDatos;
 public class CargarDatos extends javax.swing.JFrame {
 
     private BinaryFileController controlBinario = new BinaryFileController();
-
+    private SaveAndReaderBinary LyE = new SaveAndReaderBinary();
     /**
      * Creates new form CargarDatos
      */
@@ -87,7 +88,7 @@ public class CargarDatos extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        leerArchivoBinario();
+        LyE.leerArchivoBinario();
         VentanaPrincipal principal = new VentanaPrincipal();
         principal.setVisible(true);
         principal.setLocationRelativeTo(null);
@@ -116,19 +117,13 @@ public class CargarDatos extends javax.swing.JFrame {
             //leer(archivo.getAbsolutePath());
             lector.leer(archivo, PersistenciaDeDatos.biblio, PersistenciaDeDatos.estudiantes, PersistenciaDeDatos.prestamos);
             //System.out.println(controlBinario.convertirATextoDeArray(PersistenciaDeDatos.estudiantes, PersistenciaDeDatos.biblio, PersistenciaDeDatos.prestamos));
-            guardarArchivoBinario();
+            LyE.guardarArchivoBinario();
+            PersistenciaDeDatos.vaciarListas();
         }
 
     }
 
-    public void guardarArchivoBinario() {
-        controlBinario.write("./DataBases/archivo.bin", controlBinario.convertirATextoDeArray(PersistenciaDeDatos.estudiantes, PersistenciaDeDatos.biblio, PersistenciaDeDatos.prestamos));
-    }
-    
-    public void leerArchivoBinario(){
-        String txt=controlBinario.read("./DataBases/archivo.bin");
-        controlBinario.convertirtxtAArray(txt, PersistenciaDeDatos.biblio, PersistenciaDeDatos.estudiantes, PersistenciaDeDatos.prestamos);
-    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
