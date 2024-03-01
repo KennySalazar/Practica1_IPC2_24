@@ -17,4 +17,10 @@ public class PersistenciaDeDatos {
     public static ArrayList<Libro> biblio=new ArrayList<>();
     public static ArrayList<Estudiante> estudiantes=new ArrayList<>();
     public static ArrayList<Prestamo> prestamos = new ArrayList<>();
+    
+    public static void vaciarListas(){
+        biblio.clear();
+        estudiantes.clear();
+        prestamos.clear();
+    }
 }
