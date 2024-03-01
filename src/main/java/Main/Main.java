@@ -4,6 +4,9 @@
 
 package Main;
 
+import cargaDeDatos.Lector;
+import vista.CargarDatos;
+
 /**
  *
  * @author Kenny Salazar
@@ -11,6 +14,11 @@ package Main;
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        CargarDatos vista = new CargarDatos();
+        vista.setVisible(true);
+        vista.setEnabled(true);
+        vista.setResizable(true);
+        vista.setLocationRelativeTo(null);
+        vista.setTitle("PRESTAMOS DE LIBROS CUNOC");
     }
 }
