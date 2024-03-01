@@ -17,7 +17,7 @@ public class ControlDePrestamos {
     
     public void llenarTablaPrestamos(JTable tabla){
         String titulo[] ={
-          "Codigo de Libro","Carnet","Carrera" 
+          "Codigo de Libro","Carnet","Fecha" 
         };
         String[] columnas= new String[3];
         DefaultTableModel modelo = new DefaultTableModel(null, titulo);
