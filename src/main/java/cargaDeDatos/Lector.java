@@ -88,7 +88,7 @@ public class Lector {
                                 cantidad = cadenaN[1].trim();
                                 caso = 0;
                                 if (matcher.matches()) {
-                                    Libro newLibro = new Libro(titulo, autor, codigo, cantidad, "", "");
+                                    Libro newLibro = new Libro(titulo, autor, codigo, Integer.parseInt(cantidad), "", "");
                                     System.out.println(newLibro);
                                     biblio.add(newLibro);
                                 } else {
@@ -126,7 +126,7 @@ public class Lector {
                                 matcher = pattern.matcher(carrera);
                                 casoE = 0;
                                 if (matcher.matches()) {
-                                    Estudiante estudiante = new Estudiante(carnet, nombre, carrera, "");
+                                    Estudiante estudiante = new Estudiante(Integer.parseInt(carnet), nombre, Integer.parseInt(carrera), "");
                                     System.out.println(estudiante);
                                     estudiantes.add(estudiante);
                                 } else {

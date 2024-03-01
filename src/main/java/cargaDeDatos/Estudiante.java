@@ -11,16 +11,16 @@ package cargaDeDatos;
  */
 public class Estudiante {
     
-    private String carnet;
+    private int carnet;
     private String nombre;
-    private String carrera;
+    private int carrera;
     private String fechaNacimiento;
 
-    public String getCarnet() {
+    public int getCarnet() {
         return carnet;
     }
 
-    public void setCarnet(String carnet) {
+    public void setCarnet(int carnet) {
         this.carnet = carnet;
     }
 
@@ -32,11 +32,11 @@ public class Estudiante {
         this.nombre = nombre;
     }
 
-    public String getCarrera() {
+    public int getCarrera() {
         return carrera;
     }
 
-    public void setCarrera(String carrera) {
+    public void setCarrera(int carrera) {
         this.carrera = carrera;
     }
 
@@ -48,7 +48,7 @@ public class Estudiante {
         this.fechaNacimiento = fechaNacimiento;
     }
 
-    public Estudiante(String carnet, String nombre, String carrera, String fechaNacimiento) {
+    public Estudiante(int carnet, String nombre, int carrera, String fechaNacimiento) {
         this.carnet = carnet;
         this.nombre = nombre;
         this.carrera = carrera;

@@ -13,11 +13,11 @@ public class Libro {
     private String titulo;
     private String autor;
     private String codigo;
-    private String cantidad;
+    private int cantidad;
     private String fechaDePublicacion;
     private String editorial;
 
-    public Libro(String titulo, String autor, String codigo, String cantidad, String fechaDePublicacion, String editorial) {
+    public Libro(String titulo, String autor, String codigo, int cantidad, String fechaDePublicacion, String editorial) {
         this.titulo = titulo;
         this.autor = autor;
         this.codigo = codigo;
@@ -50,11 +50,11 @@ public class Libro {
         this.codigo = codigo;
     }
 
-    public String getCantidad() {
+    public int getCantidad() {
         return cantidad;
     }
 
-    public void setCantidad(String cantidad) {
+    public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
     }
 
