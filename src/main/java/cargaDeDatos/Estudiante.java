@@ -41,6 +41,9 @@ public class Estudiante {
     }
 
     public String getFechaNacimiento() {
+        if(fechaNacimiento.equalsIgnoreCase("")){
+            fechaNacimiento=" ";
+        }
         return fechaNacimiento;
     }
 

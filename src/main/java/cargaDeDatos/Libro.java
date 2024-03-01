@@ -59,6 +59,9 @@ public class Libro {
     }
 
     public String getFechaDePublicacion() {
+        if(fechaDePublicacion.equalsIgnoreCase("")){
+            fechaDePublicacion=" ";
+        }
         return fechaDePublicacion;
     }
 
@@ -67,6 +70,9 @@ public class Libro {
     }
 
     public String getEditorial() {
+        if(editorial.equalsIgnoreCase("")){
+            editorial=" ";
+        }
         return editorial;
     }
 
