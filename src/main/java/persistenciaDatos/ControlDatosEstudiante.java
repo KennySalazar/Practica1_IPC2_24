@@ -24,12 +24,19 @@ public class ControlDatosEstudiante {
         DefaultTableModel modelo = new DefaultTableModel(null, titulo);
          int i=1;
         for (Estudiante est : persistenciaDatos.PersistenciaDeDatos.estudiantes) {
+<<<<<<< HEAD
            
             columnas[0]=String.valueOf(i);
             columnas[1] = est.getCarnet();
             columnas[2] = est.getNombre();
             columnas[3] = est.getCarrera();
             columnas[4] = est.getFechaNacimiento();
+=======
+            columnas[0]=""+est.getCarnet();
+            columnas[1]=""+est.getNombre();
+            columnas[2]=""+est.getCarrera();
+            columnas[3]= est.getFechaNacimiento();
+>>>>>>> ae96f202ab6b372e386fc3445dfee35beecaeb0a
             modelo.addRow(columnas);
             i++;
         }
