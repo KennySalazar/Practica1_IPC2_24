@@ -143,7 +143,7 @@ public class BinaryFileController {
                                 String[] cadenaE = texto.split("EDITORIAL:");
                                 editorial = cadenaE[1].trim();
                                 caso = 0;
-                                Libro newLibro = new Libro(titulo, autor, codigo, cantidad, fechaPublicacion, editorial);
+                                Libro newLibro = new Libro(titulo, autor, codigo, Integer.parseInt(cantidad), fechaPublicacion, editorial);
                                 System.out.println(newLibro);
                                 biblio.add(newLibro);
                                 break;
@@ -177,7 +177,7 @@ public class BinaryFileController {
                                 String[] cadenafecha = texto.split("FECHANACIMIENTO:");
                                 fechaNacimiento = cadenafecha[1].trim();
                                 casoE = 0;
-                                Estudiante estudiante = new Estudiante(carnet, nombre, carrera, fechaNacimiento);
+                                Estudiante estudiante = new Estudiante(Integer.parseInt(carnet), nombre, Integer.parseInt(carrera), fechaNacimiento);
                                 System.out.println(estudiante);
                                 estudiantes.add(estudiante);
                                 break;
