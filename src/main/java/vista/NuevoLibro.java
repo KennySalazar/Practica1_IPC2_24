@@ -40,7 +40,7 @@ public class NuevoLibro extends javax.swing.JFrame {
             this.codigoTextField.setEditable(false);
             this.autorTextField.setText(libro.getAutor());
             this.tituloTextField.setText(libro.getTitulo());
-            this.comboCopias.setSelectedIndex(Integer.parseInt(libro.getCantidad()));
+            this.comboCopias.setSelectedIndex((libro.getCantidad()));
             this.editorialTextField.setText(libro.getEditorial());
             //falta fecha y editorial
             System.out.println(libro.getFechaDePublicacion());
@@ -301,7 +301,7 @@ public class NuevoLibro extends javax.swing.JFrame {
                     if (PersistenciaDeDatos.biblio.get(i).getCodigo().equals(codigoTextField.getText())) {
                         PersistenciaDeDatos.biblio.get(i).setAutor(autorTextField.getText());
                         PersistenciaDeDatos.biblio.get(i).setTitulo(tituloTextField.getText());
-                        PersistenciaDeDatos.biblio.get(i).setCantidad(String.valueOf(comboCopias.getSelectedIndex()));
+                        PersistenciaDeDatos.biblio.get(i).setCantidad((comboCopias.getSelectedIndex()));
                         String fechaPublicacion = (String) comboAnio.getSelectedItem() + "-" + comboMes.getSelectedItem() + "-" + comboDia.getSelectedItem();
                         PersistenciaDeDatos.biblio.get(i).setFechaDePublicacion(fechaPublicacion);
                         PersistenciaDeDatos.biblio.get(i).setEditorial(editorialTextField.getText());

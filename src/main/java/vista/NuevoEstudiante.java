@@ -39,10 +39,10 @@ public class NuevoEstudiante extends javax.swing.JFrame {
         IniciarCombosFecha();
 
         if (isEdit) {
-            this.carnetField.setText(est.getCarnet());
+            this.carnetField.setText(String.valueOf(est.getCarnet()));
             this.carnetField.setEditable(false);
             this.nombreField.setText(est.getNombre());
-            this.combocarrera.setSelectedIndex(Integer.parseInt(est.getCarrera()) - 1);
+            this.combocarrera.setSelectedIndex((est.getCarrera()) - 1);
             System.out.println(est.getFechaNacimiento());
             try {
                 String fechaNacimiento[] = est.getFechaNacimiento().split("-");
@@ -262,9 +262,9 @@ public class NuevoEstudiante extends javax.swing.JFrame {
             }
         } else {
             for (int i = 0; i < PersistenciaDeDatos.estudiantes.size(); i++) {
-                if (PersistenciaDeDatos.estudiantes.get(i).getCarnet().equals(est.getCarnet())) {
+                if (PersistenciaDeDatos.estudiantes.get(i).getCarnet()==(est.getCarnet())) {
                     PersistenciaDeDatos.estudiantes.get(i).setNombre(nombreField.getText());
-                    PersistenciaDeDatos.estudiantes.get(i).setCarrera(String.valueOf(combocarrera.getSelectedIndex() + 1));
+                    PersistenciaDeDatos.estudiantes.get(i).setCarrera((combocarrera.getSelectedIndex() + 1));
                     String fechaNacimiento = (String) comboAnio.getSelectedItem() + "-" + comboMes.getSelectedItem() + "-" + comboDia.getSelectedItem();
                     PersistenciaDeDatos.estudiantes.get(i).setFechaNacimiento(fechaNacimiento);
                     JOptionPane.showMessageDialog(jFrame, "Se ha modificado el estudiante: " + est.getCarnet());

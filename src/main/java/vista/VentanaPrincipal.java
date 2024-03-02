@@ -490,7 +490,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         String carnet = (String) tablaStudents.getValueAt(fila, 1);
         labelBusqueda.setText("" + carnet);
         for (int i = 0; i < PersistenciaDeDatos.estudiantes.size(); i++) {
-            if (PersistenciaDeDatos.estudiantes.get(i).getCarnet().equals(carnet)) {
+            if (PersistenciaDeDatos.estudiantes.get(i).getCarnet()==(Integer.parseInt(carnet))) {
                 this.estudianteEdit = PersistenciaDeDatos.estudiantes.get(i);
                 i = PersistenciaDeDatos.estudiantes.size();
 
@@ -574,7 +574,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         int result = JOptionPane.showConfirmDialog(jFrame, "Desea eliminar el estudiante: " + estudianteEdit.getCarnet());
         if (result == 0) {
             for (int i = 0; i < PersistenciaDeDatos.estudiantes.size(); i++) {
-                if (PersistenciaDeDatos.estudiantes.get(i).getCarnet().equals(estudianteEdit.getCarnet())) {
+                if (PersistenciaDeDatos.estudiantes.get(i).getCarnet()==(estudianteEdit.getCarnet())) {
                     PersistenciaDeDatos.estudiantes.remove(i);
                     i = PersistenciaDeDatos.estudiantes.size();
                     ControlDatosEstudiante control = new ControlDatosEstudiante();
