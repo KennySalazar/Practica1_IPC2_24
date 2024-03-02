@@ -20,10 +20,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     /**
      * Creates new form VentanaPrincipal
      */
-    
-
     public VentanaPrincipal() {
-        
+
         initComponents();
         ControlDatosEstudiante controlDatosEstudiante = new ControlDatosEstudiante();
         ControlDatosLibros controlDatosLibros = new ControlDatosLibros();
@@ -32,6 +30,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         this.eliminarEstudianteBt.setEnabled(false);
         this.editarLibro.setEnabled(false);
         this.eliminarLibro.setEnabled(false);
+        this.eliminarPrestamosBt.setEnabled(false);
         controlDatosEstudiante.llenarTablaEstudiantes(this.tablaStudents);
         controlDatosLibros.llenarTablaLibros(this.tablaLibros);
         controlPrestamos.llenarTablaPrestamos(tablaPrestamos);
@@ -70,7 +69,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         nuevoPrestamosBt = new javax.swing.JButton();
         eliminarPrestamosBt = new javax.swing.JButton();
         jTextField3 = new javax.swing.JTextField();
-        labelBusquedaLibro1 = new javax.swing.JLabel();
+        labelBusquedaPestamo = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tablaPrestamos = new javax.swing.JTable();
         jDesktopPane3 = new javax.swing.JDesktopPane();
@@ -302,6 +301,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
 
         eliminarPrestamosBt.setText("Eliminar");
+        eliminarPrestamosBt.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                eliminarPrestamosBtMouseClicked(evt);
+            }
+        });
 
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -309,7 +313,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        labelBusquedaLibro1.setText("Busqueda");
+        labelBusquedaPestamo.setText("Busqueda");
 
         tablaPrestamos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -339,7 +343,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jDesktopPane6.setLayer(nuevoPrestamosBt, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane6.setLayer(eliminarPrestamosBt, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane6.setLayer(jTextField3, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane6.setLayer(labelBusquedaLibro1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane6.setLayer(labelBusquedaPestamo, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane6.setLayer(jScrollPane3, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jDesktopPane6Layout = new javax.swing.GroupLayout(jDesktopPane6);
@@ -355,7 +359,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                                 .addComponent(nuevoPrestamosBt, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(295, 295, 295)
                                 .addComponent(eliminarPrestamosBt, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(labelBusquedaLibro1, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelBusquedaPestamo, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextField3)))
                     .addGroup(jDesktopPane6Layout.createSequentialGroup()
                         .addGap(77, 77, 77)
@@ -370,7 +374,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                     .addComponent(nuevoPrestamosBt)
                     .addComponent(eliminarPrestamosBt))
                 .addGap(28, 28, 28)
-                .addComponent(labelBusquedaLibro1)
+                .addComponent(labelBusquedaPestamo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
@@ -454,12 +458,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         this.editarEstudianteBt.setEnabled(true);
         this.eliminarEstudianteBt.setEnabled(true);
         int fila = tablaStudents.getSelectedRow();
-        String carnet= (String) tablaStudents.getValueAt(fila, 0);
-        labelBusqueda.setText(""+carnet);
+        String carnet = (String) tablaStudents.getValueAt(fila, 0);
+        labelBusqueda.setText("" + carnet);
     }//GEN-LAST:event_tablaStudentsMouseClicked
 
     private void tablaStudentsKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tablaStudentsKeyPressed
-        
+
     }//GEN-LAST:event_tablaStudentsKeyPressed
 
     private void nuevoLibroButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoLibroButtonActionPerformed
@@ -476,8 +480,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         this.editarLibro.setEnabled(true);
         this.eliminarLibro.setEnabled(true);
         int fila = tablaLibros.getSelectedRow();
-        String codigo= (String) tablaLibros.getValueAt(fila, 0);
-        labelBusquedaLibro.setText(""+codigo);
+        String codigo = (String) tablaLibros.getValueAt(fila, 0);
+        labelBusquedaLibro.setText("" + codigo);
     }//GEN-LAST:event_tablaLibrosMouseClicked
 
     private void tablaLibrosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tablaLibrosKeyPressed
@@ -486,6 +490,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void nuevoPrestamosBtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoPrestamosBtActionPerformed
         // TODO add your handling code here:
+        ventanaNuevoPestamo();
+
     }//GEN-LAST:event_nuevoPrestamosBtActionPerformed
 
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
@@ -494,23 +500,40 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void tablaPrestamosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaPrestamosMouseClicked
         // TODO add your handling code here:
+        this.eliminarPrestamosBt.setEnabled(true);
+        int fila = tablaPrestamos.getSelectedRow();
+        String codigo = (String) tablaPrestamos.getValueAt(fila, 0);
+        labelBusquedaPestamo.setText("" + codigo);
+
     }//GEN-LAST:event_tablaPrestamosMouseClicked
 
     private void tablaPrestamosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tablaPrestamosKeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_tablaPrestamosKeyPressed
 
-    public void ventanaNuevoEst(){
-        NuevoEstudiante ne =new  NuevoEstudiante();
+    private void eliminarPrestamosBtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_eliminarPrestamosBtMouseClicked
+
+    }//GEN-LAST:event_eliminarPrestamosBtMouseClicked
+
+    public void ventanaNuevoEst() {
+        NuevoEstudiante ne = new NuevoEstudiante();
         ne.setVisible(true);
         ne.setResizable(false);
         ne.setLocationRelativeTo(null);
     }
-    public void ventanaNuevoLibro(){
+
+    public void ventanaNuevoLibro() {
         NuevoLibro nuevoLibro = new NuevoLibro();
         nuevoLibro.setVisible(true);
         nuevoLibro.setResizable(false);
         nuevoLibro.setLocationRelativeTo(null);
+    }
+
+    public void ventanaNuevoPestamo() {
+        NuevoPrestamo nuevoP = new NuevoPrestamo();
+        nuevoP.setVisible(true);
+        nuevoP.setResizable(false);
+        nuevoP.setLocationRelativeTo(null);
     }
     /**
      * @param args the command line arguments
@@ -539,7 +562,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField3;
     private javax.swing.JLabel labelBusqueda;
     private javax.swing.JLabel labelBusquedaLibro;
-    private javax.swing.JLabel labelBusquedaLibro1;
+    private javax.swing.JLabel labelBusquedaPestamo;
     private javax.swing.JButton nuevoEstudiante;
     private javax.swing.JButton nuevoLibroButton;
     private javax.swing.JButton nuevoPrestamosBt;

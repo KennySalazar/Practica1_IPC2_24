@@ -485,7 +485,7 @@
                                           <EmptySpace min="-2" pref="295" max="-2" attributes="0"/>
                                           <Component id="eliminarPrestamosBt" min="-2" pref="173" max="-2" attributes="0"/>
                                       </Group>
-                                      <Component id="labelBusquedaLibro1" alignment="0" min="-2" pref="216" max="-2" attributes="0"/>
+                                      <Component id="labelBusquedaPestamo" alignment="0" min="-2" pref="216" max="-2" attributes="0"/>
                                       <Component id="jTextField3" alignment="0" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
@@ -507,7 +507,7 @@
                               <Component id="eliminarPrestamosBt" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                          <Component id="labelBusquedaLibro1" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelBusquedaPestamo" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jTextField3" min="-2" max="-2" attributes="0"/>
                           <EmptySpace pref="18" max="32767" attributes="0"/>
@@ -530,13 +530,16 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Eliminar"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="eliminarPrestamosBtMouseClicked"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JTextField" name="jTextField3">
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField3ActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JLabel" name="labelBusquedaLibro1">
+                <Component class="javax.swing.JLabel" name="labelBusquedaPestamo">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Busqueda"/>
                   </Properties>

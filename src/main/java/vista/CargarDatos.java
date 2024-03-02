@@ -4,6 +4,7 @@
  */
 package vista;
 
+import DataBase.BinaryFileController;
 import cargaDeDatos.Lector;
 import java.io.File;
 import javax.swing.JFileChooser;
@@ -14,6 +15,8 @@ import persistenciaDatos.PersistenciaDeDatos;
  * @author Kenny
  */
 public class CargarDatos extends javax.swing.JFrame {
+
+    private BinaryFileController controlBinario = new BinaryFileController();
 
     /**
      * Creates new form CargarDatos
@@ -84,11 +87,14 @@ public class CargarDatos extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        leerArchivoBinario();
         VentanaPrincipal principal = new VentanaPrincipal();
         principal.setVisible(true);
         principal.setLocationRelativeTo(null);
         principal.setResizable(false);
         this.dispose();
+        //metodo para leer el archivo binario
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -100,8 +106,6 @@ public class CargarDatos extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-
-
     public void abrirFileChooser() {
         JFileChooser jf = new JFileChooser();
         jf.showOpenDialog(this);
@@ -111,8 +115,19 @@ public class CargarDatos extends javax.swing.JFrame {
 
             //leer(archivo.getAbsolutePath());
             lector.leer(archivo, PersistenciaDeDatos.biblio, PersistenciaDeDatos.estudiantes, PersistenciaDeDatos.prestamos);
+            //System.out.println(controlBinario.convertirATextoDeArray(PersistenciaDeDatos.estudiantes, PersistenciaDeDatos.biblio, PersistenciaDeDatos.prestamos));
+            guardarArchivoBinario();
         }
 
+    }
+
+    public void guardarArchivoBinario() {
+        controlBinario.write("./DataBases/archivo.bin", controlBinario.convertirATextoDeArray(PersistenciaDeDatos.estudiantes, PersistenciaDeDatos.biblio, PersistenciaDeDatos.prestamos));
+    }
+    
+    public void leerArchivoBinario(){
+        String txt=controlBinario.read("./DataBases/archivo.bin");
+        controlBinario.convertirtxtAArray(txt, PersistenciaDeDatos.biblio, PersistenciaDeDatos.estudiantes, PersistenciaDeDatos.prestamos);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
