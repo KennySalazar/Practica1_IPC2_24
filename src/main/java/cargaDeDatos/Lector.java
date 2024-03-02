@@ -89,7 +89,7 @@ public class Lector {
                                 String[] cadenaN = texto.split("CANTIDAD:");
                                 cantidad = cadenaN[1].trim();
                                 caso = 0;
-<<<<<<< HEAD
+
                                 if (matcher.matches()) {
                                     Libro newLibro = new Libro(titulo, autor, codigo, Integer.parseInt(cantidad), "", "");
                                     System.out.println(newLibro);
@@ -100,11 +100,6 @@ public class Lector {
                                     System.out.println(error);
                                 }
 
-=======
-                                Libro newLibro = new Libro(titulo, autor, codigo, cantidad," "," ");
-                                System.out.println(newLibro);
-                                biblio.add(newLibro);
->>>>>>> 2ee5f6ad14f4af6323eee6379284f4f7ccb90866
                                 break;
                             default:
                                 throw new AssertionError();
@@ -135,7 +130,6 @@ public class Lector {
                                 carrera = cadena[1].trim();
                                 matcher = pattern.matcher(carrera);
                                 casoE = 0;
-<<<<<<< HEAD
                                 if (matcher.matches()) {
                                     Estudiante estudiante = new Estudiante(Integer.parseInt(carnet), nombre, Integer.parseInt(carrera), "");
                                     System.out.println(estudiante);
@@ -145,11 +139,6 @@ public class Lector {
                                     this.erroresDeCarga.add(error);
                                     System.out.println(error);
                                 }
-=======
-                                Estudiante estudiante = new Estudiante(carnet, nombre, carrera, " ");
-                                System.out.println(estudiante);
-                                estudiantes.add(estudiante);
->>>>>>> 2ee5f6ad14f4af6323eee6379284f4f7ccb90866
                                 break;
                             default:
                                 throw new AssertionError();
