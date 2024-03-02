@@ -24,19 +24,12 @@ public class ControlDatosEstudiante {
         DefaultTableModel modelo = new DefaultTableModel(null, titulo);
          int i=1;
         for (Estudiante est : persistenciaDatos.PersistenciaDeDatos.estudiantes) {
-<<<<<<< HEAD
-           
             columnas[0]=String.valueOf(i);
-            columnas[1] = est.getCarnet();
-            columnas[2] = est.getNombre();
-            columnas[3] = est.getCarrera();
-            columnas[4] = est.getFechaNacimiento();
-=======
-            columnas[0]=""+est.getCarnet();
-            columnas[1]=""+est.getNombre();
-            columnas[2]=""+est.getCarrera();
-            columnas[3]= est.getFechaNacimiento();
->>>>>>> ae96f202ab6b372e386fc3445dfee35beecaeb0a
+            columnas[1]=""+est.getCarnet();
+            columnas[2]=""+est.getNombre();
+            columnas[3]=""+est.getCarrera();
+            columnas[4]= est.getFechaNacimiento();
+
             modelo.addRow(columnas);
             i++;
         }
@@ -44,7 +37,8 @@ public class ControlDatosEstudiante {
     }
     
     public void guardarNuevoEstudiante(int carnet, String nombre, String carrera, String fechaNacimiento, JTable tabla){
-        Estudiante nuevo = new Estudiante(""+carnet, nombre, carrera, fechaNacimiento);
+        
+        Estudiante nuevo = new Estudiante(carnet, nombre, Integer.parseInt(carrera), fechaNacimiento);
         PersistenciaDeDatos.estudiantes.add(nuevo);
         System.out.println(nuevo);
         llenarTablaEstudiantes(tabla);
