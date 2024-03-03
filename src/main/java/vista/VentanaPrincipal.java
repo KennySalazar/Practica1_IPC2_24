@@ -21,7 +21,7 @@ import persistenciaDatos.PersistenciaDeDatos;
  * @author Kenny
  */
 public class VentanaPrincipal extends javax.swing.JFrame {
-
+    
     Estudiante estudianteEdit;
     Libro libroEdit;
 
@@ -637,10 +637,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }
 
     public void ventanaNuevoPestamo() {
-        NuevoPrestamo nuevoP = new NuevoPrestamo();
+        NuevoPrestamo nuevoP = new NuevoPrestamo(tablaPrestamos, tablaLibros);
         nuevoP.setVisible(true);
         nuevoP.setResizable(false);
         nuevoP.setLocationRelativeTo(null);
+        
+       
+    }
+    
+    public JTable getTablaPrestamos(){
+        return tablaPrestamos;
     }
     /**
      * @param args the command line arguments
