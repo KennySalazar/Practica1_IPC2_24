@@ -231,8 +231,6 @@ public class NuevoPrestamo extends javax.swing.JFrame {
                 }
             } else {
                 JOptionPane.showMessageDialog(jFrame, "El Carnet no se Encuentra en la Base de Datos");
-                
-
             }
         } else {
             JOptionPane.showMessageDialog(jFrame, "Se tiene que llenar todos los espacios");
