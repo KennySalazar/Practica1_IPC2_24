@@ -1,5 +1,7 @@
 package cargaDeDatos;
 
+import java.util.ArrayList;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
@@ -15,6 +17,8 @@ public class Estudiante {
     private String nombre;
     private int carrera;
     private String fechaNacimiento;
+    private ArrayList<Libro> librosPrestados;
+    private ArrayList<Libro> historial;
 
     public int getCarnet() {
         return carnet;
@@ -56,6 +60,8 @@ public class Estudiante {
         this.nombre = nombre;
         this.carrera = carrera;
         this.fechaNacimiento = fechaNacimiento;
+        this.librosPrestados = new ArrayList<>();
+        this.historial = new ArrayList<>();
     }
 
     @Override

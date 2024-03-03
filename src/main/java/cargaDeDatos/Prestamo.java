@@ -4,10 +4,16 @@
  */
 package cargaDeDatos;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+
 /**
  *
  * @author DAVID
  */
+
 public class Prestamo {
     
     private String codigoLibro;
@@ -18,6 +24,11 @@ public class Prestamo {
         this.codigoLibro = codigoLibro;
         this.carnetE = carnetE;
         this.fecha = fecha;
+    }
+    
+    public boolean seEntrega(){
+        
+        return true;
     }
 
     public String getCodigoLibro() {
