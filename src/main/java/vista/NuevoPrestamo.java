@@ -221,6 +221,7 @@ public class NuevoPrestamo extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(jFrame, "Se ha guardado un nuevo Prestamo");
                         this.dispose();
                     } else {
+                        System.out.println("el codigo incorrecto");
                        JOptionPane.showMessageDialog(jFrame, "El Codigo Del Libro es Incorrecto \n"
                         + "O ya no hay Copias Existentes");
                     }
