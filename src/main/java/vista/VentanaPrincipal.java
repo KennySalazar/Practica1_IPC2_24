@@ -710,7 +710,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_eliminarLibroActionPerformed
 
-<<<<<<< HEAD
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
 
        this.reporte.recorrerPrestamos();
@@ -725,7 +724,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         int carnet = Integer.parseInt(this.textPaneCarnet.getText());
         this.reporte.prestamosEstudiante(carnet);
     }//GEN-LAST:event_activosActionPerformed
-=======
+
     private void eliminarPrestamosBtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarPrestamosBtActionPerformed
         //ventana recibir el libro
 
@@ -753,7 +752,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
        filtoItemPres();
     }//GEN-LAST:event_busquedaComboBoxActionPerformed
->>>>>>> 2bc085214ab579334988450a8858ec1a91dc52a2
+
 
     public void ventanaNuevoEst() {
         NuevoEstudiante ne = new NuevoEstudiante(false, null, tablaStudents);
@@ -856,11 +855,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-<<<<<<< HEAD
     private javax.swing.JButton activos;
-=======
     private javax.swing.JComboBox<String> busquedaComboBox;
->>>>>>> 2bc085214ab579334988450a8858ec1a91dc52a2
     private javax.swing.JButton editarEstudianteBt;
     private javax.swing.JButton editarLibro;
     private javax.swing.JButton eliminarEstudianteBt;
@@ -873,12 +869,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JDesktopPane jDesktopPane4;
     private javax.swing.JDesktopPane jDesktopPane5;
     private javax.swing.JDesktopPane jDesktopPane6;
-<<<<<<< HEAD
+    private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-=======
-    private javax.swing.JInternalFrame jInternalFrame1;
->>>>>>> 2bc085214ab579334988450a8858ec1a91dc52a2
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;

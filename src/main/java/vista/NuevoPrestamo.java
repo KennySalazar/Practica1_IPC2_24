@@ -23,11 +23,10 @@ import persistenciaDatos.PersistenciaDeDatos;
  */
 public class NuevoPrestamo extends javax.swing.JFrame {
 
-<<<<<<< HEAD
+
     private int Carnet;
     boolean isEdyt;
-=======
->>>>>>> 2bc085214ab579334988450a8858ec1a91dc52a2
+
     SaveAndReaderBinary LyE = new SaveAndReaderBinary();
     ControlDePrestamos controlPres = new ControlDePrestamos();
     JFrame jFrame = new JFrame();
@@ -211,12 +210,7 @@ public class NuevoPrestamo extends javax.swing.JFrame {
                             System.out.println("Tiene este libro");
                         String carnet = carnetEstudianteTextField.getText();
                         String codigo = codigoLibroTxField.getText();
-<<<<<<< HEAD
                         control.guardarPrestamos(codigo, carnet, fechaPrestamo, tabla, this.Carnet);
-=======
-
-                        control.guardarPrestamos(codigo, carnet, fechaPrestamo, tabla);
->>>>>>> 2bc085214ab579334988450a8858ec1a91dc52a2
                         JOptionPane.showMessageDialog(jFrame, "Se ha guardado un nuevo Prestamo");
                         this.dispose();
                         }else{
