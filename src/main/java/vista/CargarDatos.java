@@ -6,10 +6,14 @@ package vista;
 
 import DataBase.BinaryFileController;
 import DataBase.SaveAndReaderBinary;
+import cargaDeDatos.Estudiante;
 import cargaDeDatos.Lector;
+import cargaDeDatos.Prestamo;
 import java.io.File;
 import javax.swing.JFileChooser;
 import persistenciaDatos.PersistenciaDeDatos;
+import static persistenciaDatos.PersistenciaDeDatos.estudiantes;
+import static persistenciaDatos.PersistenciaDeDatos.prestamos;
 
 /**
  *
@@ -19,6 +23,7 @@ public class CargarDatos extends javax.swing.JFrame {
 
     private BinaryFileController controlBinario = new BinaryFileController();
     private SaveAndReaderBinary LyE = new SaveAndReaderBinary();
+
     /**
      * Creates new form CargarDatos
      */
@@ -89,13 +94,14 @@ public class CargarDatos extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         LyE.leerArchivoBinario();
+        cargarDatosReportes();
         VentanaPrincipal principal = new VentanaPrincipal();
         principal.setVisible(true);
         principal.setLocationRelativeTo(null);
         principal.setResizable(false);
         this.dispose();
         //metodo para leer el archivo binario
-        
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -117,12 +123,46 @@ public class CargarDatos extends javax.swing.JFrame {
             //leer(archivo.getAbsolutePath());
             lector.leer(archivo, PersistenciaDeDatos.biblio, PersistenciaDeDatos.estudiantes, PersistenciaDeDatos.prestamos);
             //System.out.println(controlBinario.convertirATextoDeArray(PersistenciaDeDatos.estudiantes, PersistenciaDeDatos.biblio, PersistenciaDeDatos.prestamos));
+            cargarDatosReportes();
             LyE.guardarArchivoBinario();
             PersistenciaDeDatos.vaciarListas();
         }
 
     }
 
+    public void cargarDatosReportes() {
+        for (Prestamo prestamo : PersistenciaDeDatos.prestamos) {
+            int carnet = Integer.parseInt(prestamo.getCarnetE());
+            for (Estudiante estudiante : PersistenciaDeDatos.estudiantes) {
+                if (estudiante.getCarnet() == carnet) {
+                    if (estudiante.getHistorial().isEmpty()) {
+                        estudiante.getHistorial().add(prestamo);
+                    } else {
+
+                        for (Prestamo prestamo1 : estudiante.getHistorial()) {
+                            if (!prestamo.equals(prestamo1)) {
+                                estudiante.getHistorial().add(prestamo);
+                                break;
+                            }
+                        }
+                    }
+
+                    if (estudiante.getPrestamosActivos().isEmpty()) {
+                        estudiante.getPrestamosActivos().add(prestamo);
+                    } else {
+                        for (Prestamo prestamoActivo : estudiante.getPrestamosActivos()) {
+                            if (!prestamo.equals(prestamoActivo)) {
+                                estudiante.getPrestamosActivos().add(prestamo);
+                                break;
+                            }
+                        }
+                    }
+
+                }
+            }
+
+        }
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

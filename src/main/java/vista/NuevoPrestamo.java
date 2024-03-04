@@ -23,6 +23,7 @@ import persistenciaDatos.PersistenciaDeDatos;
  */
 public class NuevoPrestamo extends javax.swing.JFrame {
 
+    private int Carnet;
     boolean isEdyt;
     SaveAndReaderBinary LyE = new SaveAndReaderBinary();
     ControlDePrestamos controlPres = new ControlDePrestamos();
@@ -216,8 +217,7 @@ public class NuevoPrestamo extends javax.swing.JFrame {
                         System.out.println("Si puede prestar un libro");
                         String carnet = carnetEstudianteTextField.getText();
                         String codigo = codigoLibroTxField.getText();
-                        
-                        control.guardarPrestamos(codigo, carnet, fechaPrestamo, tabla);
+                        control.guardarPrestamos(codigo, carnet, fechaPrestamo, tabla, this.Carnet);
                         JOptionPane.showMessageDialog(jFrame, "Se ha guardado un nuevo Prestamo");
                         this.dispose();
                     } else {
@@ -243,6 +243,7 @@ public class NuevoPrestamo extends javax.swing.JFrame {
         System.out.println(carnet);
         for (int i = 0; i < PersistenciaDeDatos.estudiantes.size(); i++) {
             if (PersistenciaDeDatos.estudiantes.get(i).getCarnet() == carnet) {
+                this.Carnet = carnet;
                 System.out.println(PersistenciaDeDatos.estudiantes.get(i).getCarnet() + " y tambien en carnet" + carnet);
                 return true;
             }

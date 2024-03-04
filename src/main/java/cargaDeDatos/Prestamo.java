@@ -4,31 +4,60 @@
  */
 package cargaDeDatos;
 
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
  *
  * @author DAVID
  */
-
 public class Prestamo {
-    
+
     private String codigoLibro;
     private String carnetE;
     private String fecha;
+    private Date entrega;
 
     public Prestamo(String codigoLibro, String carnetE, String fecha) {
         this.codigoLibro = codigoLibro;
         this.carnetE = carnetE;
         this.fecha = fecha;
     }
-    
-    public boolean seEntrega(){
-        
-        return true;
+
+    public boolean seEntrega() {
+        String pattern = "yyyy-MM-dd";
+        DateFormat dateFormat = new SimpleDateFormat(pattern);
+        try {
+            // Parsear el String y obtener un objeto Date
+            Date date = dateFormat.parse(fecha);
+            int adelantar = 2;
+
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(date);
+            calendar.add(Calendar.DAY_OF_MONTH, adelantar);
+            entrega = calendar.getTime();
+            // Obtener la fecha actual como LocalDate
+            LocalDate hoy = LocalDate.now();
+
+            // Convertir hoy a today
+            Date today = java.sql.Date.valueOf(hoy);
+
+            if (entrega.equals(today)) {
+                return true;
+            } else {
+                return false;
+            }
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return false;
     }
 
     public String getCodigoLibro() {
@@ -59,6 +88,5 @@ public class Prestamo {
     public String toString() {
         return "Prestamo{" + "codigoLibro=" + codigoLibro + ", carnetE=" + carnetE + ", fecha=" + fecha + '}';
     }
-    
-    
+
 }

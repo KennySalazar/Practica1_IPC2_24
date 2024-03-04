@@ -5,6 +5,7 @@
 package vista;
 
 import DataBase.SaveAndReaderBinary;
+import Reportes.Reporte;
 import cargaDeDatos.Estudiante;
 import cargaDeDatos.Libro;
 import javax.swing.JFrame;
@@ -24,12 +25,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     
     Estudiante estudianteEdit;
     Libro libroEdit;
+    private Reporte reporte;
 
     /**
      * Creates new form VentanaPrincipal
      */
     public VentanaPrincipal() {
-
+        reporte = new Reporte();
         initComponents();
         ControlDatosEstudiante controlDatosEstudiante = new ControlDatosEstudiante();
         ControlDatosLibros controlDatosLibros = new ControlDatosLibros();
@@ -82,6 +84,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         tablaPrestamos = new javax.swing.JTable();
         jDesktopPane3 = new javax.swing.JDesktopPane();
+        jToggleButton1 = new javax.swing.JToggleButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        textPaneCarnet = new javax.swing.JTextPane();
+        jLabel1 = new javax.swing.JLabel();
+        historial = new javax.swing.JButton();
+        activos = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -436,15 +445,74 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Prestamos", jDesktopPane4);
 
+        jToggleButton1.setText("listado de entregas de hoy");
+        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton1ActionPerformed(evt);
+            }
+        });
+
+        jScrollPane4.setViewportView(textPaneCarnet);
+
+        jLabel1.setText("Reportes por estudiante");
+
+        historial.setText("Historial de prestamos");
+        historial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                historialActionPerformed(evt);
+            }
+        });
+
+        activos.setText("prestamos activos");
+        activos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                activosActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("buscar carnet :");
+
+        jDesktopPane3.setLayer(jToggleButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane3.setLayer(jScrollPane4, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane3.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane3.setLayer(historial, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane3.setLayer(activos, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane3.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
         javax.swing.GroupLayout jDesktopPane3Layout = new javax.swing.GroupLayout(jDesktopPane3);
         jDesktopPane3.setLayout(jDesktopPane3Layout);
         jDesktopPane3Layout.setHorizontalGroup(
             jDesktopPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 779, Short.MAX_VALUE)
+            .addGroup(jDesktopPane3Layout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jDesktopPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jDesktopPane3Layout.createSequentialGroup()
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(39, 39, 39)
+                        .addComponent(historial)
+                        .addGap(26, 26, 26)
+                        .addComponent(activos)))
+                .addContainerGap(207, Short.MAX_VALUE))
         );
         jDesktopPane3Layout.setVerticalGroup(
             jDesktopPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 591, Short.MAX_VALUE)
+            .addGroup(jDesktopPane3Layout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addComponent(jToggleButton1)
+                .addGap(35, 35, 35)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addGroup(jDesktopPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jDesktopPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(historial)
+                        .addComponent(activos))
+                    .addComponent(jLabel2))
+                .addContainerGap(420, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Reportes", jDesktopPane3);
@@ -622,6 +690,21 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_eliminarLibroActionPerformed
 
+    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+
+       this.reporte.recorrerPrestamos();
+    }//GEN-LAST:event_jToggleButton1ActionPerformed
+
+    private void historialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_historialActionPerformed
+        int carnet = Integer.parseInt(this.textPaneCarnet.getText());
+        this.reporte.historialEstudiante(carnet);
+    }//GEN-LAST:event_historialActionPerformed
+
+    private void activosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_activosActionPerformed
+        int carnet = Integer.parseInt(this.textPaneCarnet.getText());
+        this.reporte.prestamosEstudiante(carnet);
+    }//GEN-LAST:event_activosActionPerformed
+
     public void ventanaNuevoEst() {
         NuevoEstudiante ne = new NuevoEstudiante(false, null, tablaStudents);
         ne.setVisible(true);
@@ -654,25 +737,31 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton activos;
     private javax.swing.JButton editarEstudianteBt;
     private javax.swing.JButton editarLibro;
     private javax.swing.JButton eliminarEstudianteBt;
     private javax.swing.JButton eliminarLibro;
     private javax.swing.JButton eliminarPrestamosBt;
+    private javax.swing.JButton historial;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JDesktopPane jDesktopPane2;
     private javax.swing.JDesktopPane jDesktopPane3;
     private javax.swing.JDesktopPane jDesktopPane4;
     private javax.swing.JDesktopPane jDesktopPane5;
     private javax.swing.JDesktopPane jDesktopPane6;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
+    private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JLabel labelBusqueda;
     private javax.swing.JLabel labelBusquedaLibro;
     private javax.swing.JLabel labelBusquedaPestamo;
@@ -682,5 +771,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JTable tablaLibros;
     private javax.swing.JTable tablaPrestamos;
     private javax.swing.JTable tablaStudents;
+    private javax.swing.JTextPane textPaneCarnet;
     // End of variables declaration//GEN-END:variables
 }

@@ -17,8 +17,8 @@ public class Estudiante {
     private String nombre;
     private int carrera;
     private String fechaNacimiento;
-    private ArrayList<Libro> librosPrestados;
-    private ArrayList<Libro> historial;
+    private ArrayList<Prestamo> prestamosActivos;
+    private ArrayList<Prestamo> historial;
 
     public int getCarnet() {
         return carnet;
@@ -60,13 +60,29 @@ public class Estudiante {
         this.nombre = nombre;
         this.carrera = carrera;
         this.fechaNacimiento = fechaNacimiento;
-        this.librosPrestados = new ArrayList<>();
+        this.prestamosActivos = new ArrayList<>();
         this.historial = new ArrayList<>();
     }
 
     @Override
     public String toString() {
         return "Estudiante{" + "carnet=" + carnet + ", nombre=" + nombre + ", carrera=" + carrera +", nacimiento="+fechaNacimiento+ '}';
+    }
+
+    public ArrayList<Prestamo> getPrestamosActivos() {
+        return prestamosActivos;
+    }
+
+    public void setLibrosPrestados(ArrayList<Prestamo> librosPrestados) {
+        this.prestamosActivos = librosPrestados;
+    }
+
+    public ArrayList<Prestamo> getHistorial() {
+        return historial;
+    }
+
+    public void setHistorial(ArrayList<Prestamo> historial) {
+        this.historial = historial;
     }
 
     
