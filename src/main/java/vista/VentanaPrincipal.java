@@ -8,21 +8,25 @@ import DataBase.SaveAndReaderBinary;
 import Reportes.Reporte;
 import cargaDeDatos.Estudiante;
 import cargaDeDatos.Libro;
+import java.awt.event.ActionEvent;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 import persistenciaDatos.ControlDatosEstudiante;
 import persistenciaDatos.ControlDatosLibros;
 import persistenciaDatos.ControlDePrestamos;
 import persistenciaDatos.PersistenciaDeDatos;
+import vista.regresoDeLibro;
 
 /**
  *
  * @author Kenny
  */
 public class VentanaPrincipal extends javax.swing.JFrame {
-    
+
     Estudiante estudianteEdit;
     Libro libroEdit;
     private Reporte reporte;
@@ -56,6 +60,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jInternalFrame1 = new javax.swing.JInternalFrame();
         jPanel1 = new javax.swing.JPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jDesktopPane1 = new javax.swing.JDesktopPane();
@@ -83,6 +88,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         labelBusquedaPestamo = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tablaPrestamos = new javax.swing.JTable();
+        busquedaComboBox = new javax.swing.JComboBox<>();
         jDesktopPane3 = new javax.swing.JDesktopPane();
         jToggleButton1 = new javax.swing.JToggleButton();
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -91,6 +97,19 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         historial = new javax.swing.JButton();
         activos = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+
+        jInternalFrame1.setVisible(true);
+
+        javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
+        jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
+        jInternalFrame1Layout.setHorizontalGroup(
+            jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jInternalFrame1Layout.setVerticalGroup(
+            jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -338,10 +357,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        eliminarPrestamosBt.setText("Eliminar");
+        eliminarPrestamosBt.setText("Regreso de Libro");
         eliminarPrestamosBt.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 eliminarPrestamosBtMouseClicked(evt);
+            }
+        });
+        eliminarPrestamosBt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminarPrestamosBtActionPerformed(evt);
             }
         });
 
@@ -389,19 +413,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jDesktopPane6Layout.setHorizontalGroup(
             jDesktopPane6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDesktopPane6Layout.createSequentialGroup()
+                .addGap(41, 41, 41)
                 .addGroup(jDesktopPane6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jDesktopPane6Layout.createSequentialGroup()
-                        .addGap(41, 41, 41)
-                        .addGroup(jDesktopPane6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jDesktopPane6Layout.createSequentialGroup()
-                                .addComponent(nuevoPrestamosBt, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(295, 295, 295)
-                                .addComponent(eliminarPrestamosBt, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(labelBusquedaPestamo, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField3)))
-                    .addGroup(jDesktopPane6Layout.createSequentialGroup()
-                        .addGap(77, 77, 77)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 559, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(nuevoPrestamosBt, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(295, 295, 295)
+                        .addComponent(eliminarPrestamosBt, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(labelBusquedaPestamo, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 591, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 568, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(78, Short.MAX_VALUE))
         );
         jDesktopPane6Layout.setVerticalGroup(
@@ -415,27 +435,40 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addComponent(labelBusquedaPestamo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
+        busquedaComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Busqueda", "Todos Los Registros", "Codigo del Libro", "Carnet", "Fecha" }));
+        busquedaComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                busquedaComboBoxActionPerformed(evt);
+            }
+        });
+
         jDesktopPane4.setLayer(jDesktopPane6, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane4.setLayer(busquedaComboBox, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jDesktopPane4Layout = new javax.swing.GroupLayout(jDesktopPane4);
         jDesktopPane4.setLayout(jDesktopPane4Layout);
         jDesktopPane4Layout.setHorizontalGroup(
             jDesktopPane4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 779, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane4Layout.createSequentialGroup()
+                .addContainerGap(629, Short.MAX_VALUE)
+                .addComponent(busquedaComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
             .addGroup(jDesktopPane4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane4Layout.createSequentialGroup()
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap(12, Short.MAX_VALUE)
                     .addComponent(jDesktopPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addContainerGap(12, Short.MAX_VALUE)))
         );
         jDesktopPane4Layout.setVerticalGroup(
             jDesktopPane4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 592, Short.MAX_VALUE)
+            .addGroup(jDesktopPane4Layout.createSequentialGroup()
+                .addGap(123, 123, 123)
+                .addComponent(busquedaComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(455, Short.MAX_VALUE))
             .addGroup(jDesktopPane4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane4Layout.createSequentialGroup()
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -558,7 +591,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         String carnet = (String) tablaStudents.getValueAt(fila, 1);
         labelBusqueda.setText("" + carnet);
         for (int i = 0; i < PersistenciaDeDatos.estudiantes.size(); i++) {
-            if (PersistenciaDeDatos.estudiantes.get(i).getCarnet()==(Integer.parseInt(carnet))) {
+            if (PersistenciaDeDatos.estudiantes.get(i).getCarnet() == (Integer.parseInt(carnet))) {
                 this.estudianteEdit = PersistenciaDeDatos.estudiantes.get(i);
                 i = PersistenciaDeDatos.estudiantes.size();
 
@@ -605,27 +638,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         ventanaNuevoPestamo();
 
+
     }//GEN-LAST:event_nuevoPrestamosBtActionPerformed
 
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField3ActionPerformed
 
-    private void tablaPrestamosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaPrestamosMouseClicked
-        // TODO add your handling code here:
-        this.eliminarPrestamosBt.setEnabled(true);
-        int fila = tablaPrestamos.getSelectedRow();
-        String codigo = (String) tablaPrestamos.getValueAt(fila, 0);
-        labelBusquedaPestamo.setText("" + codigo);
-
-    }//GEN-LAST:event_tablaPrestamosMouseClicked
-
-    private void tablaPrestamosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tablaPrestamosKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tablaPrestamosKeyPressed
-
     private void eliminarPrestamosBtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_eliminarPrestamosBtMouseClicked
-
     }//GEN-LAST:event_eliminarPrestamosBtMouseClicked
 
     private void editarEstudianteBtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarEstudianteBtActionPerformed
@@ -642,7 +662,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         int result = JOptionPane.showConfirmDialog(jFrame, "Desea eliminar el estudiante: " + estudianteEdit.getCarnet());
         if (result == 0) {
             for (int i = 0; i < PersistenciaDeDatos.estudiantes.size(); i++) {
-                if (PersistenciaDeDatos.estudiantes.get(i).getCarnet()==(estudianteEdit.getCarnet())) {
+                if (PersistenciaDeDatos.estudiantes.get(i).getCarnet() == (estudianteEdit.getCarnet())) {
                     PersistenciaDeDatos.estudiantes.remove(i);
                     i = PersistenciaDeDatos.estudiantes.size();
                     ControlDatosEstudiante control = new ControlDatosEstudiante();
@@ -690,6 +710,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_eliminarLibroActionPerformed
 
+<<<<<<< HEAD
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
 
        this.reporte.recorrerPrestamos();
@@ -704,6 +725,35 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         int carnet = Integer.parseInt(this.textPaneCarnet.getText());
         this.reporte.prestamosEstudiante(carnet);
     }//GEN-LAST:event_activosActionPerformed
+=======
+    private void eliminarPrestamosBtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarPrestamosBtActionPerformed
+        //ventana recibir el libro
+
+        libroRegresado();
+        actualizarTabla();
+
+    }//GEN-LAST:event_eliminarPrestamosBtActionPerformed
+
+    private void tablaPrestamosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaPrestamosMouseClicked
+        // TODO add your handling code here:
+        this.eliminarPrestamosBt.setEnabled(true);
+        int fila = tablaPrestamos.getSelectedRow();
+//        String codigo = (String) tablaPrestamos.getValueAt(fila, 0).toString();
+//        String carnet = (String) tablaPrestamos.getValueAt(fila, 1).toString();
+//        String fecha = (String) tablaPrestamos.getValueAt(fila, 2).toString();
+//        regresoDeLibro rg = new regresoDeLibro(codigo, carnet, fecha);
+
+    }//GEN-LAST:event_tablaPrestamosMouseClicked
+
+    private void tablaPrestamosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tablaPrestamosKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tablaPrestamosKeyPressed
+
+    private void busquedaComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_busquedaComboBoxActionPerformed
+
+       filtoItemPres();
+    }//GEN-LAST:event_busquedaComboBoxActionPerformed
+>>>>>>> 2bc085214ab579334988450a8858ec1a91dc52a2
 
     public void ventanaNuevoEst() {
         NuevoEstudiante ne = new NuevoEstudiante(false, null, tablaStudents);
@@ -721,14 +771,83 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     public void ventanaNuevoPestamo() {
         NuevoPrestamo nuevoP = new NuevoPrestamo(tablaPrestamos, tablaLibros);
+        nuevoP.IniciarFecha();
         nuevoP.setVisible(true);
         nuevoP.setResizable(false);
         nuevoP.setLocationRelativeTo(null);
-        
-       
     }
-    
-    public JTable getTablaPrestamos(){
+
+    public void libroRegresado() {
+        regresoDeLibro regreso = new regresoDeLibro(tablaPrestamos, tablaLibros);
+        
+        int filaSeleccionada = tablaPrestamos.getSelectedRow();
+        if (filaSeleccionada != -1) {
+            String codigo = tablaPrestamos.getValueAt(filaSeleccionada, 0).toString();
+            String carnet = tablaPrestamos.getValueAt(filaSeleccionada, 1).toString();
+            String fecha = tablaPrestamos.getValueAt(filaSeleccionada, 2).toString();
+            regreso.llenado(codigo, carnet, fecha);
+            regreso.diasEfectivos();
+            regreso.setVisible(true);
+            regreso.setResizable(false);
+            regreso.setLocationRelativeTo(null);
+        } else {
+            JOptionPane.showMessageDialog(null, "Por favor, seleccione una fila.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    public void filtroPrestamo(int numeroFiltro, String busqueda, int validacion) {
+        DefaultTableModel modelo = (DefaultTableModel) tablaPrestamos.getModel();
+        
+        if (validacion == 0) {
+            TableRowSorter<DefaultTableModel> tablaFiltrada = new TableRowSorter<>(modelo);
+            tablaPrestamos.setRowSorter(tablaFiltrada);
+            tablaFiltrada.setRowFilter(RowFilter.regexFilter(busqueda, numeroFiltro));
+            tablaPrestamos.repaint();
+        } else if (validacion == -1) {
+            tablaPrestamos.setRowSorter(null); // Elimina cualquier filtro aplicado
+            tablaPrestamos.setModel(modelo); // Restaura el modelo original de la tabla
+            tablaPrestamos.repaint();
+        }
+    }
+
+   public void filtoItemPres() {
+    int validacion = -1;
+    int numeroFiltro = -1;
+    String busqueda = jTextField3.getText();
+    // Obtener el número de filtro según la opción seleccionada en el ComboBox
+    String seleccion = busquedaComboBox.getSelectedItem().toString();
+    switch (seleccion) {
+        case "Todos Los Registros":
+            validacion = -1;
+            break;
+        case "Codigo del Libro":
+            validacion = 0;
+            numeroFiltro = 0;
+            break;
+        case "Carnet":
+            validacion = 0;
+            numeroFiltro = 1;
+            break;
+        case "Fecha":
+            validacion = 0;
+            numeroFiltro = 2;
+            break;
+        default:
+            System.out.println("Opción no válida");
+            break;
+    }
+
+    // Aplicar el filtro
+    filtroPrestamo(numeroFiltro, busqueda, validacion);
+}
+    public void actualizarTabla() {
+        DefaultTableModel modelo = (DefaultTableModel) tablaPrestamos.getModel();
+        tablaPrestamos.setModel(modelo); 
+        tablaPrestamos.setRowSorter(null); 
+        
+    }
+
+    public JTable getTablaPrestamos() {
         return tablaPrestamos;
     }
     /**
@@ -737,7 +856,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+<<<<<<< HEAD
     private javax.swing.JButton activos;
+=======
+    private javax.swing.JComboBox<String> busquedaComboBox;
+>>>>>>> 2bc085214ab579334988450a8858ec1a91dc52a2
     private javax.swing.JButton editarEstudianteBt;
     private javax.swing.JButton editarLibro;
     private javax.swing.JButton eliminarEstudianteBt;
@@ -750,8 +873,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JDesktopPane jDesktopPane4;
     private javax.swing.JDesktopPane jDesktopPane5;
     private javax.swing.JDesktopPane jDesktopPane6;
+<<<<<<< HEAD
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+=======
+    private javax.swing.JInternalFrame jInternalFrame1;
+>>>>>>> 2bc085214ab579334988450a8858ec1a91dc52a2
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;

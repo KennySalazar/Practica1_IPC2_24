@@ -23,8 +23,11 @@ import persistenciaDatos.PersistenciaDeDatos;
  */
 public class NuevoPrestamo extends javax.swing.JFrame {
 
+<<<<<<< HEAD
     private int Carnet;
     boolean isEdyt;
+=======
+>>>>>>> 2bc085214ab579334988450a8858ec1a91dc52a2
     SaveAndReaderBinary LyE = new SaveAndReaderBinary();
     ControlDePrestamos controlPres = new ControlDePrestamos();
     JFrame jFrame = new JFrame();
@@ -35,11 +38,10 @@ public class NuevoPrestamo extends javax.swing.JFrame {
     SimpleDateFormat month = new SimpleDateFormat("MM");
     SimpleDateFormat day = new SimpleDateFormat("dd");
     String anio = year.format(fecha);
-        String mes = month.format(fecha);
-        String dia = day.format(fecha);
-        String fechaPrestamo = anio + "-" + mes + "-" + dia;
-    
-    
+    String mes = month.format(fecha);
+    String dia = day.format(fecha);
+    String fechaPrestamo = anio + "-" + mes + "-" + dia;
+
     NuevoPrestamo(JTable tabla, JTable tablaLibro) {
         this.tabla = tabla;
         this.tablaLibro = tablaLibro;
@@ -51,23 +53,14 @@ public class NuevoPrestamo extends javax.swing.JFrame {
      * Creates new form NuevoPrestamo
      */
     public NuevoPrestamo() {
-        initComponents();
-        //IniciarCombosFecha();
-
+        initComponents();   
     }
 
-//    public void IniciarCombosFecha() {
-//        for (int i = 1900; i < 2024; i++) {
-//            this.comboAnio.addItem("" + i);
-//        }
-//        for (int i = 1; i <= 12; i++) {
-//            this.comboMes.addItem("" + i);
-//        }
-//        for (int i = 1; i <= 31; i++) {
-//            this.comboDia.addItem("" + i);
-//        }
-//    }
-
+    public void IniciarFecha() {
+        anioTextField.setText(anio);
+        mesTextField.setText(mes);
+        diaTextField.setText(dia);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -88,9 +81,9 @@ public class NuevoPrestamo extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        me = new javax.swing.JTextField();
-        ani = new javax.swing.JTextField();
-        di = new javax.swing.JTextField();
+        mesTextField = new javax.swing.JTextField();
+        anioTextField = new javax.swing.JTextField();
+        diaTextField = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -100,7 +93,7 @@ public class NuevoPrestamo extends javax.swing.JFrame {
 
         jLabel3.setText("Carnet del Estudiante");
 
-        jLabel5.setText("Fecha de nacimiento");
+        jLabel5.setText("Fecha de Prestamo");
 
         jLabel6.setText("Año");
 
@@ -115,11 +108,11 @@ public class NuevoPrestamo extends javax.swing.JFrame {
             }
         });
 
-        me.setText("-----");
+        mesTextField.setEditable(false);
 
-        ani.setText("-----");
+        anioTextField.setEditable(false);
 
-        di.setText("-----");
+        diaTextField.setEditable(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -127,9 +120,6 @@ public class NuevoPrestamo extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(129, 129, 129)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(43, 43, 43)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -140,18 +130,21 @@ public class NuevoPrestamo extends javax.swing.JFrame {
                             .addComponent(jLabel2)
                             .addComponent(jLabel1)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(ani, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(me, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(di, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel6)
                                 .addGap(94, 94, 94)
                                 .addComponent(jLabel7)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel8)
-                                .addGap(34, 34, 34)))))
+                                .addGap(34, 34, 34))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(anioTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(mesTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(diaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(123, 123, 123)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(107, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -176,12 +169,12 @@ public class NuevoPrestamo extends javax.swing.JFrame {
                     .addComponent(jLabel8))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(me, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ani, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(di, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                    .addComponent(mesTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(anioTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(diaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(37, 37, 37)
                 .addComponent(jButton1)
-                .addGap(38, 38, 38))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -196,7 +189,7 @@ public class NuevoPrestamo extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(21, Short.MAX_VALUE)
+                .addContainerGap(60, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(14, 14, 14))
         );
@@ -206,28 +199,39 @@ public class NuevoPrestamo extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         //control para guardar el boton 
-        // if secundario
         ControlDePrestamos control = new ControlDePrestamos();
         if (!carnetEstudianteTextField.getText().isEmpty() && !carnetEstudianteTextField.getText().isEmpty()) {
             if (verificacionCarnet()) {
                 System.out.println("si funciono el codigo");
                 if (verificacionPrestamosStudent()) {
                     System.out.println("paso dos filtros");
-                    if (verificacionLibro()) {
+                    if (verificacionLibroRepetido()) {
                         System.out.println("Si puede prestar un libro");
+                        if(verificacionLibro()){
+                            System.out.println("Tiene este libro");
                         String carnet = carnetEstudianteTextField.getText();
                         String codigo = codigoLibroTxField.getText();
+<<<<<<< HEAD
                         control.guardarPrestamos(codigo, carnet, fechaPrestamo, tabla, this.Carnet);
+=======
+
+                        control.guardarPrestamos(codigo, carnet, fechaPrestamo, tabla);
+>>>>>>> 2bc085214ab579334988450a8858ec1a91dc52a2
                         JOptionPane.showMessageDialog(jFrame, "Se ha guardado un nuevo Prestamo");
                         this.dispose();
+                        }else{
+                            JOptionPane.showMessageDialog(jFrame, "El Codigo Del Libro es Incorrecto \n"
+                                + "O ya no hay Copias Existentes");
+                        }
                     } else {
                         System.out.println("el codigo incorrecto");
-                       JOptionPane.showMessageDialog(jFrame, "El Codigo Del Libro es Incorrecto \n"
-                        + "O ya no hay Copias Existentes");
+                        JOptionPane.showMessageDialog(jFrame, "El estudiante ya "
+                                + "Tiene este Libro");
+                        
                     }
                 } else {
                     JOptionPane.showMessageDialog(jFrame, "El estudiante ya ha Prestado Tres Libros");
-                    
+
                 }
             } else {
                 JOptionPane.showMessageDialog(jFrame, "El Carnet no se Encuentra en la Base de Datos");
@@ -260,14 +264,16 @@ public class NuevoPrestamo extends javax.swing.JFrame {
             if (PersistenciaDeDatos.biblio.get(i).getCodigo().equals(codigo)) {
                 int indice = i;
                 if (PersistenciaDeDatos.biblio.get(i).getCantidad() > 0) {
-                    System.out.println("si hay libros");
-                    int num1 = PersistenciaDeDatos.biblio.get(i).getCantidad();
-                    int num2 = num1 - 1;
-                    PersistenciaDeDatos.biblio.get(i).setCantidad(num2);
-                    controlLibro.llenarTablaLibros(tablaLibro);
-                    System.out.println("");
-                    System.out.println("El numero final es " + num2);
-                    return true;
+                    
+                        System.out.println("si hay libros");
+                        int num1 = PersistenciaDeDatos.biblio.get(i).getCantidad();
+                        int num2 = num1 - 1;
+                        PersistenciaDeDatos.biblio.get(i).setCantidad(num2);
+                        controlLibro.llenarTablaLibros(tablaLibro);
+                        System.out.println("");
+                        System.out.println("El numero final es " + num2);
+                        return true;
+                    
                 }
             }
         }
@@ -277,12 +283,12 @@ public class NuevoPrestamo extends javax.swing.JFrame {
     public boolean verificacionPrestamosStudent() {
         VentanaPrincipal vent = new VentanaPrincipal();
         JTable tabla = vent.getTablaPrestamos();
-        DefaultTableModel cantidad = (DefaultTableModel) tabla.getModel();
+        DefaultTableModel cantidadPrestamos = (DefaultTableModel) tabla.getModel();
         int conteo = 0;
         String carnet = "";
         carnet = carnetEstudianteTextField.getText();
-        for (int i = 0; i < cantidad.getRowCount(); i++) {
-            String columnaCarnet = cantidad.getValueAt(i, 1).toString();
+        for (int i = 0; i < cantidadPrestamos.getRowCount(); i++) {
+            String columnaCarnet = cantidadPrestamos.getValueAt(i, 1).toString();
             if (columnaCarnet.equals(carnet)) {
                 conteo++;
                 System.out.println("el conteo es " + conteo);
@@ -294,7 +300,26 @@ public class NuevoPrestamo extends javax.swing.JFrame {
 
         return true;
     }
-    
+
+    public boolean verificacionLibroRepetido() {
+        VentanaPrincipal vent = new VentanaPrincipal();
+        JTable tabla = vent.getTablaPrestamos();
+        DefaultTableModel cantidadPres = (DefaultTableModel) tabla.getModel();
+        String carnet = "";
+        String codigo = "";
+        codigo = codigoLibroTxField.getText();
+        carnet = carnetEstudianteTextField.getText();
+        for (int i = 0; i < cantidadPres.getRowCount(); i++) {
+            String columnaCodigo = cantidadPres.getValueAt(i, 0).toString();
+            String columnaCarnet = cantidadPres.getValueAt(i, 1).toString();
+            System.out.println(columnaCarnet + " " + i);
+            System.out.println(columnaCodigo + " " + i);
+            if(columnaCarnet.equals(carnet) && columnaCodigo.equals(codigo)){
+                return false;
+            }
+        }
+        return true;
+    }
 
     /**
      * @param args the command line arguments
@@ -332,10 +357,10 @@ public class NuevoPrestamo extends javax.swing.JFrame {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField ani;
+    private javax.swing.JTextField anioTextField;
     private javax.swing.JTextField carnetEstudianteTextField;
     private javax.swing.JTextField codigoLibroTxField;
-    private javax.swing.JTextField di;
+    private javax.swing.JTextField diaTextField;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -345,6 +370,6 @@ public class NuevoPrestamo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField me;
+    private javax.swing.JTextField mesTextField;
     // End of variables declaration//GEN-END:variables
 }
