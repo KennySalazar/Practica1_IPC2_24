@@ -5,11 +5,14 @@
 package vista;
 
 import DataBase.SaveAndReaderBinary;
+import cargaDeDatos.Estudiante;
+import cargaDeDatos.Prestamo;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
+import java.util.Iterator;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -47,7 +50,7 @@ public class regresoDeLibro extends javax.swing.JFrame {
 
     public regresoDeLibro() {
         initComponents();
-        
+
         setResizable(false);
     }
 
@@ -176,12 +179,12 @@ public class regresoDeLibro extends javax.swing.JFrame {
         try {
             if (verificacionPrestamo()) {
                 System.out.println("llega aca");
-                if(eliminacionPrestamo()){
-                    
-                JOptionPane.showMessageDialog(jFrame, "El libro se ha Regresado");
-                LyE.guardarArchivoBinario();
-                this.dispose();
-                }else{
+                if (eliminacionPrestamo()) {
+
+                    JOptionPane.showMessageDialog(jFrame, "El libro se ha Regresado");
+                    LyE.guardarArchivoBinario();
+                    this.dispose();
+                } else {
                     JOptionPane.showMessageDialog(jFrame, "Ocurrio un error");
                 }
             } else {
@@ -189,6 +192,7 @@ public class regresoDeLibro extends javax.swing.JFrame {
                 this.dispose();
             }
         } catch (Exception e) {
+            System.out.println(e);
             JOptionPane.showMessageDialog(jFrame, "Algo salio Mal");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -202,14 +206,14 @@ public class regresoDeLibro extends javax.swing.JFrame {
     }
 
     public void diasEfectivos() {
-        
+
         String dateInicio = fechaPresTextField.getText();
         String dateFinal = fechaFinalTextField.getText();
         DateTimeFormatter formato = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         try {
             LocalDate fechaInicio = LocalDate.parse(dateInicio, formato);
             LocalDate fechaFin = LocalDate.parse(dateFinal, formato);
-            
+
             //aca se realiza la operacion de dias efectivos
             long contDiasEfectivos = 0;
             LocalDate fechaActual = fechaInicio;
@@ -253,7 +257,7 @@ public class regresoDeLibro extends javax.swing.JFrame {
                 System.out.println("si esta el libro en existencia");
                 int num1 = PersistenciaDeDatos.biblio.get(i).getCantidad();
                 int num2 = num1 + 1;
-                System.out.println("el numero es "+ num2);
+                System.out.println("el numero es " + num2);
                 PersistenciaDeDatos.biblio.get(i).setCantidad(num2);
                 controlLibro.llenarTablaLibros(tablaLibro);
                 return true;
@@ -261,27 +265,48 @@ public class regresoDeLibro extends javax.swing.JFrame {
         }
         return false;
     }
-    public boolean eliminacionPrestamo(){
+
+    public boolean eliminacionPrestamo() {
         ControlDePrestamos pres = new ControlDePrestamos();
         String codigo = "";
         String carnet = "";
         codigo = codigoLibroTxField.getText();
         carnet = carnetEstudianteTextField.getText();
         for (int i = 0; i < PersistenciaDeDatos.prestamos.size(); i++) {
-            if(PersistenciaDeDatos.prestamos.get(i).getCodigoLibro().equals(codigo) &&
-               PersistenciaDeDatos.prestamos.get(i).getCarnetE().equals(carnet)){
-               PersistenciaDeDatos.prestamos.remove(i);
-               pres.llenarTablaPrestamos(tabla);
-               return true;
+            if (PersistenciaDeDatos.prestamos.get(i).getCodigoLibro().equals(codigo)
+                    && PersistenciaDeDatos.prestamos.get(i).getCarnetE().equals(carnet)) {
+                for (Estudiante estudiante : PersistenciaDeDatos.estudiantes) {
+                    if (estudiante.getCarnet() == Integer.parseInt(carnet)) {
+                        estudiante.getHistorial().add(PersistenciaDeDatos.prestamos.get(i));
+                        /*
+                        int v = 0;
+                        for (Prestamo prestamosActivo : estudiante.getPrestamosActivos()) {
+                            v++;
+                            if(prestamosActivo == PersistenciaDeDatos.prestamos.get(i)){
+                                estudiante.getPrestamosActivos().remove(v);
+                                break;
+                            }
+                        }
+                         */
+                        Iterator<Prestamo> iterator = estudiante.getPrestamosActivos().iterator();
+                        while (iterator.hasNext()) {
+                            Prestamo prestamoActivo = iterator.next();
+                            if (prestamoActivo.equals(PersistenciaDeDatos.prestamos.get(i))) {
+                                iterator.remove(); // Eliminar el préstamo activo de la lista
+                                break;
+                            }
+                        }
+                        break;
+                    }
+                }
+                PersistenciaDeDatos.prestamos.remove(i);
+                pres.llenarTablaPrestamos(tabla);
+                return true;
             }
         }
         return false;
     }
-    
-    
-    
-    
-   
+
     /**
      * @param args the command line arguments
      */
