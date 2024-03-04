@@ -214,7 +214,7 @@ public class regresoDeLibro extends javax.swing.JFrame {
             long contDiasEfectivos = 0;
             LocalDate fechaActual = fechaInicio;
             while (!fechaActual.isAfter(fechaFin)) {
-                if (fechaActual.getDayOfWeek().getValue() < 6) {
+                if (fechaActual.getDayOfWeek().getValue() < 8) {
                     contDiasEfectivos++;
                 }
                 fechaActual = fechaActual.plusDays(1);
