@@ -7,11 +7,14 @@ package vista;
 import DataBase.SaveAndReaderBinary;
 import Reportes.Mora;
 import Reportes.sinMora;
+import cargaDeDatos.Estudiante;
+import cargaDeDatos.Prestamo;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
+import java.util.Iterator;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -219,6 +222,7 @@ public class regresoDeLibro extends javax.swing.JFrame {
                 this.dispose();
             }
         } catch (Exception e) {
+            System.out.println(e);
             JOptionPane.showMessageDialog(jFrame, "Algo salio Mal");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -309,7 +313,9 @@ public class regresoDeLibro extends javax.swing.JFrame {
         return false;
     }
 
+
     //elimina el prestamo en la base de datos y reajusta la base de datos
+
     public boolean eliminacionPrestamo() {
         ControlDePrestamos pres = new ControlDePrestamos();
         String codigo = "";
@@ -319,6 +325,30 @@ public class regresoDeLibro extends javax.swing.JFrame {
         for (int i = 0; i < PersistenciaDeDatos.prestamos.size(); i++) {
             if (PersistenciaDeDatos.prestamos.get(i).getCodigoLibro().equals(codigo)
                     && PersistenciaDeDatos.prestamos.get(i).getCarnetE().equals(carnet)) {
+     for (Estudiante estudiante : PersistenciaDeDatos.estudiantes) {
+                    if (estudiante.getCarnet() == Integer.parseInt(carnet)) {
+                        estudiante.getHistorial().add(PersistenciaDeDatos.prestamos.get(i));
+                        /*
+                        int v = 0;
+                        for (Prestamo prestamosActivo : estudiante.getPrestamosActivos()) {
+                            v++;
+                            if(prestamosActivo == PersistenciaDeDatos.prestamos.get(i)){
+                                estudiante.getPrestamosActivos().remove(v);
+                                break;
+                            }
+                        }
+                         */
+                        Iterator<Prestamo> iterator = estudiante.getPrestamosActivos().iterator();
+                        while (iterator.hasNext()) {
+                            Prestamo prestamoActivo = iterator.next();
+                            if (prestamoActivo.equals(PersistenciaDeDatos.prestamos.get(i))) {
+                                iterator.remove(); // Eliminar el préstamo activo de la lista
+                                break;
+                            }
+                        }
+                        break;
+                    }
+                }
                 PersistenciaDeDatos.prestamos.remove(i);
                 pres.llenarTablaPrestamos(tabla);
                 return true;

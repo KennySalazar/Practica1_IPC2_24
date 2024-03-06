@@ -144,6 +144,7 @@ public class CargarDatos extends javax.swing.JFrame {
             int carnet = Integer.parseInt(prestamo.getCarnetE());
             for (Estudiante estudiante : PersistenciaDeDatos.estudiantes) {
                 if (estudiante.getCarnet() == carnet) {
+                    /*
                     if (estudiante.getHistorial().isEmpty()) {
                         estudiante.getHistorial().add(prestamo);
                     } else {
@@ -155,7 +156,7 @@ public class CargarDatos extends javax.swing.JFrame {
                             }
                         }
                     }
-
+                    */
                     if (estudiante.getPrestamosActivos().isEmpty()) {
                         estudiante.getPrestamosActivos().add(prestamo);
                     } else {

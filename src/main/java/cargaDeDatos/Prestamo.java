@@ -28,6 +28,8 @@ public class Prestamo {
         this.carnetE = carnetE;
         this.fecha = fecha;
     }
+    
+    
 
     public boolean seEntrega() {
         String pattern = "yyyy-MM-dd";
