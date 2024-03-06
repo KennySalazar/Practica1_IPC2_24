@@ -34,6 +34,7 @@ public class Reporte {
         this.prestamosEntrega = new ArrayList<>();
     }
 
+    // recorre los rpestamos
     public void recorrerPrestamos() {
         for (Prestamo prestamo : prestamos) {
             if (prestamo.seEntrega()) {
@@ -58,6 +59,7 @@ public class Reporte {
         System.out.println("prestamos de entrega hoy, cargados");
     }
 
+    //metodo para mostrar historial de prestamos que el estudiante ya ha devuelto
     public void historialEstudiante(int carnet) {
         for (Estudiante estudiante : estudiantes) {
             if (carnet == estudiante.getCarnet()) {
@@ -85,7 +87,9 @@ public class Reporte {
             }
         }
     }
-
+    
+    
+    //metodo que verifica presstamos en intervalo de timepo 
     public void prestamosEnIntervalo(Date dateUno, Date dateDos) throws ParseException {
         this.prestamosIntervalo.clear();
         String pattern = "yyyy-MM-dd";
@@ -101,6 +105,7 @@ public class Reporte {
 
     }
 
+    // metodo que verifica prestamos en intervalo de tiempo pero en array de carreras
     public void prestamosEnIntervaloCarrera(Date dateUno, Date dateDos) throws ParseException {
         this.prestamosIntervalo.clear();
         String pattern = "yyyy-MM-dd";
@@ -115,6 +120,7 @@ public class Reporte {
 
     }
 
+    //metodo para mostrar los prestamos segun carrera en intervalo dado 
     public void mostrarIntervalo(Date dateUno, Date dateDos) throws ParseException {
         prestamosEnIntervalo(dateUno, dateDos);
         for (Prestamo prestamo : prestamosIntervalo) {
@@ -122,6 +128,7 @@ public class Reporte {
         }
     }
 
+    //metodo para clasificar los prestamos segun carrera
     public void clasificarPrestamos(int carrera) {
         this.prestamosCarrera.clear();
         switch (carrera) {
@@ -196,6 +203,7 @@ public class Reporte {
         mostrarPrestamosCarrera();
     }
 
+    //pintar los prestamos
     public void mostrarPrestamosCarrera() {
         for (Prestamo prestamo : prestamosCarrera) {
             System.out.println(prestamo);
