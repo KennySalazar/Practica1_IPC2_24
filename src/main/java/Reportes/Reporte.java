@@ -11,6 +11,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import static persistenciaDatos.PersistenciaDeDatos.Mora;
 import static persistenciaDatos.PersistenciaDeDatos.estudiantes;
 import static persistenciaDatos.PersistenciaDeDatos.prestamos;
 
@@ -28,7 +29,7 @@ public class Reporte {
     public Reporte() {
         this.prestamosCarrera = new ArrayList<>();
         this.prestamosIntervalo = new ArrayList<>();
-        this.moras = new ArrayList<>();
+        this.moras = Mora;
         this.prestamosEntrega = new ArrayList<>();
     }
 
