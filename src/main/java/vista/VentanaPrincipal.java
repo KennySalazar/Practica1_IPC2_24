@@ -9,6 +9,11 @@ import Reportes.Reporte;
 import cargaDeDatos.Estudiante;
 import cargaDeDatos.Libro;
 import java.awt.event.ActionEvent;
+import java.text.ParseException;
+import java.time.LocalDate;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -30,6 +35,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     Estudiante estudianteEdit;
     Libro libroEdit;
     private Reporte reporte;
+    private int carrera;
 
     /**
      * Creates new form VentanaPrincipal
@@ -97,6 +103,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         historial = new javax.swing.JButton();
         activos = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        date1 = new com.toedter.calendar.JDateChooser();
+        date2 = new com.toedter.calendar.JDateChooser();
+        carreras = new javax.swing.JComboBox<>();
+        jButton2 = new javax.swing.JButton();
+        date11 = new com.toedter.calendar.JDateChooser();
+        date22 = new com.toedter.calendar.JDateChooser();
 
         jInternalFrame1.setVisible(true);
 
@@ -505,31 +518,83 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jLabel2.setText("buscar carnet :");
 
+        jButton1.setText("Prestamos en un intervalo de tiempo");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        carreras.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ingenieria", "Medicina", "Derecho", "Arquitectura", "Administracion" }));
+        carreras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                carrerasActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Prestamos por carrera");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         jDesktopPane3.setLayer(jToggleButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane3.setLayer(jScrollPane4, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane3.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane3.setLayer(historial, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane3.setLayer(activos, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane3.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane3.setLayer(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane3.setLayer(date1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane3.setLayer(date2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane3.setLayer(carreras, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane3.setLayer(jButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane3.setLayer(date11, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane3.setLayer(date22, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jDesktopPane3Layout = new javax.swing.GroupLayout(jDesktopPane3);
         jDesktopPane3.setLayout(jDesktopPane3Layout);
         jDesktopPane3Layout.setHorizontalGroup(
             jDesktopPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane3Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(275, 275, 275))
             .addGroup(jDesktopPane3Layout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jDesktopPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(164, 164, 164)
+                .addComponent(date1, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(date2, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(167, 167, 167))
+            .addGroup(jDesktopPane3Layout.createSequentialGroup()
+                .addGroup(jDesktopPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(jDesktopPane3Layout.createSequentialGroup()
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(39, 39, 39)
-                        .addComponent(historial)
-                        .addGap(26, 26, 26)
-                        .addComponent(activos)))
-                .addContainerGap(207, Short.MAX_VALUE))
+                        .addGap(144, 144, 144)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jDesktopPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jDesktopPane3Layout.createSequentialGroup()
+                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(39, 39, 39)
+                                .addComponent(historial)
+                                .addGap(26, 26, 26)
+                                .addComponent(activos))))
+                    .addGroup(jDesktopPane3Layout.createSequentialGroup()
+                        .addGap(64, 64, 64)
+                        .addComponent(carreras, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jDesktopPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jDesktopPane3Layout.createSequentialGroup()
+                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(209, 209, 209))
+                            .addGroup(jDesktopPane3Layout.createSequentialGroup()
+                                .addComponent(date11, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(date22, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(75, Short.MAX_VALUE))
         );
         jDesktopPane3Layout.setVerticalGroup(
             jDesktopPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -545,7 +610,22 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                         .addComponent(historial)
                         .addComponent(activos))
                     .addComponent(jLabel2))
-                .addContainerGap(420, Short.MAX_VALUE))
+                .addGap(56, 56, 56)
+                .addComponent(jButton1)
+                .addGap(18, 18, 18)
+                .addGroup(jDesktopPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jDesktopPane3Layout.createSequentialGroup()
+                        .addGroup(jDesktopPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(date1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(date2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(98, 98, 98)
+                        .addGroup(jDesktopPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(carreras, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(date11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(date22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(59, 59, 59)
+                .addComponent(jButton2)
+                .addContainerGap(45, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Reportes", jDesktopPane3);
@@ -564,7 +644,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 622, Short.MAX_VALUE)
+                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 568, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -712,7 +792,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
 
-       this.reporte.recorrerPrestamos();
+        this.reporte.recorrerPrestamos();
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     private void historialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_historialActionPerformed
@@ -750,9 +830,65 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void busquedaComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_busquedaComboBoxActionPerformed
 
-       filtoItemPres();
+        filtoItemPres();
     }//GEN-LAST:event_busquedaComboBoxActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Date dateUno = date1.getDate();
+        Date dateDos = date2.getDate();
+        if (dateUno != null && dateDos != null) {
+            try {
+                this.reporte.mostrarIntervalo(dateUno, dateDos);
+            } catch (ParseException ex) {
+                Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            System.out.println("mostrar todos los reportes");
+        }
+
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void carrerasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_carrerasActionPerformed
+       String carreraS = carreras.getSelectedItem().toString();
+        switch (carreraS) {
+            case "Ingenieria":
+                carrera = 1;
+                break;
+            case "Medicina":
+                carrera = 2;
+                break;
+            case "Derecho":
+                carrera = 3;
+                break;
+            case "Arquitectura":
+                carrera = 4;
+                break;
+            case "Administracion":
+                carrera = 5;
+                break;
+            default:
+                throw new AssertionError();
+        }
+    }//GEN-LAST:event_carrerasActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+       Date dateUno = date11.getDate();
+        Date dateDos = date22.getDate();
+        if (dateUno != null && dateDos != null) {
+            this.reporte.clasificarPrestamos(carrera);
+           try {
+               this.reporte.prestamosEnIntervaloCarrera(dateUno, dateDos);
+           } catch (ParseException ex) {
+               Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+           }
+            this.reporte.mostrarPrestamosCarrera();
+        } else {
+            this.reporte.clasificarPrestamos(carrera);
+            this.reporte.mostrarPrestamosCarrera();
+            System.out.println("mostrar todos los reportes");
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     public void ventanaNuevoEst() {
         NuevoEstudiante ne = new NuevoEstudiante(false, null, tablaStudents);
@@ -778,7 +914,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     public void libroRegresado() {
         regresoDeLibro regreso = new regresoDeLibro(tablaPrestamos, tablaLibros);
-        
+
         int filaSeleccionada = tablaPrestamos.getSelectedRow();
         if (filaSeleccionada != -1) {
             String codigo = tablaPrestamos.getValueAt(filaSeleccionada, 0).toString();
@@ -796,7 +932,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     public void filtroPrestamo(int numeroFiltro, String busqueda, int validacion) {
         DefaultTableModel modelo = (DefaultTableModel) tablaPrestamos.getModel();
-        
+
         if (validacion == 0) {
             TableRowSorter<DefaultTableModel> tablaFiltrada = new TableRowSorter<>(modelo);
             tablaPrestamos.setRowSorter(tablaFiltrada);
@@ -809,41 +945,42 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         }
     }
 
-   public void filtoItemPres() {
-    int validacion = -1;
-    int numeroFiltro = -1;
-    String busqueda = jTextField3.getText();
-    // Obtener el número de filtro según la opción seleccionada en el ComboBox
-    String seleccion = busquedaComboBox.getSelectedItem().toString();
-    switch (seleccion) {
-        case "Todos Los Registros":
-            validacion = -1;
-            break;
-        case "Codigo del Libro":
-            validacion = 0;
-            numeroFiltro = 0;
-            break;
-        case "Carnet":
-            validacion = 0;
-            numeroFiltro = 1;
-            break;
-        case "Fecha":
-            validacion = 0;
-            numeroFiltro = 2;
-            break;
-        default:
-            System.out.println("Opción no válida");
-            break;
+    public void filtoItemPres() {
+        int validacion = -1;
+        int numeroFiltro = -1;
+        String busqueda = jTextField3.getText();
+        // Obtener el número de filtro según la opción seleccionada en el ComboBox
+        String seleccion = busquedaComboBox.getSelectedItem().toString();
+        switch (seleccion) {
+            case "Todos Los Registros":
+                validacion = -1;
+                break;
+            case "Codigo del Libro":
+                validacion = 0;
+                numeroFiltro = 0;
+                break;
+            case "Carnet":
+                validacion = 0;
+                numeroFiltro = 1;
+                break;
+            case "Fecha":
+                validacion = 0;
+                numeroFiltro = 2;
+                break;
+            default:
+                System.out.println("Opción no válida");
+                break;
+        }
+
+        // Aplicar el filtro
+        filtroPrestamo(numeroFiltro, busqueda, validacion);
     }
 
-    // Aplicar el filtro
-    filtroPrestamo(numeroFiltro, busqueda, validacion);
-}
     public void actualizarTabla() {
         DefaultTableModel modelo = (DefaultTableModel) tablaPrestamos.getModel();
-        tablaPrestamos.setModel(modelo); 
-        tablaPrestamos.setRowSorter(null); 
-        
+        tablaPrestamos.setModel(modelo);
+        tablaPrestamos.setRowSorter(null);
+
     }
 
     public JTable getTablaPrestamos() {
@@ -857,12 +994,19 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton activos;
     private javax.swing.JComboBox<String> busquedaComboBox;
+    private javax.swing.JComboBox<String> carreras;
+    private com.toedter.calendar.JDateChooser date1;
+    private com.toedter.calendar.JDateChooser date11;
+    private com.toedter.calendar.JDateChooser date2;
+    private com.toedter.calendar.JDateChooser date22;
     private javax.swing.JButton editarEstudianteBt;
     private javax.swing.JButton editarLibro;
     private javax.swing.JButton eliminarEstudianteBt;
     private javax.swing.JButton eliminarLibro;
     private javax.swing.JButton eliminarPrestamosBt;
     private javax.swing.JButton historial;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JDesktopPane jDesktopPane2;
     private javax.swing.JDesktopPane jDesktopPane3;
