@@ -10,19 +10,17 @@ import java.io.Serializable;
  *
  * @author DAVID
  */
-public class Mora implements Serializable {
-    
-    //cantidad de cada prestamo y la fecha actual
-    private int mora;
+public class sinMora implements Serializable  {
+    private int SinMora;
     private String fecha;
 
-    public Mora(int mora, String fecha) {
-        this.mora = mora;
+    public sinMora(int SinMora, String fecha) {
+        this.SinMora = SinMora;
         this.fecha = fecha;
     }
 
-    public int getMora() {
-        return mora;
+    public int getSinmora() {
+        return SinMora;
     }
 
     public String getFecha() {
@@ -31,7 +29,7 @@ public class Mora implements Serializable {
 
     @Override
     public String toString() {
-        return "mora=" + mora + ", fecha=" + fecha;
+        return "Sinmora=" + SinMora + ", fecha=" + fecha ;
     }
     
 }

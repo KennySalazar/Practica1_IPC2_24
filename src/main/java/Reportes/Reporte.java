@@ -18,7 +18,7 @@ public class Reporte {
 
     private ArrayList<Prestamo> prestamosEntrega;
     private ArrayList<Mora> moras;
-    private ArrayList<Devolucion> devolusiones;
+    private ArrayList<sinMora> devolusiones;
 
     public Reporte() {
         this.devolusiones = new ArrayList<>();

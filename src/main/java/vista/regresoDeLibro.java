@@ -3,7 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package vista;
+
 import DataBase.SaveAndReaderBinary;
+import Reportes.Mora;
+import Reportes.sinMora;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -14,6 +17,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import persistenciaDatos.ControlDatosLibros;
 import persistenciaDatos.ControlDePrestamos;
+import persistenciaDatos.ControlMora_SinMora;
 import persistenciaDatos.PersistenciaDeDatos;
 
 /**
@@ -27,6 +31,7 @@ public class regresoDeLibro extends javax.swing.JFrame {
      */
     //clase para gurdar 
     SaveAndReaderBinary LyE = new SaveAndReaderBinary();
+    ControlMora_SinMora control = new ControlMora_SinMora();
     JFrame jFrame = new JFrame();
     JTable tabla;
     JTable tablaLibro;
@@ -79,6 +84,7 @@ public class regresoDeLibro extends javax.swing.JFrame {
         totalPagoTextField = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -150,6 +156,14 @@ public class regresoDeLibro extends javax.swing.JFrame {
         });
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 460, -1, -1));
 
+        jButton3.setText("jButton3");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 30, -1, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -174,15 +188,30 @@ public class regresoDeLibro extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         //Boton para recibir todo lo del estudiante
         VentanaPrincipal vt = new VentanaPrincipal();
+        String fecha = "";
+        int total = 0;
+        fecha = fechaFinalTextField.getText();
+        total = Integer.parseInt(totalPagoTextField.getText());
         try {//manejo de errores
             if (verificacionPrestamo()) {//
                 System.out.println("llega aca");
-                if(eliminacionPrestamo()){
-                    
-                JOptionPane.showMessageDialog(jFrame, "El libro se ha Regresado");
-                LyE.guardarArchivoBinario();
-                this.dispose();
-                }else{
+                if (eliminacionPrestamo()) {
+                    //if para declarar los valores 
+                    if (total >= 16 && total != 0) {
+                        control.guardarMora(total, fecha, tabla);
+                        LyE.guardarArchivoBinario();
+                        System.out.println("es con mora");
+                    } else {
+                        control.guardarSinMora(total, fecha, tabla);
+                        LyE.guardarArchivoBinario();
+                        System.out.println("es sin mora");
+                    }
+
+                    JOptionPane.showMessageDialog(jFrame, "El libro se ha Regresado");
+                    LyE.guardarArchivoBinario();
+                    System.out.println("se ha guardado el nuevo prestamo con la mora y la fecha actual");
+                    this.dispose();
+                } else {
                     JOptionPane.showMessageDialog(jFrame, "Ocurrio un error");
                 }
             } else {
@@ -193,6 +222,18 @@ public class regresoDeLibro extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(jFrame, "Algo salio Mal");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        System.out.println("se presiona");
+        for (int i = 0; i < PersistenciaDeDatos.sinMora.size(); i++) {
+            System.out.println(PersistenciaDeDatos.sinMora);
+        }
+        for (int i = 0; i < PersistenciaDeDatos.Mora.size(); i++) {
+            System.out.println(PersistenciaDeDatos.Mora);
+        }
+
+    }//GEN-LAST:event_jButton3ActionPerformed
     //llena los textField
     public void llenado(String codigo, String carnet, String fecha) {
         codigoLibroTxField.setText(codigo);
@@ -201,16 +242,17 @@ public class regresoDeLibro extends javax.swing.JFrame {
         fechaFinalTextField.setText(fechaHoy);
 
     }
+
     //calculo de la mora segun el tiempo pasado, tambien se calcula sin mora
     public void diasEfectivos() {
-        
+
         String dateInicio = fechaPresTextField.getText();
         String dateFinal = fechaFinalTextField.getText();
         DateTimeFormatter formato = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         try {
             LocalDate fechaInicio = LocalDate.parse(dateInicio, formato);
             LocalDate fechaFin = LocalDate.parse(dateFinal, formato);
-            
+
             //aca se realiza la operacion de dias efectivos
             long contDiasEfectivos = 0;
             LocalDate fechaActual = fechaInicio;
@@ -230,6 +272,7 @@ public class regresoDeLibro extends javax.swing.JFrame {
                 totalSinMora = (int) (contDiasEfectivos * 5);
                 cuotaTextField.setText(Integer.toString((int) contDiasEfectivos));
                 totalPagoTextField.setText(Integer.toString(totalSinMora));
+
             } else if (contDiasEfectivos != 0 && contDiasEfectivos >= 4) {
                 int dias = 0;
                 int total = 0;
@@ -239,12 +282,13 @@ public class regresoDeLibro extends javax.swing.JFrame {
                 contDiasEfectivos = dias * 10;
                 total = (int) (contDiasEfectivos + 15);
                 totalPagoTextField.setText(Integer.toString(total));
-                
+
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(jFrame, "Fecha invalida, Revise el Documento");
         }
     }
+
     //verifica si realmente el estudiante tiene prestado el libro 
     public boolean verificacionPrestamo() {
         ControlDatosLibros controlLibro = new ControlDatosLibros();
@@ -256,7 +300,7 @@ public class regresoDeLibro extends javax.swing.JFrame {
                 System.out.println("si esta el libro en existencia");
                 int num1 = PersistenciaDeDatos.biblio.get(i).getCantidad();
                 int num2 = num1 + 1;
-                System.out.println("el numero es "+ num2);
+                System.out.println("el numero es " + num2);
                 PersistenciaDeDatos.biblio.get(i).setCantidad(num2);
                 controlLibro.llenarTablaLibros(tablaLibro);
                 return true;
@@ -264,28 +308,25 @@ public class regresoDeLibro extends javax.swing.JFrame {
         }
         return false;
     }
+
     //elimina el prestamo en la base de datos y reajusta la base de datos
-    public boolean eliminacionPrestamo(){
+    public boolean eliminacionPrestamo() {
         ControlDePrestamos pres = new ControlDePrestamos();
         String codigo = "";
         String carnet = "";
         codigo = codigoLibroTxField.getText();
         carnet = carnetEstudianteTextField.getText();
         for (int i = 0; i < PersistenciaDeDatos.prestamos.size(); i++) {
-            if(PersistenciaDeDatos.prestamos.get(i).getCodigoLibro().equals(codigo) &&
-               PersistenciaDeDatos.prestamos.get(i).getCarnetE().equals(carnet)){
-               PersistenciaDeDatos.prestamos.remove(i);
-               pres.llenarTablaPrestamos(tabla);
-               return true;
+            if (PersistenciaDeDatos.prestamos.get(i).getCodigoLibro().equals(codigo)
+                    && PersistenciaDeDatos.prestamos.get(i).getCarnetE().equals(carnet)) {
+                PersistenciaDeDatos.prestamos.remove(i);
+                pres.llenarTablaPrestamos(tabla);
+                return true;
             }
         }
         return false;
     }
-    
-    
-    
-    
-   
+
     /**
      * @param args the command line arguments
      */
@@ -299,6 +340,7 @@ public class regresoDeLibro extends javax.swing.JFrame {
     private javax.swing.JTextField fechaPresTextField;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

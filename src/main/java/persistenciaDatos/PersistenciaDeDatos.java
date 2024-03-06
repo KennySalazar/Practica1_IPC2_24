@@ -4,6 +4,8 @@
  */
 package persistenciaDatos;
 
+import Reportes.Mora;
+import Reportes.sinMora;
 import cargaDeDatos.Estudiante;
 import cargaDeDatos.Libro;
 import cargaDeDatos.Prestamo;
@@ -14,14 +16,20 @@ import java.util.ArrayList;
  * @author Kenny Salazar
  */
 public class PersistenciaDeDatos {
+    //metodos para poder acceder a los arrayList necesarios para la base de datos
     public static ArrayList<Libro> biblio=new ArrayList<>();
     public static ArrayList<Estudiante> estudiantes=new ArrayList<>();
     public static ArrayList<Prestamo> prestamos = new ArrayList<>();
+    public static ArrayList<sinMora> sinMora = new ArrayList<>();
+    public static ArrayList<Mora> Mora = new ArrayList<>();
     
+    //metodo el cual vacia los ArrayList
     public static void vaciarListas(){
         biblio.clear();
         estudiantes.clear();
         prestamos.clear();
+        sinMora.clear();
+        Mora.clear();
     }
 
  
