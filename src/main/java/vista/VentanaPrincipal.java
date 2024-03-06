@@ -73,10 +73,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         nuevoEstudiante = new javax.swing.JButton();
         editarEstudianteBt = new javax.swing.JButton();
         eliminarEstudianteBt = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        estudiantesBusqueda = new javax.swing.JTextField();
         labelBusqueda = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaStudents = new javax.swing.JTable();
+        busqueaComboEstudiantes = new javax.swing.JComboBox<>();
         jDesktopPane2 = new javax.swing.JDesktopPane();
         jDesktopPane5 = new javax.swing.JDesktopPane();
         nuevoLibroButton = new javax.swing.JButton();
@@ -86,6 +87,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         labelBusquedaLibro = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablaLibros = new javax.swing.JTable();
+        librosCombo = new javax.swing.JComboBox<>();
         jDesktopPane4 = new javax.swing.JDesktopPane();
         jDesktopPane6 = new javax.swing.JDesktopPane();
         nuevoPrestamosBt = new javax.swing.JButton();
@@ -158,9 +160,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        estudiantesBusqueda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                estudiantesBusquedaActionPerformed(evt);
             }
         });
 
@@ -191,12 +193,20 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tablaStudents);
 
+        busqueaComboEstudiantes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Busqueda", "Todos Los Registros", "Carnet", "Nombre", "Carrera", "Fecha De Nacimiento" }));
+        busqueaComboEstudiantes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                busqueaComboEstudiantesActionPerformed(evt);
+            }
+        });
+
         jDesktopPane1.setLayer(nuevoEstudiante, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(editarEstudianteBt, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(eliminarEstudianteBt, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jTextField1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(estudiantesBusqueda, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(labelBusqueda, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(busqueaComboEstudiantes, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
@@ -204,7 +214,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
                 .addGap(41, 41, 41)
-                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jDesktopPane1Layout.createSequentialGroup()
                         .addComponent(nuevoEstudiante, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(45, 45, 45)
@@ -212,9 +222,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                         .addGap(86, 86, 86)
                         .addComponent(eliminarEstudianteBt, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(labelBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1)
-                    .addComponent(jScrollPane1))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                        .addComponent(estudiantesBusqueda, javax.swing.GroupLayout.DEFAULT_SIZE, 582, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(busqueaComboEstudiantes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 602, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -227,7 +240,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addGap(28, 28, 28)
                 .addComponent(labelBusqueda)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(estudiantesBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(busqueaComboEstudiantes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -294,32 +309,49 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             tablaLibros.getColumnModel().getColumn(5).setHeaderValue("Editorial");
         }
 
+        librosCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Busqueda", "Todos Los Registros", "Titulo", "Autor", "Código", "Cantidad de Copias", "Feche de Publicación", "Editorial" }));
+        librosCombo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                librosComboActionPerformed(evt);
+            }
+        });
+
         jDesktopPane5.setLayer(nuevoLibroButton, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane5.setLayer(editarLibro, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane5.setLayer(eliminarLibro, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane5.setLayer(jTextField2, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane5.setLayer(labelBusquedaLibro, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane5.setLayer(jScrollPane2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane5.setLayer(librosCombo, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jDesktopPane5Layout = new javax.swing.GroupLayout(jDesktopPane5);
         jDesktopPane5.setLayout(jDesktopPane5Layout);
         jDesktopPane5Layout.setHorizontalGroup(
             jDesktopPane5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDesktopPane5Layout.createSequentialGroup()
-                .addGap(41, 41, 41)
-                .addGroup(jDesktopPane5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jDesktopPane5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jDesktopPane5Layout.createSequentialGroup()
-                        .addComponent(nuevoLibroButton, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(45, 45, 45)
-                        .addComponent(editarLibro, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(86, 86, 86)
-                        .addComponent(eliminarLibro, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(labelBusquedaLibro, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2))
-                .addContainerGap(81, Short.MAX_VALUE))
-            .addGroup(jDesktopPane5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2))
+                        .addContainerGap()
+                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 603, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(librosCombo, 0, 1, Short.MAX_VALUE))
+                    .addGroup(jDesktopPane5Layout.createSequentialGroup()
+                        .addGroup(jDesktopPane5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jDesktopPane5Layout.createSequentialGroup()
+                                .addGap(41, 41, 41)
+                                .addGroup(jDesktopPane5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jDesktopPane5Layout.createSequentialGroup()
+                                        .addComponent(nuevoLibroButton, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(45, 45, 45)
+                                        .addComponent(editarLibro, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(86, 86, 86)
+                                        .addComponent(eliminarLibro, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(labelBusquedaLibro, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jDesktopPane5Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 697, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 49, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jDesktopPane5Layout.setVerticalGroup(
             jDesktopPane5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -332,7 +364,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addGap(28, 28, 28)
                 .addComponent(labelBusquedaLibro)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jDesktopPane5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(librosCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(18, Short.MAX_VALUE))
@@ -344,12 +378,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jDesktopPane2.setLayout(jDesktopPane2Layout);
         jDesktopPane2Layout.setHorizontalGroup(
             jDesktopPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 779, Short.MAX_VALUE)
+            .addGap(0, 787, Short.MAX_VALUE)
             .addGroup(jDesktopPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane2Layout.createSequentialGroup()
-                    .addContainerGap(10, Short.MAX_VALUE)
+                    .addContainerGap(14, Short.MAX_VALUE)
                     .addComponent(jDesktopPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(11, Short.MAX_VALUE)))
+                    .addContainerGap(15, Short.MAX_VALUE)))
         );
         jDesktopPane2Layout.setVerticalGroup(
             jDesktopPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -467,14 +501,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jDesktopPane4Layout.setHorizontalGroup(
             jDesktopPane4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane4Layout.createSequentialGroup()
-                .addContainerGap(629, Short.MAX_VALUE)
+                .addContainerGap(637, Short.MAX_VALUE)
                 .addComponent(busquedaComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addGroup(jDesktopPane4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane4Layout.createSequentialGroup()
-                    .addContainerGap(12, Short.MAX_VALUE)
+                    .addContainerGap(16, Short.MAX_VALUE)
                     .addComponent(jDesktopPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(12, Short.MAX_VALUE)))
+                    .addContainerGap(16, Short.MAX_VALUE)))
         );
         jDesktopPane4Layout.setVerticalGroup(
             jDesktopPane4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -654,9 +688,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void estudiantesBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estudiantesBusquedaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_estudiantesBusquedaActionPerformed
 
     private void nuevoEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoEstudianteActionPerformed
         // TODO add your handling code here:
@@ -830,6 +864,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void busquedaComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_busquedaComboBoxActionPerformed
 
+
         filtoItemPres();
     }//GEN-LAST:event_busquedaComboBoxActionPerformed
 
@@ -890,6 +925,20 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
+        filtroItemPres();
+    }                                                
+
+    private void busqueaComboEstudiantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_busqueaComboEstudiantesActionPerformed
+        // TODO add your handling code here:
+        filtroItemEstuden();
+    }//GEN-LAST:event_busqueaComboEstudiantesActionPerformed
+
+    private void librosComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_librosComboActionPerformed
+        // TODO add your handling code here:
+        filtroItemLibros();
+    }//GEN-LAST:event_librosComboActionPerformed
+
+
     public void ventanaNuevoEst() {
         NuevoEstudiante ne = new NuevoEstudiante(false, null, tablaStudents);
         ne.setVisible(true);
@@ -945,7 +994,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         }
     }
 
+
     public void filtoItemPres() {
+
+    public void filtroItemPres() {
         int validacion = -1;
         int numeroFiltro = -1;
         String busqueda = jTextField3.getText();
@@ -974,6 +1026,117 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         // Aplicar el filtro
         filtroPrestamo(numeroFiltro, busqueda, validacion);
+
+    }
+    //aca esta el filtro para los estudiantes
+
+    public void filtroEstudiante(int numeroFiltro, String busqueda, int validacion) {
+        DefaultTableModel modelo = (DefaultTableModel) tablaStudents.getModel();
+
+        if (validacion == 0) {
+            TableRowSorter<DefaultTableModel> tablaFiltrada = new TableRowSorter<>(modelo);
+            tablaStudents.setRowSorter(tablaFiltrada);
+            tablaFiltrada.setRowFilter(RowFilter.regexFilter(busqueda, numeroFiltro));
+            tablaStudents.repaint();
+        } else if (validacion == -1) {
+            tablaStudents.setRowSorter(null); // Elimina cualquier filtro aplicado
+            tablaStudents.setModel(modelo); // Restaura el modelo original de la tabla
+            tablaStudents.repaint();
+        }
+    }
+
+    public void filtroItemEstuden() {
+        int validacion = -1;
+        int numeroFiltro = -1;
+        String busqueda = estudiantesBusqueda.getText();
+        // Obtener el número de filtro según la opción seleccionada en el ComboBox
+        String seleccion = busqueaComboEstudiantes.getSelectedItem().toString();
+        switch (seleccion) {
+            case "Todos Los Registros":
+                validacion = -1;
+                break;
+            case "Carnet":
+                validacion = 0;
+                numeroFiltro = 1;
+                break;
+            case "Nombre":
+                validacion = 0;
+                numeroFiltro = 2;
+                break;
+            case "Carrera":
+                validacion = 0;
+                numeroFiltro = 3;
+                break;
+            case "Fecha De Nacimiento":
+                validacion = 0;
+                numeroFiltro = 4;
+                break;
+            default:
+                System.out.println("Opción no válida");
+                break;
+        }
+        System.out.println(numeroFiltro + busqueda + validacion);
+        // Aplicar el filtro
+        filtroEstudiante(numeroFiltro, busqueda, validacion);
+    }
+
+    //aca esta el filtro para libros
+    public void filtroLibros(int numeroFiltro, String busqueda, int validacion) {
+        DefaultTableModel modelo = (DefaultTableModel) tablaLibros.getModel();
+
+        if (validacion == 0) {
+            TableRowSorter<DefaultTableModel> tablaFiltrada = new TableRowSorter<>(modelo);
+            tablaLibros.setRowSorter(tablaFiltrada);
+            tablaFiltrada.setRowFilter(RowFilter.regexFilter(busqueda, numeroFiltro));
+            tablaLibros.repaint();
+        } else if (validacion == -1) {
+            tablaLibros.setRowSorter(null); // Elimina cualquier filtro aplicado
+            tablaLibros.setModel(modelo); // Restaura el modelo original de la tabla
+            tablaLibros.repaint();
+        }
+    }
+
+    public void filtroItemLibros() {
+        int validacion = -1;
+        int numeroFiltro = -1;
+        String busqueda = jTextField2.getText();
+        // Obtener el número de filtro según la opción seleccionada en el ComboBox
+        String seleccion = librosCombo.getSelectedItem().toString();
+        switch (seleccion) {
+            case "Todos Los Registros":
+                validacion = -1;
+                break;
+            case "Titulo":
+                validacion = 0;
+                numeroFiltro = 1;
+                break;
+            case "Autor":
+                validacion = 0;
+                numeroFiltro = 2;
+                break;
+            case "Código":
+                validacion = 0;
+                numeroFiltro = 3;
+                break;
+            case "Cantidad de Copias":
+                validacion = 0;
+                numeroFiltro = 4;
+                break;
+            case "Feche de Publicación":
+                validacion = 0;
+                numeroFiltro = 5;
+                break;
+            case "Editorial":
+                validacion = 0;
+                numeroFiltro = 6;
+                break;
+            default:
+                System.out.println("Opción no válida");
+                break;
+        }
+        // Aplicar el filtro
+        filtroLibros(numeroFiltro, busqueda, validacion);
+
     }
 
     public void actualizarTabla() {
@@ -993,6 +1156,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton activos;
+    private javax.swing.JComboBox<String> busqueaComboEstudiantes;
     private javax.swing.JComboBox<String> busquedaComboBox;
     private javax.swing.JComboBox<String> carreras;
     private com.toedter.calendar.JDateChooser date1;
@@ -1004,6 +1168,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton eliminarEstudianteBt;
     private javax.swing.JButton eliminarLibro;
     private javax.swing.JButton eliminarPrestamosBt;
+    private javax.swing.JTextField estudiantesBusqueda;
     private javax.swing.JButton historial;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -1022,13 +1187,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JLabel labelBusqueda;
     private javax.swing.JLabel labelBusquedaLibro;
     private javax.swing.JLabel labelBusquedaPestamo;
+    private javax.swing.JComboBox<String> librosCombo;
     private javax.swing.JButton nuevoEstudiante;
     private javax.swing.JButton nuevoLibroButton;
     private javax.swing.JButton nuevoPrestamosBt;

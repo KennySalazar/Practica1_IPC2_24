@@ -23,8 +23,8 @@ public class Reporte {
     private ArrayList<Prestamo> prestamosEntrega;
     private ArrayList<Prestamo> prestamosIntervalo;
     private ArrayList<Mora> moras;
-    private ArrayList<Devolucion> devolusiones;
     private ArrayList<Prestamo> prestamosCarrera;
+    private ArrayList<sinMora> devolusiones;
 
     public Reporte() {
         this.prestamosCarrera = new ArrayList<>();

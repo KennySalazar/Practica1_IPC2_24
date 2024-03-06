@@ -8,6 +8,8 @@ package DataBase;
  *
  * @author Kenny Salazar
  */
+import Reportes.Mora;
+import Reportes.sinMora;
 import cargaDeDatos.Estudiante;
 import cargaDeDatos.Libro;
 import cargaDeDatos.Prestamo;
@@ -16,7 +18,49 @@ import java.util.ArrayList;
 
 public class BinaryFileController {
 
-    public void write(String name, String texto) {
+     //metodo para leer dos arrayList
+    //esto se hizo afuera para evitar problemas con la lectura del txt
+    public  void writeArrayLists(String nombreArchivo, ArrayList<sinMora> sinMoraList, ArrayList<Mora> moraList) {
+        try (PrintWriter writer = new PrintWriter(new FileWriter(nombreArchivo))) {
+            for (sinMora dato : sinMoraList) {
+                writer.println("sinMora: " + dato);
+            }
+            for (Mora dato : moraList) {
+                writer.println("Mora: " + dato);
+            }
+            System.out.println("Se almacenaron los datos en el archivo txt.");
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("No se pudieron almacenar los datos en el archivo txt.");
+        }
+    }
+     public void cargarDatosDesdeArchivo(String nombreArchivo, ArrayList<sinMora> sinMoraList, ArrayList<Mora> moraList) {
+        try (BufferedReader lectura = new BufferedReader(new FileReader(nombreArchivo))) {
+            String linea;
+            while ((linea = lectura.readLine()) != null) {
+                if (linea.startsWith("sinMora:")) {
+                    // Parsea los datos para crear un objeto sinMora
+                    String[] partes = linea.split(", ");
+                    int mora = Integer.parseInt(partes[0].split("=")[1]);
+                    String fecha = partes[1].split("=")[1];
+                    sinMoraList.add(new sinMora(mora, fecha));
+                } else if (linea.startsWith("Mora:")) {
+                    // Parsea los datos para crear un objeto Mora
+                    String[] partes = linea.split(", ");
+                    int mora = Integer.parseInt(partes[0].split("=")[1]);
+                    String fecha = partes[1].split("=")[1];
+                    moraList.add(new Mora(mora, fecha));
+                }
+            }
+            System.out.println("Datos cargados en los ArrayList.");
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Error al leer el archivo.");
+        }
+    }
+
+
+        public void write(String name, String texto) {
         try {
             File file = new File(name);
             FileOutputStream fileOutputStream = new FileOutputStream(file);
@@ -28,7 +72,7 @@ public class BinaryFileController {
             System.out.println("Archivo no encontrado");
         }
     }
-
+        
     public String read(String name) {
         String datos = "";
         try {
