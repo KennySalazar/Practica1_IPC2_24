@@ -184,7 +184,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
         estudiantesBusqueda.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                estudiantessBusquedaKeyReleased(evt);
+                estudiantesBusquedaKeyReleased(evt);
             }
         });
 
@@ -712,7 +712,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addGap(90, 90, 90)
                 .addGroup(jDesktopPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jDesktopPane3Layout.createSequentialGroup()
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jDesktopPane3Layout.createSequentialGroup()
                         .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1124,6 +1124,18 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             System.out.println("mostrar todos los reportes");
         }
     }//GEN-LAST:event_fondosActionPerformed
+
+    private void estudiantesBusquedaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_estudiantesBusquedaKeyReleased
+        filtroItemEstuden();
+    }//GEN-LAST:event_estudiantesBusquedaKeyReleased
+
+    private void jTextField2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyReleased
+        filtroItemLibros();
+    }//GEN-LAST:event_jTextField2KeyReleased
+
+    private void jTextField3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyReleased
+        filtroItemPres();
+    }//GEN-LAST:event_jTextField3KeyReleased
 
     public void ventanaNuevoEst() {
         NuevoEstudiante ne = new NuevoEstudiante(false, null, tablaStudents);
