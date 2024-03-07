@@ -252,7 +252,7 @@ public class Reporte {
                     int carnet = Integer.parseInt(prestamo.getCarnetE());
                     for (Estudiante estudiante : estudiantes) {
                         if (estudiante.getCarnet() == carnet) {
-                            if (estudiante.getCarrera() == 1) {
+                            if (estudiante.getCarrera() == 2) {
                                 this.prestamosCarrera.add(prestamo);
                                 break;
                             }
@@ -278,7 +278,7 @@ public class Reporte {
                     int carnet = Integer.parseInt(prestamo.getCarnetE());
                     for (Estudiante estudiante : estudiantes) {
                         if (estudiante.getCarnet() == carnet) {
-                            if (estudiante.getCarrera() == 1) {
+                            if (estudiante.getCarrera() == 4) {
                                 this.prestamosCarrera.add(prestamo);
                                 break;
                             }
@@ -291,7 +291,7 @@ public class Reporte {
                     int carnet = Integer.parseInt(prestamo.getCarnetE());
                     for (Estudiante estudiante : estudiantes) {
                         if (estudiante.getCarnet() == carnet) {
-                            if (estudiante.getCarrera() == 1) {
+                            if (estudiante.getCarrera() == 5) {
                                 this.prestamosCarrera.add(prestamo);
                                 break;
                             }
