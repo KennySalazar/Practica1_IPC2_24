@@ -95,6 +95,7 @@ public class regresoDeLibro extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        jPanel1.setBackground(new java.awt.Color(204, 255, 255));
         jPanel1.setMinimumSize(new java.awt.Dimension(500, 475));
         jPanel1.setPreferredSize(new java.awt.Dimension(500, 475));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -148,6 +149,7 @@ public class regresoDeLibro extends javax.swing.JFrame {
         jPanel1.add(totalPagoTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 400, 170, -1));
 
         jButton1.setText("Recibir Pago de Prestamo");
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -156,6 +158,7 @@ public class regresoDeLibro extends javax.swing.JFrame {
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 460, -1, -1));
 
         jButton2.setText("Cancelar");
+        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
