@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JFileChooser;
+import vista.Errores;
 
 /**
  *
@@ -21,11 +22,20 @@ public class Lector {
     private FileReader archivo;
     private BufferedReader lector;
     private int linea;
-    private ArrayList<String> erroresDeCarga;
+    public static ArrayList<String> erroresDeCarga;
+    
 
     public Lector() {
         this.erroresDeCarga = new ArrayList<>();
         this.linea = 0;
+    }
+
+    public ArrayList<String> getErroresDeCarga() {
+        return erroresDeCarga;
+    }
+
+    public void setErroresDeCarga(ArrayList<String> erroresDeCarga) {
+        this.erroresDeCarga = erroresDeCarga;
     }
 
     public void leer(File archivo1, ArrayList<Libro> biblio, ArrayList<Estudiante> estudiantes, ArrayList<Prestamo> prestamos) {
@@ -97,6 +107,9 @@ public class Lector {
                                 } else {
                                     String error = "El codigo del libro " + codigo + " es invalido, en linea: " + linea;
                                     this.erroresDeCarga.add(error);
+                                    //e.mostrarErrores(erroresDeCarga);
+                                    
+                                    
                                     System.out.println(error);
                                 }
 

@@ -103,43 +103,41 @@ public class BinaryFileController {
                                 if (texto.equals("")) {
                                     break;
                                 }
-                                System.out.println("pasando del casi 0 al 1 en libro");
                                 caso = 1;
                                 break;
                             case 1:
                                 String[] cadenaT = texto.split("TITULO:");
                                 titulo = cadenaT[1].trim();
-                                System.out.println("pasando del casi 1 al 2en libro");
 
                                 caso = 2;
                                 break;
                             case 2:
                                 String[] cadenaA = texto.split("AUTOR:");
                                 autor = cadenaA[1].trim();
-                                System.out.println("pasando del casi 2 al 3 en libro");
+                                
                                 caso = 3;
                                 break;
                             case 3:
                                 String[] cadenaC = texto.split("CODIGO:");
                                 codigo = cadenaC[1].trim();
-                                System.out.println("pasando del casi 3 al 4en libro");
+                              
                                 caso = 4;
                                 break;
                             case 4:
                                 String[] cadenaN = texto.split("CANTIDAD:");
                                 cantidad = cadenaN[1].trim();
-                                System.out.println("pasando del casi 4 al 5en libro");
+                                
                                 caso = 5;
                                 break;
                             case 5:
                                 
                                 String[] cadenaF = texto.split("FECHAPUBLICACION:");
                                 fechaPublicacion = cadenaF[1].trim();
-                                System.out.println("pasando del casi 5 al 6en libro");
+                                
                                 caso = 6;
                                 break;
                             case 6:
-                                System.out.println("Llegando al caso 6");
+                               
                                 String[] cadenaE = texto.split("EDITORIAL:");
                                 editorial = cadenaE[1].trim();
                                 caso = 0;

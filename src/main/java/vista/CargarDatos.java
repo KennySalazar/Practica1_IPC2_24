@@ -106,6 +106,7 @@ public class CargarDatos extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        // TODO add your handling code here:
         //metodo para cargar datos
         abrirFileChooser();
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -113,7 +114,6 @@ public class CargarDatos extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    
     public void abrirFileChooser() {
         JFileChooser jf = new JFileChooser();
         jf.showOpenDialog(this);
@@ -127,6 +127,22 @@ public class CargarDatos extends javax.swing.JFrame {
             cargarDatosReportes();
             LyE.guardarArchivoBinario();
             PersistenciaDeDatos.vaciarListas();
+            LyE.leerArchivoBinario();
+            cargarDatosReportes();
+            if (Lector.erroresDeCarga.size() == 0) {
+
+                VentanaPrincipal principal = new VentanaPrincipal();
+                principal.setVisible(true);
+                principal.setLocationRelativeTo(null);
+                principal.setResizable(false);
+                this.dispose();
+            } else {
+                Errores err = new Errores(Lector.erroresDeCarga);
+                err.setVisible(true);
+                err.setLocationRelativeTo(null);
+                err.setResizable(false);
+                this.dispose();
+            }
         }
 
     }
@@ -164,7 +180,6 @@ public class CargarDatos extends javax.swing.JFrame {
 
         }
     }
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

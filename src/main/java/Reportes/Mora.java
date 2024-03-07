@@ -9,5 +9,5 @@ package Reportes;
  * @author DAVID
  */
 public class Mora {
-    
+    //cantidad de cada prestamo y la fecha actual
 }

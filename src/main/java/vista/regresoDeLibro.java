@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package vista;
-
 import DataBase.SaveAndReaderBinary;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -26,10 +25,12 @@ public class regresoDeLibro extends javax.swing.JFrame {
     /**
      * Creates new form regresoDeLibro
      */
+    //clase para gurdar 
     SaveAndReaderBinary LyE = new SaveAndReaderBinary();
     JFrame jFrame = new JFrame();
     JTable tabla;
     JTable tablaLibro;
+    //logica para el obtener la fecha actual
     Date date = new Date();
     SimpleDateFormat year = new SimpleDateFormat("yyyy");
     SimpleDateFormat month = new SimpleDateFormat("MM");
@@ -47,7 +48,6 @@ public class regresoDeLibro extends javax.swing.JFrame {
 
     public regresoDeLibro() {
         initComponents();
-        
         setResizable(false);
     }
 
@@ -167,14 +167,15 @@ public class regresoDeLibro extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         //boton para cancelar lo del estudiante
+        //se cancela la eliminacion
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         //Boton para recibir todo lo del estudiante
         VentanaPrincipal vt = new VentanaPrincipal();
-        try {
-            if (verificacionPrestamo()) {
+        try {//manejo de errores
+            if (verificacionPrestamo()) {//
                 System.out.println("llega aca");
                 if(eliminacionPrestamo()){
                     
@@ -192,7 +193,7 @@ public class regresoDeLibro extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(jFrame, "Algo salio Mal");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
-
+    //llena los textField
     public void llenado(String codigo, String carnet, String fecha) {
         codigoLibroTxField.setText(codigo);
         carnetEstudianteTextField.setText(carnet);
@@ -200,7 +201,7 @@ public class regresoDeLibro extends javax.swing.JFrame {
         fechaFinalTextField.setText(fechaHoy);
 
     }
-
+    //calculo de la mora segun el tiempo pasado, tambien se calcula sin mora
     public void diasEfectivos() {
         
         String dateInicio = fechaPresTextField.getText();
@@ -220,14 +221,15 @@ public class regresoDeLibro extends javax.swing.JFrame {
                 fechaActual = fechaActual.plusDays(1);
             }
 
-            System.out.println("dias efectivos : " + contDiasEfectivos);
+            //System.out.println("dias efectivos : " + contDiasEfectivos);
             totalDayTextField.setText(Long.toString(contDiasEfectivos));
+            //if con la logica que maneja si se cobra o no la mora
             if (contDiasEfectivos >= 0 && contDiasEfectivos <= 3) {
                 camJLable.setText("Sin mora:");
-                int total = 0;
-                total = (int) (contDiasEfectivos * 5);
+                int totalSinMora = 0;
+                totalSinMora = (int) (contDiasEfectivos * 5);
                 cuotaTextField.setText(Integer.toString((int) contDiasEfectivos));
-                totalPagoTextField.setText(Integer.toString(total));
+                totalPagoTextField.setText(Integer.toString(totalSinMora));
             } else if (contDiasEfectivos != 0 && contDiasEfectivos >= 4) {
                 int dias = 0;
                 int total = 0;
@@ -237,12 +239,13 @@ public class regresoDeLibro extends javax.swing.JFrame {
                 contDiasEfectivos = dias * 10;
                 total = (int) (contDiasEfectivos + 15);
                 totalPagoTextField.setText(Integer.toString(total));
+                
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(jFrame, "Fecha invalida, Revise el Documento");
         }
     }
-
+    //verifica si realmente el estudiante tiene prestado el libro 
     public boolean verificacionPrestamo() {
         ControlDatosLibros controlLibro = new ControlDatosLibros();
         String codigo = "";
@@ -261,6 +264,7 @@ public class regresoDeLibro extends javax.swing.JFrame {
         }
         return false;
     }
+    //elimina el prestamo en la base de datos y reajusta la base de datos
     public boolean eliminacionPrestamo(){
         ControlDePrestamos pres = new ControlDePrestamos();
         String codigo = "";
