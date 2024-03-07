@@ -11,6 +11,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import javax.swing.JTextPane;
 import static persistenciaDatos.PersistenciaDeDatos.Mora;
 import static persistenciaDatos.PersistenciaDeDatos.estudiantes;
 import static persistenciaDatos.PersistenciaDeDatos.prestamos;
@@ -28,6 +29,8 @@ public class Reporte {
     private ArrayList<sinMora> sinMoras;
     private ArrayList<Prestamo> prestamosCarrera;
     private ArrayList<sinMora> devolusiones;
+    private int fondosSinMora = 0;
+    private int fondosConMora = 0;
 
     public Reporte() {
         this.prestamosCarrera = new ArrayList<>();
@@ -40,7 +43,7 @@ public class Reporte {
     }
 
     // recorre los rpestamos
-    public void recorrerPrestamos() {
+    public ArrayList<Prestamo> recorrerPrestamos() {
         for (Prestamo prestamo : prestamos) {
             if (prestamo.seEntrega()) {
                 if (prestamosEntrega.isEmpty()) {
@@ -62,39 +65,48 @@ public class Reporte {
             System.out.println(prestamo);
         }
         System.out.println("prestamos de entrega hoy, cargados");
+        return prestamosEntrega;
     }
 
     //metodo para mostrar historial de prestamos que el estudiante ya ha devuelto
-    public void historialEstudiante(int carnet) {
+    public ArrayList<Prestamo> historialEstudiante(int carnet) {
+        ArrayList<Prestamo> historial = null;
         for (Estudiante estudiante : estudiantes) {
             if (carnet == estudiante.getCarnet()) {
                 if (estudiante.getHistorial().isEmpty()) {
+                    historial = estudiante.getHistorial();
                     System.out.println("El estudiante: " + estudiante.getNombre() + " no tiene historial de prestamos");
                 } else {
                     for (Prestamo prestamo : estudiante.getHistorial()) {
                         System.out.println(prestamo);
                     }
+                    historial = estudiante.getHistorial();
                 }
             }
         }
+        return historial;
     }
 
-    public void prestamosEstudiante(int carnet) {
+    public ArrayList<Prestamo> prestamosEstudiante(int carnet) {
+        ArrayList<Prestamo> activos = null;
         for (Estudiante estudiante : estudiantes) {
             if (carnet == estudiante.getCarnet()) {
                 if (estudiante.getPrestamosActivos().isEmpty()) {
+                    activos = estudiante.getPrestamosActivos();
                     System.out.println("El estudiante: " + estudiante.getNombre() + " no tiene prestamos actualmente");
                 } else {
                     for (Prestamo prestamo : estudiante.getPrestamosActivos()) {
                         System.out.println(prestamo);
                     }
+                    activos = estudiante.getPrestamosActivos();
                 }
             }
         }
+        return activos;
     }
 
     //metodo que verifica presstamos en intervalo de timepo 
-    public void prestamosEnIntervalo(Date dateUno, Date dateDos) throws ParseException {
+    public ArrayList<Prestamo> prestamosEnIntervalo(Date dateUno, Date dateDos) throws ParseException {
         this.prestamosIntervalo.clear();
         String pattern = "yyyy-MM-dd";
         DateFormat dateFormat = new SimpleDateFormat(pattern);
@@ -106,11 +118,12 @@ public class Reporte {
             } else {
             }
         }
+        return prestamosIntervalo;
 
     }
 
     // metodo que verifica prestamos en intervalo de tiempo pero en array de carreras
-    public void prestamosEnIntervaloCarrera(Date dateUno, Date dateDos) throws ParseException {
+    public ArrayList<Prestamo> prestamosEnIntervaloCarrera(Date dateUno, Date dateDos) throws ParseException {
         this.prestamosIntervalo.clear();
         String pattern = "yyyy-MM-dd";
         DateFormat dateFormat = new SimpleDateFormat(pattern);
@@ -121,7 +134,7 @@ public class Reporte {
                 this.prestamosIntervalo.add(prestamo);
             }
         }
-
+        return prestamosIntervalo;
     }
 
     public void interMoras(Date dateUno, Date dateDos) throws ParseException {
@@ -152,15 +165,18 @@ public class Reporte {
 
     }
 
-    public void calcularFondos(int caso) {
-        int fondosSinMora = 0;
-        int fondosConMora = 0;
+    public void calcularFondos(int caso, JTextPane panel) {
+        fondosSinMora = 0;
+        fondosConMora = 0;
+        String text = "";
         switch (caso) {
             case 1:
                 for (sinMora sinMora1 : this.sinMoras) {
+                    text += sinMora1.getPrestamo()+"\n";
                     fondosSinMora += sinMora1.getSinmora();
                 }
                 for (Mora mora : this.moras) {
+                    text += mora.getPrestamo()+"\n";
                     fondosConMora += mora.getMora();
                 }
 
@@ -170,9 +186,11 @@ public class Reporte {
                 break;
             case 2:
                 for (sinMora sinMora1 : sinMora) {
+                    text += sinMora1.getPrestamo()+"\n";
                     fondosSinMora += sinMora1.getSinmora();
                 }
                 for (Mora mora : Mora) {
+                    text += mora.getPrestamo()+"\n";
                     fondosConMora += mora.getMora();
                 }
 
@@ -184,6 +202,7 @@ public class Reporte {
             default:
                 throw new AssertionError();
         }
+        panel.setText(text);
     }
 
     //metodo para mostrar los prestamos segun carrera en intervalo dado 
@@ -287,9 +306,27 @@ public class Reporte {
     }
 
     //pintar los prestamos
-    public void mostrarPrestamosCarrera() {
+    public ArrayList<Prestamo> mostrarPrestamosCarrera() {
         for (Prestamo prestamo : prestamosCarrera) {
             System.out.println(prestamo);
         }
+        return prestamosCarrera;
     }
+
+    public int getFondosSinMora() {
+        return fondosSinMora;
+    }
+
+    public void setFondosSinMora(int fondosSinMora) {
+        this.fondosSinMora = fondosSinMora;
+    }
+
+    public int getFondosConMora() {
+        return fondosConMora;
+    }
+
+    public void setFondosConMora(int fondosConMora) {
+        this.fondosConMora = fondosConMora;
+    }
+    
 }

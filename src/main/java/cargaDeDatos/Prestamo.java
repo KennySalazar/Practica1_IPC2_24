@@ -37,7 +37,7 @@ public class Prestamo {
         try {
             // Parsear el String y obtener un objeto Date
             Date date = dateFormat.parse(fecha);
-            int adelantar = 2;
+            int adelantar = 3;
 
             Calendar calendar = Calendar.getInstance();
             calendar.setTime(date);
