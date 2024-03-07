@@ -68,6 +68,11 @@
   </Layout>
   <SubComponents>
     <Container class="javax.swing.JPanel" name="jPanel1">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="99" type="rgb"/>
+        </Property>
+      </Properties>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -87,6 +92,11 @@
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
       <SubComponents>
         <Container class="javax.swing.JDesktopPane" name="jDesktopPane1">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="99" type="rgb"/>
+            </Property>
+          </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
               <JTabbedPaneConstraints tabName="Estudiantes">
@@ -147,6 +157,9 @@
             <Component class="javax.swing.JButton" name="nuevoEstudiante">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Nuevo"/>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Hand Cursor"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nuevoEstudianteActionPerformed"/>
@@ -155,6 +168,9 @@
             <Component class="javax.swing.JButton" name="editarEstudianteBt">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Editar"/>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Hand Cursor"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="editarEstudianteBtActionPerformed"/>
@@ -163,6 +179,9 @@
             <Component class="javax.swing.JButton" name="eliminarEstudianteBt">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Eliminar"/>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Hand Cursor"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="eliminarEstudianteBtActionPerformed"/>
@@ -171,6 +190,7 @@
             <Component class="javax.swing.JTextField" name="estudiantesBusqueda">
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="estudiantesBusquedaActionPerformed"/>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="estudiantesBusquedaKeyReleased"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="labelBusqueda">
@@ -261,14 +281,16 @@
             <Component class="javax.swing.JComboBox" name="busqueaComboEstudiantes">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="6">
-                    <StringItem index="0" value="Busqueda"/>
+                  <StringArray count="5">
+                    <StringItem index="0" value="Carnet"/>
                     <StringItem index="1" value="Todos Los Registros"/>
-                    <StringItem index="2" value="Carnet"/>
-                    <StringItem index="3" value="Nombre"/>
-                    <StringItem index="4" value="Carrera"/>
-                    <StringItem index="5" value="Fecha De Nacimiento"/>
+                    <StringItem index="2" value="Nombre"/>
+                    <StringItem index="3" value="Carrera"/>
+                    <StringItem index="4" value="Fecha De Nacimiento"/>
                   </StringArray>
+                </Property>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Hand Cursor"/>
                 </Property>
               </Properties>
               <Events>
@@ -281,6 +303,11 @@
           </SubComponents>
         </Container>
         <Container class="javax.swing.JDesktopPane" name="jDesktopPane2">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="99" type="rgb"/>
+            </Property>
+          </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
               <JTabbedPaneConstraints tabName="Libros">
@@ -317,6 +344,11 @@
           </Layout>
           <SubComponents>
             <Container class="javax.swing.JDesktopPane" name="jDesktopPane5">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="99" type="rgb"/>
+                </Property>
+              </Properties>
 
               <Layout>
                 <DimensionLayout dim="0">
@@ -383,6 +415,9 @@
                 <Component class="javax.swing.JButton" name="nuevoLibroButton">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Nuevo"/>
+                    <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                      <Color id="Hand Cursor"/>
+                    </Property>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nuevoLibroButtonActionPerformed"/>
@@ -391,6 +426,9 @@
                 <Component class="javax.swing.JButton" name="editarLibro">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Editar"/>
+                    <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                      <Color id="Hand Cursor"/>
+                    </Property>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="editarLibroActionPerformed"/>
@@ -399,6 +437,9 @@
                 <Component class="javax.swing.JButton" name="eliminarLibro">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Eliminar"/>
+                    <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                      <Color id="Hand Cursor"/>
+                    </Property>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="eliminarLibroActionPerformed"/>
@@ -407,6 +448,7 @@
                 <Component class="javax.swing.JTextField" name="jTextField2">
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField2ActionPerformed"/>
+                    <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextField2KeyReleased"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="labelBusquedaLibro">
@@ -509,16 +551,18 @@
                 <Component class="javax.swing.JComboBox" name="librosCombo">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="8">
-                        <StringItem index="0" value="Busqueda"/>
+                      <StringArray count="7">
+                        <StringItem index="0" value="C&#xf3;digo"/>
                         <StringItem index="1" value="Todos Los Registros"/>
                         <StringItem index="2" value="Titulo"/>
                         <StringItem index="3" value="Autor"/>
-                        <StringItem index="4" value="C&#xf3;digo"/>
-                        <StringItem index="5" value="Cantidad de Copias"/>
-                        <StringItem index="6" value="Feche de Publicaci&#xf3;n"/>
-                        <StringItem index="7" value="Editorial"/>
+                        <StringItem index="4" value="Cantidad de Copias"/>
+                        <StringItem index="5" value="Feche de Publicaci&#xf3;n"/>
+                        <StringItem index="6" value="Editorial"/>
                       </StringArray>
+                    </Property>
+                    <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                      <Color id="Hand Cursor"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -533,6 +577,11 @@
           </SubComponents>
         </Container>
         <Container class="javax.swing.JDesktopPane" name="jDesktopPane4">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="99" type="rgb"/>
+            </Property>
+          </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
               <JTabbedPaneConstraints tabName="Prestamos">
@@ -577,6 +626,11 @@
           </Layout>
           <SubComponents>
             <Container class="javax.swing.JDesktopPane" name="jDesktopPane6">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="99" type="rgb"/>
+                </Property>
+              </Properties>
 
               <Layout>
                 <DimensionLayout dim="0">
@@ -619,6 +673,9 @@
                 <Component class="javax.swing.JButton" name="nuevoPrestamosBt">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Nuevo"/>
+                    <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                      <Color id="Hand Cursor"/>
+                    </Property>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nuevoPrestamosBtActionPerformed"/>
@@ -627,6 +684,9 @@
                 <Component class="javax.swing.JButton" name="eliminarPrestamosBt">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Regreso de Libro"/>
+                    <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                      <Color id="Hand Cursor"/>
+                    </Property>
                   </Properties>
                   <Events>
                     <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="eliminarPrestamosBtMouseClicked"/>
@@ -639,6 +699,7 @@
                 <Component class="javax.swing.JTextField" name="jTextField3">
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField3ActionPerformed"/>
+                    <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextField3KeyReleased"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="labelBusquedaPestamo">
@@ -718,13 +779,15 @@
             <Component class="javax.swing.JComboBox" name="busquedaComboBox">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="5">
-                    <StringItem index="0" value="Busqueda"/>
+                  <StringArray count="4">
+                    <StringItem index="0" value="Codigo del Libro"/>
                     <StringItem index="1" value="Todos Los Registros"/>
-                    <StringItem index="2" value="Codigo del Libro"/>
-                    <StringItem index="3" value="Carnet"/>
-                    <StringItem index="4" value="Fecha"/>
+                    <StringItem index="2" value="Carnet"/>
+                    <StringItem index="3" value="Fecha"/>
                   </StringArray>
+                </Property>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Hand Cursor"/>
                 </Property>
               </Properties>
               <Events>
@@ -737,6 +800,11 @@
           </SubComponents>
         </Container>
         <Container class="javax.swing.JDesktopPane" name="jDesktopPane3">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="99" type="rgb"/>
+            </Property>
+          </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
               <JTabbedPaneConstraints tabName="Reportes">
