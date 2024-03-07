@@ -5,17 +5,14 @@
 package vista;
 
 import DataBase.SaveAndReaderBinary;
-<<<<<<< HEAD
 import Reportes.Mora;
 import Reportes.sinMora;
 import cargaDeDatos.Estudiante;
 import cargaDeDatos.Prestamo;
-=======
 import cargaDeDatos.Estudiante;
 import cargaDeDatos.Prestamo;
 import Reportes.Mora;
 import Reportes.sinMora;
->>>>>>> prestamosAndFronted
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -63,11 +60,6 @@ public class regresoDeLibro extends javax.swing.JFrame {
 
     public regresoDeLibro() {
         initComponents();
-<<<<<<< HEAD
-=======
-
-
->>>>>>> prestamosAndFronted
         setResizable(false);
     }
 
@@ -210,11 +202,8 @@ public class regresoDeLibro extends javax.swing.JFrame {
             if (verificacionPrestamo()) {//
                 System.out.println("llega aca");
                 if (eliminacionPrestamo()) {
-<<<<<<< HEAD
-=======
                     JOptionPane.showMessageDialog(jFrame, "El libro se ha Regresado");
                     LyE.guardarArchivoBinario();
->>>>>>> prestamosAndFronted
                     //if para declarar los valores 
                     if (total >= 16 && total != 0) {
                         control.guardarMora(total, fecha, tabla);
@@ -329,9 +318,7 @@ public class regresoDeLibro extends javax.swing.JFrame {
         return false;
     }
 
-
     //elimina el prestamo en la base de datos y reajusta la base de datos
-
     public boolean eliminacionPrestamo() {
         ControlDePrestamos pres = new ControlDePrestamos();
         String codigo = "";
@@ -341,14 +328,10 @@ public class regresoDeLibro extends javax.swing.JFrame {
         for (int i = 0; i < PersistenciaDeDatos.prestamos.size(); i++) {
             if (PersistenciaDeDatos.prestamos.get(i).getCodigoLibro().equals(codigo)
                     && PersistenciaDeDatos.prestamos.get(i).getCarnetE().equals(carnet)) {
-<<<<<<< HEAD
-     for (Estudiante estudiante : PersistenciaDeDatos.estudiantes) {
-=======
                 for (Estudiante estudiante : PersistenciaDeDatos.estudiantes) {
->>>>>>> prestamosAndFronted
-                    if (estudiante.getCarnet() == Integer.parseInt(carnet)) {
-                        estudiante.getHistorial().add(PersistenciaDeDatos.prestamos.get(i));
-                        /*
+                        if (estudiante.getCarnet() == Integer.parseInt(carnet)) {
+                            estudiante.getHistorial().add(PersistenciaDeDatos.prestamos.get(i));
+                            /*
                         int v = 0;
                         for (Prestamo prestamosActivo : estudiante.getPrestamosActivos()) {
                             v++;
@@ -357,30 +340,28 @@ public class regresoDeLibro extends javax.swing.JFrame {
                                 break;
                             }
                         }
-                         */
-                        Iterator<Prestamo> iterator = estudiante.getPrestamosActivos().iterator();
-                        while (iterator.hasNext()) {
-                            Prestamo prestamoActivo = iterator.next();
-                            if (prestamoActivo.equals(PersistenciaDeDatos.prestamos.get(i))) {
-                                iterator.remove(); // Eliminar el préstamo activo de la lista
-                                break;
+                             */
+                            Iterator<Prestamo> iterator = estudiante.getPrestamosActivos().iterator();
+                            while (iterator.hasNext()) {
+                                Prestamo prestamoActivo = iterator.next();
+                                if (prestamoActivo.equals(PersistenciaDeDatos.prestamos.get(i))) {
+                                    iterator.remove(); // Eliminar el préstamo activo de la lista
+                                    break;
+                                }
                             }
+                            break;
                         }
-                        break;
                     }
+                    PersistenciaDeDatos.prestamos.remove(i);
+                    pres.llenarTablaPrestamos(tabla);
+                    return true;
                 }
-                PersistenciaDeDatos.prestamos.remove(i);
-                pres.llenarTablaPrestamos(tabla);
-                return true;
             }
+            return false;
         }
-        return false;
-    }
-
-    /**
-     * @param args the command line arguments
-     */
-
+        /**
+         * @param args the command line arguments
+         */
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel camJLable;
     private javax.swing.JTextField carnetEstudianteTextField;

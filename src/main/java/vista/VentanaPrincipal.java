@@ -949,25 +949,19 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void busquedaComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_busquedaComboBoxActionPerformed
 
-<<<<<<< HEAD
     }//GEN-LAST:event_busquedaComboBoxActionPerformed
 
-    private void busqueaComboEstudiantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_busqueaComboEstudiantesActionPerformed
+    private void busqueaComboEstudiantesActionPerformed(java.awt.event.ActionEvent evt) {                                                        
         // TODO add your handling code here:
         filtroItemEstuden();
-    }//GEN-LAST:event_busqueaComboEstudiantesActionPerformed
+    }                                                       
 
-    private void librosComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_librosComboActionPerformed
+    private void librosComboActionPerformed(java.awt.event.ActionEvent evt) {                                            
         // TODO add your handling code here:
         filtroItemLibros();
-    }//GEN-LAST:event_librosComboActionPerformed
+    }                                           
+                                              
 
-
-=======
-        filtroItemPres();
-    }//GEN-LAST:event_busquedaComboBoxActionPerformed
-
->>>>>>> prestamosAndFronted
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Date dateUno = date1.getDate();
         Date dateDos = date2.getDate();
@@ -1025,7 +1019,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
-<<<<<<< HEAD
+
     private void fondosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fondosActionPerformed
         Date dateUno = this.jDateChooser1.getDate();
         Date dateDos = this.jDateChooser2.getDate();
@@ -1043,13 +1037,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             this.reporte.calcularFondos(2);
         }
     }//GEN-LAST:event_fondosActionPerformed
-=======
-         filtroItemPres();
-    }                                                
+                                              
 
     private void busqueaComboEstudiantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_busqueaComboEstudiantesActionPerformed
-        // TODO add your handling code here:
-        filtroItemEstuden();
+       
+       filtroItemEstuden();
     }//GEN-LAST:event_busqueaComboEstudiantesActionPerformed
 
     private void librosComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_librosComboActionPerformed
@@ -1057,7 +1049,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         filtroItemLibros();
     }//GEN-LAST:event_librosComboActionPerformed
 
->>>>>>> prestamosAndFronted
 
     public void ventanaNuevoEst() {
         NuevoEstudiante ne = new NuevoEstudiante(false, null, tablaStudents);
@@ -1114,13 +1105,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         }
     }
 
-<<<<<<< HEAD
-    public void filtoItemPres() {
 
-=======
 
     public void filtroItemPres() {
->>>>>>> prestamosAndFronted
         int validacion = -1;
         int numeroFiltro = -1;
         String busqueda = jTextField3.getText();
