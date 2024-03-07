@@ -112,6 +112,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         date11 = new com.toedter.calendar.JDateChooser();
         date22 = new com.toedter.calendar.JDateChooser();
+        jSeparator1 = new javax.swing.JSeparator();
+        jSeparator2 = new javax.swing.JSeparator();
+        jSeparator3 = new javax.swing.JSeparator();
+        jSeparator4 = new javax.swing.JSeparator();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jDateChooser2 = new com.toedter.calendar.JDateChooser();
+        fondos = new javax.swing.JButton();
 
         jInternalFrame1.setVisible(true);
 
@@ -573,6 +580,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        fondos.setText("Fondos Recaudados");
+        fondos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fondosActionPerformed(evt);
+            }
+        });
+
         jDesktopPane3.setLayer(jToggleButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane3.setLayer(jScrollPane4, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane3.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -586,80 +600,123 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jDesktopPane3.setLayer(jButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane3.setLayer(date11, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane3.setLayer(date22, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane3.setLayer(jSeparator1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane3.setLayer(jSeparator2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane3.setLayer(jSeparator3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane3.setLayer(jSeparator4, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane3.setLayer(jDateChooser1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane3.setLayer(jDateChooser2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane3.setLayer(fondos, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jDesktopPane3Layout = new javax.swing.GroupLayout(jDesktopPane3);
         jDesktopPane3.setLayout(jDesktopPane3Layout);
         jDesktopPane3Layout.setHorizontalGroup(
             jDesktopPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jSeparator1)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane3Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(275, 275, 275))
+                .addComponent(historial)
+                .addGap(33, 33, 33)
+                .addComponent(activos)
+                .addGap(117, 117, 117))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane3Layout.createSequentialGroup()
+                .addGroup(jDesktopPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator2))
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane3Layout.createSequentialGroup()
+                .addComponent(jSeparator4)
+                .addContainerGap())
             .addGroup(jDesktopPane3Layout.createSequentialGroup()
-                .addGap(164, 164, 164)
-                .addComponent(date1, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(date2, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(167, 167, 167))
-            .addGroup(jDesktopPane3Layout.createSequentialGroup()
-                .addGroup(jDesktopPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(jDesktopPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jDesktopPane3Layout.createSequentialGroup()
-                        .addGap(144, 144, 144)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(17, 17, 17)
                         .addGroup(jDesktopPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jDesktopPane3Layout.createSequentialGroup()
-                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(39, 39, 39)
-                                .addComponent(historial)
-                                .addGap(26, 26, 26)
-                                .addComponent(activos))))
+                                .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jDesktopPane3Layout.createSequentialGroup()
+                                .addGap(90, 90, 90)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(15, 15, 15)
+                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jDesktopPane3Layout.createSequentialGroup()
+                                .addGap(59, 59, 59)
+                                .addComponent(date1, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(67, 67, 67)
+                                .addComponent(date2, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(55, 55, 55)
+                                .addComponent(jButton1))))
                     .addGroup(jDesktopPane3Layout.createSequentialGroup()
-                        .addGap(64, 64, 64)
+                        .addGap(16, 16, 16)
                         .addComponent(carreras, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jDesktopPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jDesktopPane3Layout.createSequentialGroup()
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(209, 209, 209))
-                            .addGroup(jDesktopPane3Layout.createSequentialGroup()
-                                .addComponent(date11, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(date22, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(75, Short.MAX_VALUE))
+                        .addGap(29, 29, 29)
+                        .addComponent(date11, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(35, 35, 35)
+                        .addComponent(date22, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jDesktopPane3Layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(46, 46, 46)
+                        .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(42, 42, 42)
+                        .addComponent(fondos, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(11, Short.MAX_VALUE))
         );
         jDesktopPane3Layout.setVerticalGroup(
             jDesktopPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDesktopPane3Layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addComponent(jToggleButton1)
-                .addGap(35, 35, 35)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
+                .addGap(20, 20, 20)
                 .addGroup(jDesktopPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jDesktopPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(historial)
-                        .addComponent(activos))
-                    .addComponent(jLabel2))
-                .addGap(56, 56, 56)
-                .addComponent(jButton1)
-                .addGap(18, 18, 18)
-                .addGroup(jDesktopPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jDesktopPane3Layout.createSequentialGroup()
-                        .addGroup(jDesktopPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(date1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(date2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(98, 98, 98)
-                        .addGroup(jDesktopPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(carreras, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(date11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(date22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(59, 59, 59)
-                .addComponent(jButton2)
-                .addContainerGap(45, Short.MAX_VALUE))
+                        .addGap(94, 94, 94)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jDesktopPane3Layout.createSequentialGroup()
+                        .addComponent(jToggleButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jDesktopPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jDesktopPane3Layout.createSequentialGroup()
+                                .addGap(13, 13, 13)
+                                .addComponent(jLabel2))
+                            .addGroup(jDesktopPane3Layout.createSequentialGroup()
+                                .addGap(7, 7, 7)
+                                .addGroup(jDesktopPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(historial)
+                                    .addComponent(activos))))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jDesktopPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jDesktopPane3Layout.createSequentialGroup()
+                        .addGap(47, 47, 47)
+                        .addGroup(jDesktopPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(date2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(date1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane3Layout.createSequentialGroup()
+                        .addGap(46, 46, 46)
+                        .addComponent(jButton1)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
+                .addGroup(jDesktopPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(carreras, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(date11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(date22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2))
+                .addGap(36, 36, 36)
+                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35)
+                .addGroup(jDesktopPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jDesktopPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(fondos))
+                .addContainerGap(79, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Reportes", jDesktopPane3);
@@ -863,7 +920,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_tablaPrestamosKeyPressed
 
     private void busquedaComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_busquedaComboBoxActionPerformed
-        
+
     }//GEN-LAST:event_busquedaComboBoxActionPerformed
 
     private void busqueaComboEstudiantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_busqueaComboEstudiantesActionPerformed
@@ -875,14 +932,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         filtroItemLibros();
     }//GEN-LAST:event_librosComboActionPerformed
-                                             
+
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Date dateUno = date1.getDate();
         Date dateDos = date2.getDate();
         if (dateUno != null && dateDos != null) {
             try {
-                this.reporte.mostrarIntervalo(dateUno, dateDos);
+                this.reporte.mostrarIntervaloSinCarrera(dateUno, dateDos);
             } catch (ParseException ex) {
                 Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -894,7 +951,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void carrerasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_carrerasActionPerformed
-       String carreraS = carreras.getSelectedItem().toString();
+        String carreraS = carreras.getSelectedItem().toString();
         switch (carreraS) {
             case "Ingenieria":
                 carrera = 1;
@@ -917,16 +974,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_carrerasActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       Date dateUno = date11.getDate();
+        Date dateUno = date11.getDate();
         Date dateDos = date22.getDate();
         if (dateUno != null && dateDos != null) {
             this.reporte.clasificarPrestamos(carrera);
-           try {
-               this.reporte.prestamosEnIntervaloCarrera(dateUno, dateDos);
-           } catch (ParseException ex) {
-               Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-           }
-            this.reporte.mostrarPrestamosCarrera();
+            try {
+                this.reporte.prestamosEnIntervaloCarrera(dateUno, dateDos);
+            } catch (ParseException ex) {
+                Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            this.reporte.mostrarInter();
         } else {
             this.reporte.clasificarPrestamos(carrera);
             this.reporte.mostrarPrestamosCarrera();
@@ -934,6 +991,23 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void fondosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fondosActionPerformed
+        Date dateUno = this.jDateChooser1.getDate();
+        Date dateDos = this.jDateChooser2.getDate();
+        if (dateUno != null && dateDos != null) {
+            try {
+                this.reporte.interMoras(dateUno, dateDos);
+                this.reporte.interSinMoras(dateUno, dateDos);
+                this.reporte.mostrarIntervaloSinCarrera(dateUno, dateDos);
+            } catch (ParseException ex) {
+                Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            this.reporte.calcularFondos(1);
+        } else {
+            this.reporte.calcularFondos(2);
+        }
+    }//GEN-LAST:event_fondosActionPerformed
 
     public void ventanaNuevoEst() {
         NuevoEstudiante ne = new NuevoEstudiante(false, null, tablaStudents);
@@ -989,7 +1063,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             tablaPrestamos.repaint();
         }
     }
-
 
     public void filtoItemPres() {
 
@@ -1164,9 +1237,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton eliminarLibro;
     private javax.swing.JButton eliminarPrestamosBt;
     private javax.swing.JTextField estudiantesBusqueda;
+    private javax.swing.JButton fondos;
     private javax.swing.JButton historial;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private com.toedter.calendar.JDateChooser jDateChooser2;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JDesktopPane jDesktopPane2;
     private javax.swing.JDesktopPane jDesktopPane3;
@@ -1181,6 +1257,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
