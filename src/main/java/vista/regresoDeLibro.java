@@ -13,11 +13,13 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import persistenciaDatos.ControlDatosEstudiante;
 import persistenciaDatos.ControlDatosLibros;
 import persistenciaDatos.ControlDePrestamos;
 import persistenciaDatos.ControlMora_SinMora;
@@ -27,6 +29,7 @@ import persistenciaDatos.PersistenciaDeDatos;
  *
  * @author denil
  */
+//clase la cual se encarga de la logica para poder regresar un libro
 public class regresoDeLibro extends javax.swing.JFrame {
 
     /**
@@ -34,6 +37,7 @@ public class regresoDeLibro extends javax.swing.JFrame {
      */
     //clase para gurdar 
     SaveAndReaderBinary LyE = new SaveAndReaderBinary();
+    //clase de control para poder usar el guardar del arrayList
     ControlMora_SinMora control = new ControlMora_SinMora();
     JFrame jFrame = new JFrame();
     JTable tabla;
@@ -48,6 +52,7 @@ public class regresoDeLibro extends javax.swing.JFrame {
     String dia = day.format(date);
     String fechaHoy = anio + "-" + mes + "-" + dia;
 
+    //metodo para poder cargar las tablas necesarias
     regresoDeLibro(JTable tabla, JTable tablaLibro) {
         this.tabla = tabla;
         this.tablaLibro = tablaLibro;
@@ -87,7 +92,6 @@ public class regresoDeLibro extends javax.swing.JFrame {
         totalPagoTextField = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -159,14 +163,6 @@ public class regresoDeLibro extends javax.swing.JFrame {
         });
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 460, -1, -1));
 
-        jButton3.setText("jButton3");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 30, -1, -1));
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -190,54 +186,65 @@ public class regresoDeLibro extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         //Boton para recibir todo lo del estudiante
-        VentanaPrincipal vt = new VentanaPrincipal();
+        //se llama al array prestaamos para poder almacenar y comparar
+        ArrayList<Prestamo> lectura = PersistenciaDeDatos.prestamos;
+        //variables de comparacion
+        String carnet = "";
+        String codigo = "";
         String fecha = "";
+        String prestamo = "";
         int total = 0;
+        //obtencion de variables
+        carnet = carnetEstudianteTextField.getText();
+        codigo = codigoLibroTxField.getText();
         fecha = fechaFinalTextField.getText();
         total = Integer.parseInt(totalPagoTextField.getText());
-        try {//manejo de errores
-            if (verificacionPrestamo()) {//
-                System.out.println("llega aca");
-                if (eliminacionPrestamo()) {
-                    //if para declarar los valores 
-                    if (total >= 16 && total != 0) {
-                        control.guardarMora(total, fecha, tabla);
-                        LyE.guardarArchivoBinario();
-                        System.out.println("es con mora");
-                    } else {
-                        control.guardarSinMora(total, fecha, tabla);
-                        LyE.guardarArchivoBinario();
-                        System.out.println("es sin mora");
-                    }
+        //metodo for el cual sireve para poder almacenar los datos del arrayList
+        for (int i = 0; i < PersistenciaDeDatos.prestamos.size(); i++) {
+            if (PersistenciaDeDatos.prestamos.get(i).getCarnetE().equals(carnet)
+                    && PersistenciaDeDatos.prestamos.get(i).getCodigoLibro().equals(codigo)) {
+                String codLibro = PersistenciaDeDatos.prestamos.get(i).getCodigoLibro();
+                String car = PersistenciaDeDatos.prestamos.get(i).getCarnetE();
+                String fech = PersistenciaDeDatos.prestamos.get(i).getFecha();
+                prestamo = "Codigo; " + codLibro + " carnet; " + car + " Fecha; " + fech;
+            }
+        }
 
-                    JOptionPane.showMessageDialog(jFrame, "El libro se ha Regresado");
-                    LyE.guardarArchivoBinario();
-                    System.out.println("se ha guardado el nuevo prestamo con la mora y la fecha actual");
-                    this.dispose();
+        //aca se maneja la logica de si existe o no un dato en la base de datos
+        try {//manejo de errores
+            if (verificartCarnet()) {
+                if (verificacionPrestamo()) {//
+                    System.out.println("llega aca");
+                    if (eliminacionPrestamo()) {
+                        //if para declarar los valores de moras
+                        if (total >= 16 && total != 0) {
+                            control.guardarMora(total, fecha, prestamo, tabla);
+                            LyE.guardarArchivoBinario();
+                            System.out.println("es con mora");
+                        } else {
+                            control.guardarSinMora(total, fecha, prestamo, tabla);
+                            LyE.guardarArchivoBinario();
+                            System.out.println("es sin mora");
+                        }//fin del else mora sin mora
+                        JOptionPane.showMessageDialog(jFrame, "El libro se ha Regresado");
+                        LyE.guardarArchivoBinario();
+                        System.out.println("se ha guardado el nuevo prestamo con la mora y la fecha actual");
+                        this.dispose();
+                    } else {
+                        JOptionPane.showMessageDialog(jFrame, "Ocurrio un error");
+                    }
                 } else {
-                    JOptionPane.showMessageDialog(jFrame, "Ocurrio un error");
+                    JOptionPane.showMessageDialog(jFrame, "No existe el Libro en la base de Datos");
+                    this.dispose();
                 }
             } else {
-                JOptionPane.showMessageDialog(jFrame, "No existe el Libro en la base de Datos");
-                this.dispose();
+                JOptionPane.showMessageDialog(jFrame, "No existe el estudiante en la base de datos");
             }
         } catch (Exception e) {
             System.out.println(e);
             JOptionPane.showMessageDialog(jFrame, "Algo salio Mal");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-        System.out.println("se presiona");
-        for (int i = 0; i < PersistenciaDeDatos.sinMora.size(); i++) {
-            System.out.println(PersistenciaDeDatos.sinMora);
-        }
-        for (int i = 0; i < PersistenciaDeDatos.Mora.size(); i++) {
-            System.out.println(PersistenciaDeDatos.Mora);
-        }
-
-    }//GEN-LAST:event_jButton3ActionPerformed
     //llena los textField
     public void llenado(String codigo, String carnet, String fecha) {
         codigoLibroTxField.setText(codigo);
@@ -249,7 +256,7 @@ public class regresoDeLibro extends javax.swing.JFrame {
 
     //calculo de la mora segun el tiempo pasado, tambien se calcula sin mora
     public void diasEfectivos() {
-
+        //obtencion de variables y parseo a date
         String dateInicio = fechaPresTextField.getText();
         String dateFinal = fechaFinalTextField.getText();
         DateTimeFormatter formato = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -276,7 +283,7 @@ public class regresoDeLibro extends javax.swing.JFrame {
                 totalSinMora = (int) (contDiasEfectivos * 5);
                 cuotaTextField.setText(Integer.toString((int) contDiasEfectivos));
                 totalPagoTextField.setText(Integer.toString(totalSinMora));
-
+                //si no se cobra la mora
             } else if (contDiasEfectivos != 0 && contDiasEfectivos >= 4) {
                 int dias = 0;
                 int total = 0;
@@ -313,9 +320,21 @@ public class regresoDeLibro extends javax.swing.JFrame {
         return false;
     }
 
+    //funcion para poder verificar si el estudiante esta en la base de datos
+    public boolean verificartCarnet() {
+        ControlDatosEstudiante controlEstudiante = new ControlDatosEstudiante();
+        String carnet = "";
+        carnet = carnetEstudianteTextField.getText();
+        for (int i = 0; i < PersistenciaDeDatos.estudiantes.size(); i++) {
+            if (PersistenciaDeDatos.estudiantes.get(i).getCarnet() == Integer.parseInt(carnet)) {
+                return true;
+
+            }
+        }
+        return false;
+    }
 
     //elimina el prestamo en la base de datos y reajusta la base de datos
-
     public boolean eliminacionPrestamo() {
         ControlDePrestamos pres = new ControlDePrestamos();
         String codigo = "";
@@ -325,7 +344,7 @@ public class regresoDeLibro extends javax.swing.JFrame {
         for (int i = 0; i < PersistenciaDeDatos.prestamos.size(); i++) {
             if (PersistenciaDeDatos.prestamos.get(i).getCodigoLibro().equals(codigo)
                     && PersistenciaDeDatos.prestamos.get(i).getCarnetE().equals(carnet)) {
-     for (Estudiante estudiante : PersistenciaDeDatos.estudiantes) {
+                for (Estudiante estudiante : PersistenciaDeDatos.estudiantes) {
                     if (estudiante.getCarnet() == Integer.parseInt(carnet)) {
                         estudiante.getHistorial().add(PersistenciaDeDatos.prestamos.get(i));
                         /*
@@ -370,7 +389,6 @@ public class regresoDeLibro extends javax.swing.JFrame {
     private javax.swing.JTextField fechaPresTextField;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -27,12 +27,15 @@ public class Reporte {
     private ArrayList<Mora> moras;
     private ArrayList<sinMora> sinMoras;
     private ArrayList<Prestamo> prestamosCarrera;
+    private ArrayList<sinMora> devolusiones;
 
     public Reporte() {
         this.prestamosCarrera = new ArrayList<>();
         this.prestamosIntervalo = new ArrayList<>();
         this.moras = new ArrayList<>();
         this.sinMoras = new ArrayList<>();
+        this.devolusiones = new ArrayList<>();
+        this.moras = new ArrayList<>();
         this.prestamosEntrega = new ArrayList<>();
     }
 

@@ -11,12 +11,15 @@ import java.io.Serializable;
  * @author DAVID
  */
 public class sinMora implements Serializable  {
+    //metodo para saber la cantidad sin mora, fecha y prestamo
     private int SinMora;
     private String fecha;
+    private String prestamo;
 
-    public sinMora(int SinMora, String fecha) {
+    public sinMora(int SinMora, String fecha, String prestamo) {
         this.SinMora = SinMora;
         this.fecha = fecha;
+        this.prestamo = prestamo;
     }
 
     public int getSinmora() {
@@ -26,10 +29,13 @@ public class sinMora implements Serializable  {
     public String getFecha() {
         return fecha;
     }
+    public String getPrestamo(){
+        return prestamo;
+    }
 
     @Override
     public String toString() {
-        return "Sinmora=" + SinMora + ", fecha=" + fecha ;
+        return "Sinmora=" + SinMora + ", fecha=" + fecha  + ", prestamo=" + prestamo;
     }
     
 }
