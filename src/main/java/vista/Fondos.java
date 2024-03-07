@@ -41,17 +41,20 @@ public class Fondos extends javax.swing.JFrame {
             this.reporte.interMoras(dateUno, dateDos);
             this.reporte.interSinMoras(dateUno, dateDos);
             this.reporte.calcularFondos(1, jTextPane1);
-            this.TotalI.setText("" + this.reporte.getFondosConMora() + this.reporte.getFondosSinMora());
-            this.morasI.setText("" + this.reporte.getFondosConMora());
-            this.prestamosI.setText("" + this.reporte.getFondosSinMora());
-        } else {
             int mora = this.reporte.getFondosConMora();
             int noMora = this.reporte.getFondosSinMora();
             int total = mora+noMora;
+            this.TotalI6.setText("" + total);
+            this.morasI6.setText("" + mora);
+            this.prestamosI6.setText("" + noMora);
+        } else {
             this.reporte.calcularFondos(2, jTextPane1);
-            this.TotalI.setText("" + (total));
-            this.morasI.setText("" + this.reporte.getFondosConMora());
-            this.prestamosI.setText("" + this.reporte.getFondosSinMora());
+            int mora = this.reporte.getFondosConMora();
+            int noMora = this.reporte.getFondosSinMora();
+            int total = mora+noMora;
+            this.TotalI6.setText("" + total);
+            this.morasI6.setText("" + mora);
+            this.prestamosI6.setText("" + noMora);
         }
 
     }
@@ -65,105 +68,91 @@ public class Fondos extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
+        jPanel8 = new javax.swing.JPanel();
         mora = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        prestamosI = new javax.swing.JLabel();
-        TotalI = new javax.swing.JLabel();
-        morasI = new javax.swing.JLabel();
+        jPanel7 = new javax.swing.JPanel();
+        prestamosI6 = new javax.swing.JLabel();
+        TotalI6 = new javax.swing.JLabel();
+        morasI6 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextPane1 = new javax.swing.JTextPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setBackground(new java.awt.Color(204, 255, 255));
+        setResizable(false);
 
+        jPanel8.setBackground(new java.awt.Color(204, 255, 255));
+        jPanel8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        mora.setText("Ingresos por Moras:");
+        jPanel8.add(mora, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, 124, -1));
+
+        jLabel1.setText("Ingresos por prestamos:");
+        jPanel8.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, 138, -1));
+
+        jLabel2.setText("Total:");
+        jPanel8.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, 37, -1));
+
+        jPanel7.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel7.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        prestamosI6.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        TotalI6.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        morasI6.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(morasI6, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
+                    .addComponent(prestamosI6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(TotalI6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(13, 13, 13)
+                .addComponent(morasI6, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(prestamosI6, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(TotalI6, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(15, Short.MAX_VALUE))
+        );
+
+        jPanel8.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 20, -1, -1));
+
+        jLabel3.setText("Prestamos:");
+        jPanel8.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 140, 67, -1));
+
+        jScrollPane1.setBackground(new java.awt.Color(0, 0, 0));
+
+        jTextPane1.setBackground(new java.awt.Color(255, 255, 255));
         jTextPane1.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         jTextPane1.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         jTextPane1.setEnabled(false);
         jScrollPane1.setViewportView(jTextPane1);
 
-        mora.setText("Ingresos por Moras:");
-
-        jLabel1.setText("Ingresos por prestamos:");
-
-        jLabel2.setText("Total:");
-
-        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        prestamosI.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        TotalI.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        morasI.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(morasI, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
-                    .addComponent(prestamosI, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(TotalI, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(13, 13, 13)
-                .addComponent(morasI, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(prestamosI, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(TotalI, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
-        );
-
-        jLabel3.setText("Prestamos:");
+        jPanel8.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 442, 170));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(46, 46, 46)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(mora, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 442, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(55, 55, 55)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(38, Short.MAX_VALUE))
+            .addComponent(jPanel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 507, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(mora)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                .addComponent(jLabel3)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26))
+            .addComponent(jPanel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 374, Short.MAX_VALUE)
         );
 
         pack();
@@ -175,14 +164,39 @@ public class Fondos extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel TotalI;
+    private javax.swing.JLabel TotalI1;
+    private javax.swing.JLabel TotalI2;
+    private javax.swing.JLabel TotalI3;
+    private javax.swing.JLabel TotalI4;
+    private javax.swing.JLabel TotalI5;
+    private javax.swing.JLabel TotalI6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextPane jTextPane1;
     private javax.swing.JLabel mora;
     private javax.swing.JLabel morasI;
+    private javax.swing.JLabel morasI1;
+    private javax.swing.JLabel morasI2;
+    private javax.swing.JLabel morasI3;
+    private javax.swing.JLabel morasI4;
+    private javax.swing.JLabel morasI5;
+    private javax.swing.JLabel morasI6;
     private javax.swing.JLabel prestamosI;
+    private javax.swing.JLabel prestamosI1;
+    private javax.swing.JLabel prestamosI2;
+    private javax.swing.JLabel prestamosI3;
+    private javax.swing.JLabel prestamosI4;
+    private javax.swing.JLabel prestamosI5;
+    private javax.swing.JLabel prestamosI6;
     // End of variables declaration//GEN-END:variables
 }
