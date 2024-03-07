@@ -3,23 +3,33 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package vista;
+
 import DataBase.SaveAndReaderBinary;
+import Reportes.Mora;
+import Reportes.sinMora;
+import cargaDeDatos.Estudiante;
+import cargaDeDatos.Prestamo;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import persistenciaDatos.ControlDatosEstudiante;
 import persistenciaDatos.ControlDatosLibros;
 import persistenciaDatos.ControlDePrestamos;
+import persistenciaDatos.ControlMora_SinMora;
 import persistenciaDatos.PersistenciaDeDatos;
 
 /**
  *
  * @author denil
  */
+//clase la cual se encarga de la logica para poder regresar un libro
 public class regresoDeLibro extends javax.swing.JFrame {
 
     /**
@@ -27,6 +37,8 @@ public class regresoDeLibro extends javax.swing.JFrame {
      */
     //clase para gurdar 
     SaveAndReaderBinary LyE = new SaveAndReaderBinary();
+    //clase de control para poder usar el guardar del arrayList
+    ControlMora_SinMora control = new ControlMora_SinMora();
     JFrame jFrame = new JFrame();
     JTable tabla;
     JTable tablaLibro;
@@ -40,6 +52,7 @@ public class regresoDeLibro extends javax.swing.JFrame {
     String dia = day.format(date);
     String fechaHoy = anio + "-" + mes + "-" + dia;
 
+    //metodo para poder cargar las tablas necesarias
     regresoDeLibro(JTable tabla, JTable tablaLibro) {
         this.tabla = tabla;
         this.tablaLibro = tablaLibro;
@@ -82,6 +95,7 @@ public class regresoDeLibro extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        jPanel1.setBackground(new java.awt.Color(204, 255, 255));
         jPanel1.setMinimumSize(new java.awt.Dimension(500, 475));
         jPanel1.setPreferredSize(new java.awt.Dimension(500, 475));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -135,6 +149,7 @@ public class regresoDeLibro extends javax.swing.JFrame {
         jPanel1.add(totalPagoTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 400, 170, -1));
 
         jButton1.setText("Recibir Pago de Prestamo");
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -143,6 +158,7 @@ public class regresoDeLibro extends javax.swing.JFrame {
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 460, -1, -1));
 
         jButton2.setText("Cancelar");
+        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -173,23 +189,62 @@ public class regresoDeLibro extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         //Boton para recibir todo lo del estudiante
-        VentanaPrincipal vt = new VentanaPrincipal();
+        //se llama al array prestaamos para poder almacenar y comparar
+        ArrayList<Prestamo> lectura = PersistenciaDeDatos.prestamos;
+        //variables de comparacion
+        String carnet = "";
+        String codigo = "";
+        String fecha = "";
+        String prestamo = "";
+        int total = 0;
+        //obtencion de variables
+        carnet = carnetEstudianteTextField.getText();
+        codigo = codigoLibroTxField.getText();
+        fecha = fechaFinalTextField.getText();
+        total = Integer.parseInt(totalPagoTextField.getText());
+        //metodo for el cual sireve para poder almacenar los datos del arrayList
+        for (int i = 0; i < PersistenciaDeDatos.prestamos.size(); i++) {
+            if (PersistenciaDeDatos.prestamos.get(i).getCarnetE().equals(carnet)
+                    && PersistenciaDeDatos.prestamos.get(i).getCodigoLibro().equals(codigo)) {
+                String codLibro = PersistenciaDeDatos.prestamos.get(i).getCodigoLibro();
+                String car = PersistenciaDeDatos.prestamos.get(i).getCarnetE();
+                String fech = PersistenciaDeDatos.prestamos.get(i).getFecha();
+                prestamo = "Codigo; " + codLibro + " carnet; " + car + " Fecha; " + fech;
+            }
+        }
+
+        //aca se maneja la logica de si existe o no un dato en la base de datos
         try {//manejo de errores
-            if (verificacionPrestamo()) {//
-                System.out.println("llega aca");
-                if(eliminacionPrestamo()){
-                    
-                JOptionPane.showMessageDialog(jFrame, "El libro se ha Regresado");
-                LyE.guardarArchivoBinario();
-                this.dispose();
-                }else{
-                    JOptionPane.showMessageDialog(jFrame, "Ocurrio un error");
+            if (verificartCarnet()) {
+                if (verificacionPrestamo()) {//
+                    System.out.println("llega aca");
+                    if (eliminacionPrestamo()) {
+                        //if para declarar los valores de moras
+                        if (total >= 16 && total != 0) {
+                            control.guardarMora(total, fecha, prestamo, tabla);
+                            LyE.guardarArchivoBinario();
+                            System.out.println("es con mora");
+                        } else {
+                            control.guardarSinMora(total, fecha, prestamo, tabla);
+                            LyE.guardarArchivoBinario();
+                            System.out.println("es sin mora");
+                        }//fin del else mora sin mora
+                        JOptionPane.showMessageDialog(jFrame, "El libro se ha Regresado");
+                        LyE.guardarArchivoBinario();
+                        System.out.println("se ha guardado el nuevo prestamo con la mora y la fecha actual");
+                        this.dispose();
+                    } else {
+                        JOptionPane.showMessageDialog(jFrame, "Ocurrio un error");
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(jFrame, "No existe el Libro en la base de Datos");
+                    this.dispose();
                 }
             } else {
-                JOptionPane.showMessageDialog(jFrame, "No existe el Libro en la base de Datos");
-                this.dispose();
+                JOptionPane.showMessageDialog(jFrame, "No existe el estudiante en la base de datos");
             }
         } catch (Exception e) {
+            System.out.println(e);
             JOptionPane.showMessageDialog(jFrame, "Algo salio Mal");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -201,16 +256,17 @@ public class regresoDeLibro extends javax.swing.JFrame {
         fechaFinalTextField.setText(fechaHoy);
 
     }
+
     //calculo de la mora segun el tiempo pasado, tambien se calcula sin mora
     public void diasEfectivos() {
-        
+        //obtencion de variables y parseo a date
         String dateInicio = fechaPresTextField.getText();
         String dateFinal = fechaFinalTextField.getText();
         DateTimeFormatter formato = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         try {
             LocalDate fechaInicio = LocalDate.parse(dateInicio, formato);
             LocalDate fechaFin = LocalDate.parse(dateFinal, formato);
-            
+
             //aca se realiza la operacion de dias efectivos
             long contDiasEfectivos = 0;
             LocalDate fechaActual = fechaInicio;
@@ -230,6 +286,7 @@ public class regresoDeLibro extends javax.swing.JFrame {
                 totalSinMora = (int) (contDiasEfectivos * 5);
                 cuotaTextField.setText(Integer.toString((int) contDiasEfectivos));
                 totalPagoTextField.setText(Integer.toString(totalSinMora));
+                //si no se cobra la mora
             } else if (contDiasEfectivos != 0 && contDiasEfectivos >= 4) {
                 int dias = 0;
                 int total = 0;
@@ -239,12 +296,13 @@ public class regresoDeLibro extends javax.swing.JFrame {
                 contDiasEfectivos = dias * 10;
                 total = (int) (contDiasEfectivos + 15);
                 totalPagoTextField.setText(Integer.toString(total));
-                
+
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(jFrame, "Fecha invalida, Revise el Documento");
         }
     }
+
     //verifica si realmente el estudiante tiene prestado el libro 
     public boolean verificacionPrestamo() {
         ControlDatosLibros controlLibro = new ControlDatosLibros();
@@ -256,7 +314,7 @@ public class regresoDeLibro extends javax.swing.JFrame {
                 System.out.println("si esta el libro en existencia");
                 int num1 = PersistenciaDeDatos.biblio.get(i).getCantidad();
                 int num2 = num1 + 1;
-                System.out.println("el numero es "+ num2);
+                System.out.println("el numero es " + num2);
                 PersistenciaDeDatos.biblio.get(i).setCantidad(num2);
                 controlLibro.llenarTablaLibros(tablaLibro);
                 return true;
@@ -264,28 +322,63 @@ public class regresoDeLibro extends javax.swing.JFrame {
         }
         return false;
     }
+
+    //funcion para poder verificar si el estudiante esta en la base de datos
+    public boolean verificartCarnet() {
+        ControlDatosEstudiante controlEstudiante = new ControlDatosEstudiante();
+        String carnet = "";
+        carnet = carnetEstudianteTextField.getText();
+        for (int i = 0; i < PersistenciaDeDatos.estudiantes.size(); i++) {
+            if (PersistenciaDeDatos.estudiantes.get(i).getCarnet() == Integer.parseInt(carnet)) {
+                return true;
+
+            }
+        }
+        return false;
+    }
+
     //elimina el prestamo en la base de datos y reajusta la base de datos
-    public boolean eliminacionPrestamo(){
+    public boolean eliminacionPrestamo() {
         ControlDePrestamos pres = new ControlDePrestamos();
         String codigo = "";
         String carnet = "";
         codigo = codigoLibroTxField.getText();
         carnet = carnetEstudianteTextField.getText();
         for (int i = 0; i < PersistenciaDeDatos.prestamos.size(); i++) {
-            if(PersistenciaDeDatos.prestamos.get(i).getCodigoLibro().equals(codigo) &&
-               PersistenciaDeDatos.prestamos.get(i).getCarnetE().equals(carnet)){
-               PersistenciaDeDatos.prestamos.remove(i);
-               pres.llenarTablaPrestamos(tabla);
-               return true;
+            if (PersistenciaDeDatos.prestamos.get(i).getCodigoLibro().equals(codigo)
+                    && PersistenciaDeDatos.prestamos.get(i).getCarnetE().equals(carnet)) {
+                for (Estudiante estudiante : PersistenciaDeDatos.estudiantes) {
+                    if (estudiante.getCarnet() == Integer.parseInt(carnet)) {
+                        estudiante.getHistorial().add(PersistenciaDeDatos.prestamos.get(i));
+                        /*
+                        int v = 0;
+                        for (Prestamo prestamosActivo : estudiante.getPrestamosActivos()) {
+                            v++;
+                            if(prestamosActivo == PersistenciaDeDatos.prestamos.get(i)){
+                                estudiante.getPrestamosActivos().remove(v);
+                                break;
+                            }
+                        }
+                         */
+                        Iterator<Prestamo> iterator = estudiante.getPrestamosActivos().iterator();
+                        while (iterator.hasNext()) {
+                            Prestamo prestamoActivo = iterator.next();
+                            if (prestamoActivo.equals(PersistenciaDeDatos.prestamos.get(i))) {
+                                iterator.remove(); // Eliminar el préstamo activo de la lista
+                                break;
+                            }
+                        }
+                        break;
+                    }
+                }
+                PersistenciaDeDatos.prestamos.remove(i);
+                pres.llenarTablaPrestamos(tabla);
+                return true;
             }
         }
         return false;
     }
-    
-    
-    
-    
-   
+
     /**
      * @param args the command line arguments
      */

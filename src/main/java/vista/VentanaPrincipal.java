@@ -8,7 +8,14 @@ import DataBase.SaveAndReaderBinary;
 import Reportes.Reporte;
 import cargaDeDatos.Estudiante;
 import cargaDeDatos.Libro;
+import cargaDeDatos.Prestamo;
 import java.awt.event.ActionEvent;
+import java.text.ParseException;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -30,6 +37,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     Estudiante estudianteEdit;
     Libro libroEdit;
     private Reporte reporte;
+    private int carrera = 1;
 
     /**
      * Creates new form VentanaPrincipal
@@ -100,6 +108,21 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         historial = new javax.swing.JButton();
         activos = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        date1 = new com.toedter.calendar.JDateChooser();
+        date2 = new com.toedter.calendar.JDateChooser();
+        carreras = new javax.swing.JComboBox<>();
+        jButton2 = new javax.swing.JButton();
+        date11 = new com.toedter.calendar.JDateChooser();
+        date22 = new com.toedter.calendar.JDateChooser();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jDateChooser2 = new com.toedter.calendar.JDateChooser();
+        fondos = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
+        jSeparator2 = new javax.swing.JSeparator();
+        jSeparator3 = new javax.swing.JSeparator();
+        jSeparator4 = new javax.swing.JSeparator();
+        jLabel3 = new javax.swing.JLabel();
 
         jInternalFrame1.setVisible(true);
 
@@ -116,6 +139,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.setBackground(new java.awt.Color(153, 255, 255));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -127,7 +152,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             .addGap(0, 490, Short.MAX_VALUE)
         );
 
+        jDesktopPane1.setBackground(new java.awt.Color(153, 255, 255));
+
         nuevoEstudiante.setText("Nuevo");
+        nuevoEstudiante.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         nuevoEstudiante.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nuevoEstudianteActionPerformed(evt);
@@ -135,6 +163,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
 
         editarEstudianteBt.setText("Editar");
+        editarEstudianteBt.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         editarEstudianteBt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 editarEstudianteBtActionPerformed(evt);
@@ -142,6 +171,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
 
         eliminarEstudianteBt.setText("Eliminar");
+        eliminarEstudianteBt.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         eliminarEstudianteBt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 eliminarEstudianteBtActionPerformed(evt);
@@ -151,6 +181,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         estudiantesBusqueda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 estudiantesBusquedaActionPerformed(evt);
+            }
+        });
+        estudiantesBusqueda.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                estudiantesBusquedaKeyReleased(evt);
             }
         });
 
@@ -181,7 +216,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tablaStudents);
 
-        busqueaComboEstudiantes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Busqueda", "Todos Los Registros", "Carnet", "Nombre", "Carrera", "Fecha De Nacimiento" }));
+        busqueaComboEstudiantes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Carnet", "Todos Los Registros", "Nombre", "Carrera", "Fecha De Nacimiento" }));
+        busqueaComboEstudiantes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         busqueaComboEstudiantes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 busqueaComboEstudiantesActionPerformed(evt);
@@ -211,7 +247,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                         .addComponent(eliminarEstudianteBt, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(labelBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                        .addComponent(estudiantesBusqueda, javax.swing.GroupLayout.DEFAULT_SIZE, 582, Short.MAX_VALUE)
+                        .addComponent(estudiantesBusqueda, javax.swing.GroupLayout.DEFAULT_SIZE, 691, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(busqueaComboEstudiantes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 602, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -232,13 +268,18 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                     .addComponent(estudiantesBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(busqueaComboEstudiantes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 331, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Estudiantes", jDesktopPane1);
 
+        jDesktopPane2.setBackground(new java.awt.Color(153, 255, 255));
+
+        jDesktopPane5.setBackground(new java.awt.Color(153, 255, 255));
+
         nuevoLibroButton.setText("Nuevo");
+        nuevoLibroButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         nuevoLibroButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nuevoLibroButtonActionPerformed(evt);
@@ -246,6 +287,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
 
         editarLibro.setText("Editar");
+        editarLibro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         editarLibro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 editarLibroActionPerformed(evt);
@@ -253,6 +295,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
 
         eliminarLibro.setText("Eliminar");
+        eliminarLibro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         eliminarLibro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 eliminarLibroActionPerformed(evt);
@@ -262,6 +305,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField2ActionPerformed(evt);
+            }
+        });
+        jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField2KeyReleased(evt);
             }
         });
 
@@ -297,7 +345,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             tablaLibros.getColumnModel().getColumn(5).setHeaderValue("Editorial");
         }
 
-        librosCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Busqueda", "Todos Los Registros", "Titulo", "Autor", "Código", "Cantidad de Copias", "Feche de Publicación", "Editorial" }));
+        librosCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Código", "Todos Los Registros", "Titulo", "Autor", "Cantidad de Copias", "Feche de Publicación", "Editorial" }));
+        librosCombo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         librosCombo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 librosComboActionPerformed(evt);
@@ -366,12 +415,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jDesktopPane2.setLayout(jDesktopPane2Layout);
         jDesktopPane2Layout.setHorizontalGroup(
             jDesktopPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 787, Short.MAX_VALUE)
+            .addGap(0, 892, Short.MAX_VALUE)
             .addGroup(jDesktopPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane2Layout.createSequentialGroup()
-                    .addContainerGap(14, Short.MAX_VALUE)
+                    .addContainerGap(67, Short.MAX_VALUE)
                     .addComponent(jDesktopPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(15, Short.MAX_VALUE)))
+                    .addContainerGap(67, Short.MAX_VALUE)))
         );
         jDesktopPane2Layout.setVerticalGroup(
             jDesktopPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -385,7 +434,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Libros", jDesktopPane2);
 
+        jDesktopPane4.setBackground(new java.awt.Color(153, 255, 255));
+
+        jDesktopPane6.setBackground(new java.awt.Color(153, 255, 255));
+
         nuevoPrestamosBt.setText("Nuevo");
+        nuevoPrestamosBt.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         nuevoPrestamosBt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nuevoPrestamosBtActionPerformed(evt);
@@ -393,6 +447,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
 
         eliminarPrestamosBt.setText("Regreso de Libro");
+        eliminarPrestamosBt.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         eliminarPrestamosBt.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 eliminarPrestamosBtMouseClicked(evt);
@@ -407,6 +462,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField3ActionPerformed(evt);
+            }
+        });
+        jTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField3KeyReleased(evt);
             }
         });
 
@@ -474,7 +534,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        busquedaComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Busqueda", "Todos Los Registros", "Codigo del Libro", "Carnet", "Fecha" }));
+        busquedaComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Codigo del Libro", "Todos Los Registros", "Carnet", "Fecha" }));
+        busquedaComboBox.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         busquedaComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 busquedaComboBoxActionPerformed(evt);
@@ -489,21 +550,21 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jDesktopPane4Layout.setHorizontalGroup(
             jDesktopPane4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane4Layout.createSequentialGroup()
-                .addContainerGap(637, Short.MAX_VALUE)
+                .addContainerGap(746, Short.MAX_VALUE)
                 .addComponent(busquedaComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addGroup(jDesktopPane4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane4Layout.createSequentialGroup()
-                    .addContainerGap(16, Short.MAX_VALUE)
+                    .addContainerGap(68, Short.MAX_VALUE)
                     .addComponent(jDesktopPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(16, Short.MAX_VALUE)))
+                    .addContainerGap(69, Short.MAX_VALUE)))
         );
         jDesktopPane4Layout.setVerticalGroup(
             jDesktopPane4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDesktopPane4Layout.createSequentialGroup()
                 .addGap(123, 123, 123)
                 .addComponent(busquedaComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(455, Short.MAX_VALUE))
+                .addContainerGap(447, Short.MAX_VALUE))
             .addGroup(jDesktopPane4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane4Layout.createSequentialGroup()
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -513,7 +574,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Prestamos", jDesktopPane4);
 
-        jToggleButton1.setText("listado de entregas de hoy");
+        jDesktopPane3.setBackground(new java.awt.Color(153, 255, 255));
+
+        jToggleButton1.setText("Listado de entregas de hoy");
         jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jToggleButton1ActionPerformed(evt);
@@ -522,7 +585,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jScrollPane4.setViewportView(textPaneCarnet);
 
-        jLabel1.setText("Reportes por estudiante");
+        jLabel1.setText("Reportes por estudiante:");
 
         historial.setText("Historial de prestamos");
         historial.addActionListener(new java.awt.event.ActionListener() {
@@ -540,47 +603,168 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jLabel2.setText("buscar carnet :");
 
+        jButton1.setText("Prestamos en un intervalo de tiempo");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        carreras.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ingenieria", "Medicina", "Derecho", "Arquitectura", "Administracion" }));
+        carreras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                carrerasActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Prestamos por carrera");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        fondos.setText("Calcular Ingresos");
+        fondos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fondosActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("Calcular ingresos según ciertas fechas:");
+
         jDesktopPane3.setLayer(jToggleButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane3.setLayer(jScrollPane4, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane3.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane3.setLayer(historial, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane3.setLayer(activos, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane3.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane3.setLayer(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane3.setLayer(date1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane3.setLayer(date2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane3.setLayer(carreras, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane3.setLayer(jButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane3.setLayer(date11, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane3.setLayer(date22, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane3.setLayer(jDateChooser1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane3.setLayer(jDateChooser2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane3.setLayer(fondos, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane3.setLayer(jSeparator1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane3.setLayer(jSeparator2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane3.setLayer(jSeparator3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane3.setLayer(jSeparator4, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane3.setLayer(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jDesktopPane3Layout = new javax.swing.GroupLayout(jDesktopPane3);
         jDesktopPane3.setLayout(jDesktopPane3Layout);
         jDesktopPane3Layout.setHorizontalGroup(
             jDesktopPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDesktopPane3Layout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(35, 35, 35)
                 .addGroup(jDesktopPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jDesktopPane3Layout.createSequentialGroup()
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(39, 39, 39)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane3Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(date2, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(133, 133, 133)
+                        .addComponent(jButton1)
+                        .addGap(163, 163, 163))))
+            .addComponent(jSeparator1)
+            .addGroup(jDesktopPane3Layout.createSequentialGroup()
+                .addGroup(jDesktopPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator2)
+                    .addGroup(jDesktopPane3Layout.createSequentialGroup()
+                        .addGroup(jDesktopPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jSeparator4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 891, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jDesktopPane3Layout.createSequentialGroup()
+                                .addGap(43, 43, 43)
+                                .addComponent(date1, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(jDesktopPane3Layout.createSequentialGroup()
+                .addGroup(jDesktopPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jDesktopPane3Layout.createSequentialGroup()
+                        .addGap(69, 69, 69)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(68, 68, 68)
                         .addComponent(historial)
-                        .addGap(26, 26, 26)
-                        .addComponent(activos)))
-                .addContainerGap(207, Short.MAX_VALUE))
+                        .addGap(45, 45, 45)
+                        .addComponent(activos))
+                    .addGroup(jDesktopPane3Layout.createSequentialGroup()
+                        .addGap(313, 313, 313)
+                        .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane3Layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(carreras, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(date11, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(73, 73, 73)
+                .addComponent(date22, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(58, 58, 58)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(76, 76, 76))
+            .addGroup(jDesktopPane3Layout.createSequentialGroup()
+                .addGap(90, 90, 90)
+                .addGroup(jDesktopPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jDesktopPane3Layout.createSequentialGroup()
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jDesktopPane3Layout.createSequentialGroup()
+                        .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(100, 100, 100)
+                        .addComponent(fondos, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(93, 93, 93))))
         );
         jDesktopPane3Layout.setVerticalGroup(
             jDesktopPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDesktopPane3Layout.createSequentialGroup()
-                .addGap(36, 36, 36)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane3Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
                 .addComponent(jToggleButton1)
-                .addGap(35, 35, 35)
+                .addGap(18, 18, 18)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addGroup(jDesktopPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jDesktopPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jDesktopPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(historial)
                         .addComponent(activos))
-                    .addComponent(jLabel2))
-                .addContainerGap(420, Short.MAX_VALUE))
+                    .addGroup(jDesktopPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel2)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(40, 40, 40)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addGroup(jDesktopPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(date1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(date2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1))
+                .addGap(35, 35, 35)
+                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
+                .addGroup(jDesktopPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton2)
+                    .addComponent(date11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(carreras, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(date22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(54, 54, 54)
+                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel3)
+                .addGap(24, 24, 24)
+                .addGroup(jDesktopPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fondos))
+                .addGap(69, 69, 69))
         );
 
         jTabbedPane1.addTab("Reportes", jDesktopPane3);
@@ -599,7 +783,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 622, Short.MAX_VALUE)
+                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 620, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -746,18 +930,55 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_eliminarLibroActionPerformed
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+        ArrayList<Prestamo> prestamos = this.reporte.recorrerPrestamos();
+        if (!prestamos.isEmpty()) {
+            TablaReporte tablaR = new TablaReporte(this.reporte, this);
+            this.setVisible(false);
+            tablaR.setVisible(true);
+            tablaR.recorrerPrestamos();
+        } else {
+            JOptionPane.showMessageDialog(null, "No hay prestamos que se entreguen hoy", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+        }
 
-        this.reporte.recorrerPrestamos();
+
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     private void historialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_historialActionPerformed
-        int carnet = Integer.parseInt(this.textPaneCarnet.getText());
-        this.reporte.historialEstudiante(carnet);
+        int carnet = 0;
+        try {
+            carnet = Integer.parseInt(this.textPaneCarnet.getText());
+            ArrayList<Prestamo> historial = this.reporte.historialEstudiante(carnet);
+            if (!historial.isEmpty()) {
+                TablaReporte tablaR = new TablaReporte(this.reporte, this);
+                this.setVisible(false);
+                tablaR.setVisible(true);
+                tablaR.mostrarHistorial(carnet);
+            } else {
+                JOptionPane.showMessageDialog(null, "El estudiante aún tiene un historial", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Debe ingresar el numero de carnet para realizar la busqueda", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+        }
+
     }//GEN-LAST:event_historialActionPerformed
 
     private void activosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_activosActionPerformed
-        int carnet = Integer.parseInt(this.textPaneCarnet.getText());
-        this.reporte.prestamosEstudiante(carnet);
+
+        int carnet = 0;
+        try {
+            carnet = Integer.parseInt(this.textPaneCarnet.getText());
+            ArrayList<Prestamo> activos = reporte.prestamosEstudiante(carnet);
+            if (!activos.isEmpty()) {
+                TablaReporte tablaR = new TablaReporte(this.reporte, this);
+                this.setVisible(false);
+                tablaR.setVisible(true);
+                tablaR.mostrarActivos(carnet);
+            } else {
+                JOptionPane.showMessageDialog(null, "El estudiante no tiene prestamos activos", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Debe ingresar el numero de carnet para realizar la busqueda", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_activosActionPerformed
 
     private void eliminarPrestamosBtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarPrestamosBtActionPerformed
@@ -781,10 +1002,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void tablaPrestamosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tablaPrestamosKeyPressed
         // TODO add your handling code here:
+
     }//GEN-LAST:event_tablaPrestamosKeyPressed
 
     private void busquedaComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_busquedaComboBoxActionPerformed
-
         filtroItemPres();
     }//GEN-LAST:event_busquedaComboBoxActionPerformed
 
@@ -797,6 +1018,110 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         filtroItemLibros();
     }//GEN-LAST:event_librosComboActionPerformed
+
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Date dateUno = date1.getDate();
+        Date dateDos = date2.getDate();
+        ArrayList<Prestamo> intervalo;
+        try {
+            if (dateUno == null && dateDos == null) {
+                TablaReporte tablaR = new TablaReporte(this.reporte, this);
+                this.setVisible(false);
+                tablaR.setVisible(true);
+                tablaR.mostrarPrestamos();
+            } else if (dateUno != null && dateDos != null) {
+                intervalo = this.reporte.prestamosEnIntervalo(dateUno, dateDos);
+                if (intervalo.isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "No se han realizado prestamos en esas fechas", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    TablaReporte tablaR = new TablaReporte(this.reporte, this);
+                    this.setVisible(false);
+                    tablaR.setVisible(true);
+                    tablaR.mostrarSegunIntervalo(dateUno, dateDos);
+                }
+            }
+        } catch (ParseException ex) {
+            Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void carrerasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_carrerasActionPerformed
+        String carreraS = carreras.getSelectedItem().toString();
+        switch (carreraS) {
+            case "Ingenieria":
+                carrera = 1;
+                break;
+            case "Medicina":
+                carrera = 2;
+                break;
+            case "Derecho":
+                carrera = 3;
+                break;
+            case "Arquitectura":
+                carrera = 4;
+                break;
+            case "Administracion":
+                carrera = 5;
+                break;
+            default:
+                throw new AssertionError();
+        }
+    }//GEN-LAST:event_carrerasActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        Date dateUno = date11.getDate();
+        Date dateDos = date22.getDate();
+        if (dateUno != null && dateDos != null) {
+            this.reporte.clasificarPrestamos(carrera);
+            try {
+                TablaReporte tablaR = new TablaReporte(this.reporte, this);
+                this.setVisible(false);
+                tablaR.setVisible(true);
+                tablaR.mostrarCarreraI(dateUno, dateDos, carrera);
+            } catch (ParseException ex) {
+                Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            this.reporte.mostrarInter();
+        } else {
+            this.reporte.clasificarPrestamos(carrera);
+            TablaReporte tablaR = new TablaReporte(this.reporte, this);
+            this.setVisible(false);
+            tablaR.setVisible(true);
+            try {
+                tablaR.mostrarCarrera(carrera);
+            } catch (ParseException ex) {
+                Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            System.out.println("mostrar todos los reportes");
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void fondosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fondosActionPerformed
+        Date dateUno = this.jDateChooser1.getDate();
+        Date dateDos = this.jDateChooser2.getDate();
+        try {
+            Fondos fondos = new Fondos(this, this.reporte);
+            this.setVisible(false);
+            fondos.setVisible(true);
+            fondos.mostrarFondos(dateUno, dateDos);
+        } catch (ParseException ex) {
+            Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_fondosActionPerformed
+
+    private void estudiantesBusquedaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_estudiantesBusquedaKeyReleased
+        filtroItemEstuden();
+    }//GEN-LAST:event_estudiantesBusquedaKeyReleased
+
+    private void jTextField2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyReleased
+        filtroItemLibros();
+    }//GEN-LAST:event_jTextField2KeyReleased
+
+    private void jTextField3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyReleased
+        filtroItemPres();
+    }//GEN-LAST:event_jTextField3KeyReleased
 
     public void ventanaNuevoEst() {
         NuevoEstudiante ne = new NuevoEstudiante(false, null, tablaStudents);
@@ -854,6 +1179,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }
 
     public void filtroItemPres() {
+        System.out.println("si entra en en filtro pres");
         int validacion = -1;
         int numeroFiltro = -1;
         String busqueda = jTextField3.getText();
@@ -882,6 +1208,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         // Aplicar el filtro
         filtroPrestamo(numeroFiltro, busqueda, validacion);
+
     }
     //aca esta el filtro para los estudiantes
 
@@ -991,6 +1318,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         }
         // Aplicar el filtro
         filtroLibros(numeroFiltro, busqueda, validacion);
+
     }
 
     public void actualizarTabla() {
@@ -1012,13 +1340,23 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton activos;
     private javax.swing.JComboBox<String> busqueaComboEstudiantes;
     private javax.swing.JComboBox<String> busquedaComboBox;
+    private javax.swing.JComboBox<String> carreras;
+    private com.toedter.calendar.JDateChooser date1;
+    private com.toedter.calendar.JDateChooser date11;
+    private com.toedter.calendar.JDateChooser date2;
+    private com.toedter.calendar.JDateChooser date22;
     private javax.swing.JButton editarEstudianteBt;
     private javax.swing.JButton editarLibro;
     private javax.swing.JButton eliminarEstudianteBt;
     private javax.swing.JButton eliminarLibro;
     private javax.swing.JButton eliminarPrestamosBt;
     private javax.swing.JTextField estudiantesBusqueda;
+    private javax.swing.JButton fondos;
     private javax.swing.JButton historial;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private com.toedter.calendar.JDateChooser jDateChooser2;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JDesktopPane jDesktopPane2;
     private javax.swing.JDesktopPane jDesktopPane3;
@@ -1028,11 +1366,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
