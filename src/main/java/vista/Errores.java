@@ -40,11 +40,14 @@ public class Errores extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(204, 255, 255));
 
         mostrarErroresJTextArea.setColumns(20);
         mostrarErroresJTextArea.setRows(5);
         jScrollPane1.setViewportView(mostrarErroresJTextArea);
 
+        jButton1.setBackground(new java.awt.Color(102, 255, 51));
+        jButton1.setForeground(new java.awt.Color(204, 0, 0));
         jButton1.setText("Siguiente");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
