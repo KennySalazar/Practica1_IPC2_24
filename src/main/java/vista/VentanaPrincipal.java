@@ -244,8 +244,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                     .addComponent(estudiantesBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(busqueaComboEstudiantes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 422, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Estudiantes", jDesktopPane1);
@@ -659,7 +659,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                     .addComponent(date22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(59, 59, 59)
                 .addComponent(jButton2)
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addContainerGap(77, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Reportes", jDesktopPane3);
@@ -678,7 +678,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 568, Short.MAX_VALUE)
+                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 620, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -860,10 +860,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void tablaPrestamosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tablaPrestamosKeyPressed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_tablaPrestamosKeyPressed
 
     private void busquedaComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_busquedaComboBoxActionPerformed
-        
+        filtroItemPres();
     }//GEN-LAST:event_busquedaComboBoxActionPerformed
 
     private void busqueaComboEstudiantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_busqueaComboEstudiantesActionPerformed
@@ -991,8 +992,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }
 
 
-    public void filtoItemPres() {
-
+    public void filtroItemPres() {
+        System.out.println("si entra en en filtro pres");
         int validacion = -1;
         int numeroFiltro = -1;
         String busqueda = jTextField3.getText();

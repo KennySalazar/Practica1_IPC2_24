@@ -15,19 +15,20 @@ import javax.swing.JTable;
  *
  * @author denil
  */
+//clase serializable para poder guardar en los arrayList 
 public class ControlMora_SinMora implements Serializable {
     SaveAndReaderBinary LyE = new SaveAndReaderBinary();
 
-    
-    public void guardarSinMora(int SinMora, String fecha, JTable tabla) {
-        sinMora nuevo = new sinMora(SinMora, fecha);
+    //metodo para guardar el array SinMora
+    public void guardarSinMora(int SinMora, String fecha, String prestamo, JTable tabla) {
+        sinMora nuevo = new sinMora(SinMora, fecha, prestamo);
         PersistenciaDeDatos.sinMora.add(nuevo);
         System.out.println(nuevo);
         LyE.guardarArchivoBinario();
     }
-    
-    public void guardarMora(int mora, String fecha, JTable tabla) {
-        Mora nuevo = new Mora(mora, fecha);
+    //metodo para guardar el array con Mora
+    public void guardarMora(int mora, String fecha,String prestamo, JTable tabla) {
+        Mora nuevo = new Mora(mora, fecha, prestamo);
         PersistenciaDeDatos.Mora.add(nuevo);
         System.out.println(nuevo);
         LyE.guardarArchivoBinario();

@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 public class BinaryFileController {
 
-     //metodo para leer dos arrayList
+    //metodo para leer dos arrayList
     //esto se hizo afuera para evitar problemas con la lectura del txt
     public  void writeArrayLists(String nombreArchivo, ArrayList<sinMora> sinMoraList, ArrayList<Mora> moraList) {
         try (PrintWriter writer = new PrintWriter(new FileWriter(nombreArchivo))) {
@@ -34,6 +34,7 @@ public class BinaryFileController {
             System.out.println("No se pudieron almacenar los datos en el archivo txt.");
         }
     }
+    //lectura del arrayList de moras y prestamos esto se hizo asi por la estructura distinta 
      public void cargarDatosDesdeArchivo(String nombreArchivo, ArrayList<sinMora> sinMoraList, ArrayList<Mora> moraList) {
         try (BufferedReader lectura = new BufferedReader(new FileReader(nombreArchivo))) {
             String linea;
@@ -43,13 +44,15 @@ public class BinaryFileController {
                     String[] partes = linea.split(", ");
                     int mora = Integer.parseInt(partes[0].split("=")[1]);
                     String fecha = partes[1].split("=")[1];
-                    sinMoraList.add(new sinMora(mora, fecha));
+                    String prestamo = partes[2].split("=")[1];
+                    sinMoraList.add(new sinMora(mora, fecha, prestamo));
                 } else if (linea.startsWith("Mora:")) {
                     // Parsea los datos para crear un objeto Mora
                     String[] partes = linea.split(", ");
                     int mora = Integer.parseInt(partes[0].split("=")[1]);
                     String fecha = partes[1].split("=")[1];
-                    moraList.add(new Mora(mora, fecha));
+                    String prestamo = partes[2].split("=")[1];
+                    moraList.add(new Mora(mora, fecha, prestamo));
                 }
             }
             System.out.println("Datos cargados en los ArrayList.");
@@ -59,7 +62,7 @@ public class BinaryFileController {
         }
     }
 
-
+     
         public void write(String name, String texto) {
         try {
             File file = new File(name);
