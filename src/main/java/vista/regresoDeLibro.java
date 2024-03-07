@@ -5,10 +5,17 @@
 package vista;
 
 import DataBase.SaveAndReaderBinary;
+<<<<<<< HEAD
 import Reportes.Mora;
 import Reportes.sinMora;
 import cargaDeDatos.Estudiante;
 import cargaDeDatos.Prestamo;
+=======
+import cargaDeDatos.Estudiante;
+import cargaDeDatos.Prestamo;
+import Reportes.Mora;
+import Reportes.sinMora;
+>>>>>>> prestamosAndFronted
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -56,6 +63,11 @@ public class regresoDeLibro extends javax.swing.JFrame {
 
     public regresoDeLibro() {
         initComponents();
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> prestamosAndFronted
         setResizable(false);
     }
 
@@ -190,7 +202,6 @@ public class regresoDeLibro extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         //Boton para recibir todo lo del estudiante
-        VentanaPrincipal vt = new VentanaPrincipal();
         String fecha = "";
         int total = 0;
         fecha = fechaFinalTextField.getText();
@@ -199,6 +210,11 @@ public class regresoDeLibro extends javax.swing.JFrame {
             if (verificacionPrestamo()) {//
                 System.out.println("llega aca");
                 if (eliminacionPrestamo()) {
+<<<<<<< HEAD
+=======
+                    JOptionPane.showMessageDialog(jFrame, "El libro se ha Regresado");
+                    LyE.guardarArchivoBinario();
+>>>>>>> prestamosAndFronted
                     //if para declarar los valores 
                     if (total >= 16 && total != 0) {
                         control.guardarMora(total, fecha, tabla);
@@ -325,7 +341,11 @@ public class regresoDeLibro extends javax.swing.JFrame {
         for (int i = 0; i < PersistenciaDeDatos.prestamos.size(); i++) {
             if (PersistenciaDeDatos.prestamos.get(i).getCodigoLibro().equals(codigo)
                     && PersistenciaDeDatos.prestamos.get(i).getCarnetE().equals(carnet)) {
+<<<<<<< HEAD
      for (Estudiante estudiante : PersistenciaDeDatos.estudiantes) {
+=======
+                for (Estudiante estudiante : PersistenciaDeDatos.estudiantes) {
+>>>>>>> prestamosAndFronted
                     if (estudiante.getCarnet() == Integer.parseInt(carnet)) {
                         estudiante.getHistorial().add(PersistenciaDeDatos.prestamos.get(i));
                         /*

@@ -25,8 +25,13 @@ public class Reporte {
     private ArrayList<Prestamo> prestamosEntrega;
     private ArrayList<Prestamo> prestamosIntervalo;
     private ArrayList<Mora> moras;
+<<<<<<< HEAD
     private ArrayList<sinMora> sinMoras;
     private ArrayList<Prestamo> prestamosCarrera;
+=======
+    private ArrayList<Prestamo> prestamosCarrera;
+    private ArrayList<sinMora> devolusiones;
+>>>>>>> prestamosAndFronted
 
     public Reporte() {
         this.prestamosCarrera = new ArrayList<>();
