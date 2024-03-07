@@ -1098,30 +1098,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void fondosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fondosActionPerformed
-        Date dateUno = date11.getDate();
-        Date dateDos = date22.getDate();
-        if (dateUno != null && dateDos != null) {
-            this.reporte.clasificarPrestamos(carrera);
-            try {
-                TablaReporte tablaR = new TablaReporte(this.reporte, this);
-                this.setVisible(false);
-                tablaR.setVisible(true);
-                tablaR.mostrarCarreraI(dateUno, dateDos, carrera);
-            } catch (ParseException ex) {
-                Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            this.reporte.mostrarInter();
-        } else {
-            this.reporte.clasificarPrestamos(carrera);
-            TablaReporte tablaR = new TablaReporte(this.reporte, this);
+        Date dateUno = this.jDateChooser1.getDate();
+        Date dateDos = this.jDateChooser2.getDate();
+        try {
+            Fondos fondos = new Fondos(this, this.reporte);
             this.setVisible(false);
-            tablaR.setVisible(true);
-            try {
-                tablaR.mostrarCarrera(carrera);
-            } catch (ParseException ex) {
-                Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            System.out.println("mostrar todos los reportes");
+            fondos.setVisible(true);
+            fondos.mostrarFondos(dateUno, dateDos);
+        } catch (ParseException ex) {
+            Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_fondosActionPerformed
 
